@@ -1,10 +1,10 @@
-package org.cwm3.system.controller.system.basic;
+package org.cwm3.mgrsystem.controller.system.basic;
 
-import org.cwm3.system.model.Menu;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.model.Role;
-import org.cwm3.system.service.MenuService;
-import org.cwm3.system.service.RoleService;
+import org.cwm3.mgrsystem.model.Menu;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.model.Role;
+import org.cwm3.mgrsystem.service.IMenuService;
+import org.cwm3.mgrsystem.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +17,12 @@ import java.util.List;
  * @时间 2019-10-01 19:41
  */
 @RestController
-@RequestMapping("/system/basic/permiss")
+@RequestMapping("/mgrsystem/basic/permiss")
 public class PermissController {
     @Autowired
-    RoleService roleService;
+    IRoleService roleService;
     @Autowired
-    MenuService menuService;
+    IMenuService menuService;
     @GetMapping("/")
     public List<Role> getAllRoles() {
         return roleService.getAllRoles();

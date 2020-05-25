@@ -1,11 +1,14 @@
 package org.cwm3.mgrsystem.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
 public class Employee implements Serializable {
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
     private String name;

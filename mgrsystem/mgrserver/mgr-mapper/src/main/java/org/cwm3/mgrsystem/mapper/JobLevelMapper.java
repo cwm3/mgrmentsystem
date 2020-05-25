@@ -1,11 +1,12 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
-import org.cwm3.system.model.JobLevel;
+import org.cwm3.mgrsystem.model.JobLevel;
 
 import java.util.List;
 
-public interface JobLevelMapper {
+public interface JobLevelMapper extends BaseMapper<JobLevel> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(JobLevel record);

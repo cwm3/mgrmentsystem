@@ -1,11 +1,10 @@
-package org.cwm3.system.controller.salary;
+package org.cwm3.mgrsystem.controller.salary;
 
-import org.cwm3.system.model.Employee;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.model.RespPageBean;
-import org.cwm3.system.model.Salary;
-import org.cwm3.system.service.EmployeeService;
-import org.cwm3.system.service.SalaryService;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.model.RespPageBean;
+import org.cwm3.mgrsystem.model.Salary;
+import org.cwm3.mgrsystem.service.IEmployeeService;
+import org.cwm3.mgrsystem.service.ISalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +14,9 @@ import java.util.List;
 @RequestMapping("/salary/sobcfg")
 public class SobConfigController {
     @Autowired
-    EmployeeService employeeService;
+    IEmployeeService employeeService;
     @Autowired
-    SalaryService salaryService;
+    ISalaryService salaryService;
 
     @GetMapping("/")
     public RespPageBean getEmployeeByPageWithSalary(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {

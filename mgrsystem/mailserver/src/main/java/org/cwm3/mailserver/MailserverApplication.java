@@ -1,6 +1,6 @@
 package org.cwm3.mailserver;
 
-import org.cwm3.system.model.MailConstants;
+import org.cwm3.mgrsystem.model.MailConstants;
 import org.springframework.amqp.core.Queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

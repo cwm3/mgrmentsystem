@@ -1,8 +1,8 @@
-package org.cwm3.system.config;
+package org.cwm3.mgrsystem.config;
 
-import org.cwm3.system.model.Menu;
-import org.cwm3.system.model.Role;
-import org.cwm3.system.service.MenuService;
+import org.cwm3.mgrsystem.model.Menu;
+import org.cwm3.mgrsystem.model.Role;
+import org.cwm3.mgrsystem.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -24,7 +24,7 @@ import java.util.List;
 @Component
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     @Autowired
-    MenuService menuService;
+    IMenuService menuService;
     AntPathMatcher antPathMatcher = new AntPathMatcher();
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {

@@ -1,4 +1,4 @@
-package org.cwm3.system.config;
+package org.cwm3.mgrsystem.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

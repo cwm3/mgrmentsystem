@@ -1,8 +1,8 @@
-package org.cwm3.system.controller.system.basic;
+package org.cwm3.mgrsystem.controller.mgrsystem.basic;
 
-import org.cwm3.system.model.Department;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.service.DepartmentService;
+import org.cwm3.mgrsystem.model.Department;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.service.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +15,10 @@ import java.util.List;
  * @时间 2019-10-21 8:02
  */
 @RestController
-@RequestMapping("/system/basic/department")
+@RequestMapping("/mgrsystem/basic/department")
 public class DepartmentController {
     @Autowired
-    DepartmentService departmentService;
+    IDepartmentService departmentService;
     @GetMapping("/")
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();

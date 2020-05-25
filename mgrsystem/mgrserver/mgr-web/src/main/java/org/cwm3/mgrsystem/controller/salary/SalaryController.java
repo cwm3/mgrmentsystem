@@ -1,8 +1,8 @@
-package org.cwm3.system.controller.salary;
+package org.cwm3.mgrsystem.controller.salary;
 
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.model.Salary;
-import org.cwm3.system.service.SalaryService;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.model.Salary;
+import org.cwm3.mgrsystem.service.ISalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/salary/sob")
 public class SalaryController {
     @Autowired
-    SalaryService salaryService;
+    ISalaryService salaryService;
 
     @GetMapping("/")
     public List<Salary> getAllSalaries() {

@@ -1,10 +1,10 @@
-package org.cwm3.system.task;
+package org.cwm3.mgrsystem.task;
 
-import org.cwm3.system.model.Employee;
-import org.cwm3.system.model.MailConstants;
-import org.cwm3.system.model.MailSendLog;
-import org.cwm3.system.service.EmployeeService;
-import org.cwm3.system.service.MailSendLogService;
+import org.cwm3.mgrsystem.model.Employee;
+import org.cwm3.mgrsystem.model.MailConstants;
+import org.cwm3.mgrsystem.model.MailSendLog;
+import org.cwm3.mgrsystem.service.IEmployeeService;
+import org.cwm3.mgrsystem.service.IMailSendLogService;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import java.util.List;
 @Component
 public class MailSendTask {
     @Autowired
-    MailSendLogService mailSendLogService;
+    IMailSendLogService mailSendLogService;
     @Autowired
     RabbitTemplate rabbitTemplate;
     @Autowired
-    EmployeeService employeeService;
+    IEmployeeService employeeService;
     @Scheduled(cron = "0/10 * * * * ?")
     public void mailResendTask() {
         List<MailSendLog> logs = mailSendLogService.getMailSendLogsByStatus();

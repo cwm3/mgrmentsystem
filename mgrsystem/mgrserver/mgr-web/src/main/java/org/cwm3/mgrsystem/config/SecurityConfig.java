@@ -1,9 +1,10 @@
-package org.cwm3.system.config;
+package org.cwm3.mgrsystem.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.cwm3.system.model.Hr;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.service.HrService;
+import org.cwm3.mgrsystem.model.Hr;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.service.IHrService;
+import org.cwm3.mgrsystem.service.impl.HrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +31,10 @@ import java.io.PrintWriter;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    HrService hrService;
+    IHrService hrService;
+    @Autowired
+    HrService mhrService;
+
     @Autowired
     CustomFilterInvocationSecurityMetadataSource customFilterInvocationSecurityMetadataSource;
     @Autowired
@@ -43,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(hrService);
+        auth.userDetailsService(mhrService);
     }
 
     @Override

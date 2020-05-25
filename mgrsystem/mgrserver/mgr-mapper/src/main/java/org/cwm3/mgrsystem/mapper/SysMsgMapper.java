@@ -1,8 +1,9 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.SysMsg;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.SysMsg;
 
-public interface SysMsgMapper {
+public interface SysMsgMapper extends BaseMapper<SysMsg> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(SysMsg record);

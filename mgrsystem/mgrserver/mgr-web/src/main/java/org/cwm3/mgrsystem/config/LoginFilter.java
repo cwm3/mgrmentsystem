@@ -1,7 +1,7 @@
-package org.cwm3.system.config;
+package org.cwm3.mgrsystem.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.cwm3.system.model.Hr;
+import org.cwm3.mgrsystem.model.Hr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationServiceException;

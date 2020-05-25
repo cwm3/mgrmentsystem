@@ -1,7 +1,7 @@
-package org.cwm3.system.controller;
+package org.cwm3.mgrsystem.controller;
 
-import org.cwm3.system.model.Hr;
-import org.cwm3.system.service.HrService;
+import org.cwm3.mgrsystem.model.Hr;
+import org.cwm3.mgrsystem.service.IHrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/chat")
 public class ChatController {
     @Autowired
-    HrService hrService;
+    IHrService hrService;
     @GetMapping("/hrs")
     public List<Hr> getAllHrs() {
         return hrService.getAllHrsExceptCurrentHr();

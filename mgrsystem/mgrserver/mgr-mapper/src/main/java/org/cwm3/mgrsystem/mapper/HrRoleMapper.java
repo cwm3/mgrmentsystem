@@ -1,9 +1,11 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.cwm3.system.model.HrRole;
+import org.cwm3.mgrsystem.model.HrRole;
 
-public interface HrRoleMapper {
+public interface HrRoleMapper extends BaseMapper<HrRole> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(HrRole record);

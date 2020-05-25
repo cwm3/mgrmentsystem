@@ -1,8 +1,9 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.EmpSalary;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.EmpSalary;
 
-public interface EmpSalaryMapper {
+public interface EmpSalaryMapper extends BaseMapper<EmpSalary> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(EmpSalary record);

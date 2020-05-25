@@ -1,10 +1,11 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Nation;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Nation;
 
 import java.util.List;
 
-public interface NationMapper {
+public interface NationMapper extends BaseMapper<Nation> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Nation record);

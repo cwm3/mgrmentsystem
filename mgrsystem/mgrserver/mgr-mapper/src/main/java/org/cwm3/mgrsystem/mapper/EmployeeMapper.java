@@ -1,15 +1,16 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
-import org.cwm3.system.model.Employee;
+import org.cwm3.mgrsystem.model.Employee;
 
 import java.util.Date;
 import java.util.List;
 
-public interface EmployeeMapper {
+public interface EmployeeMapper extends BaseMapper<Employee> {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Employee record);
+//    int insert(Employee record);
 
     int insertSelective(Employee record);
 

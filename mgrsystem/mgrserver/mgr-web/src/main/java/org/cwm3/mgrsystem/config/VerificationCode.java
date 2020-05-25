@@ -1,4 +1,4 @@
-package org.cwm3.system.config;
+package org.cwm3.mgrsystem.config;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

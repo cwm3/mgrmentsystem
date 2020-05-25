@@ -1,8 +1,9 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Employeetrain;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Employeetrain;
 
-public interface EmployeetrainMapper {
+public interface EmployeetrainMapper extends BaseMapper<Employeetrain> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Employeetrain record);

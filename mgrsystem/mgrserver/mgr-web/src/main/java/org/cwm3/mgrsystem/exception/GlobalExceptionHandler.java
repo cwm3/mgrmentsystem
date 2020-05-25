@@ -1,6 +1,6 @@
-package org.cwm3.system.exception;
+package org.cwm3.mgrsystem.exception;
 
-import org.cwm3.system.model.RespBean;
+import org.cwm3.mgrsystem.model.RespBean;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

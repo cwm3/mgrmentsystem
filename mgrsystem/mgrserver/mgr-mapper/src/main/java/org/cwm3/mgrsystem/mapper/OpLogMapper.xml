@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.cwm3.system.mapper.OpLogMapper" >
-  <resultMap id="BaseResultMap" type="org.cwm3.system.model.OpLog" >
+<mapper namespace="org.cwm3.mgrsystem.mapper.OpLogMapper" >
+  <resultMap id="BaseResultMap" type="org.cwm3.mgrsystem.model.OpLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="addDate" property="adddate" jdbcType="DATE" />
     <result column="operate" property="operate" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from oplog
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.cwm3.system.model.OpLog" >
+  <insert id="insert" parameterType="org.cwm3.mgrsystem.model.OpLog" >
     insert into oplog (id, addDate, operate, 
       hrid)
     values (#{id,jdbcType=INTEGER}, #{adddate,jdbcType=DATE}, #{operate,jdbcType=VARCHAR}, 
       #{hrid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="org.cwm3.system.model.OpLog" >
+  <insert id="insertSelective" parameterType="org.cwm3.mgrsystem.model.OpLog" >
     insert into oplog
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.cwm3.system.model.OpLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.cwm3.mgrsystem.model.OpLog" >
     update oplog
     <set >
       <if test="adddate != null" >
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.cwm3.system.model.OpLog" >
+  <update id="updateByPrimaryKey" parameterType="org.cwm3.mgrsystem.model.OpLog" >
     update oplog
     set addDate = #{adddate,jdbcType=DATE},
       operate = #{operate,jdbcType=VARCHAR},

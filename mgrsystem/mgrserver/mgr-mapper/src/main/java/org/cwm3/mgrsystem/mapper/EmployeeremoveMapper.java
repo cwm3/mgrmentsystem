@@ -1,8 +1,10 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Employeeremove;
 
-public interface EmployeeremoveMapper {
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Employeeremove;
+
+public interface EmployeeremoveMapper extends BaseMapper<Employeeremove> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Employeeremove record);

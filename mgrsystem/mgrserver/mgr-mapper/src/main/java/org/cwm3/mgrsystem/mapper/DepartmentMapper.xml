@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.cwm3.system.mapper.DepartmentMapper">
-    <resultMap id="BaseResultMap" type="org.cwm3.system.model.Department">
+<mapper namespace="org.cwm3.mgrsystem.mapper.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="org.cwm3.mgrsystem.model.Department">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="parentId" property="parentId" jdbcType="INTEGER"/>
@@ -9,9 +9,9 @@
         <result column="enabled" property="enabled" jdbcType="BIT"/>
         <result column="isParent" property="isParent" jdbcType="BIT"/>
     </resultMap>
-    <resultMap id="DepartmentWithChildren" type="org.cwm3.system.model.Department" extends="BaseResultMap">
-        <collection property="children" ofType="org.cwm3.system.model.Department"
-                    select="org.cwm3.system.mapper.DepartmentMapper.getAllDepartmentsByParentId" column="id"/>
+    <resultMap id="DepartmentWithChildren" type="org.cwm3.mgrsystem.model.Department" extends="BaseResultMap">
+        <collection property="children" ofType="org.cwm3.mgrsystem.model.Department"
+                    select="org.cwm3.mgrsystem.mapper.DepartmentMapper.getAllDepartmentsByParentId" column="id"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, name, parentId, depPath, enabled, isParent
@@ -41,13 +41,13 @@
     delete from department
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="org.cwm3.system.model.Department">
+    <insert id="insert" parameterType="org.cwm3.mgrsystem.model.Department">
     insert into department (id, name, parentId, 
       depPath, enabled, isParent)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
       #{depPath,jdbcType=VARCHAR}, #{enabled,jdbcType=BIT}, #{isParent,jdbcType=BIT})
   </insert>
-    <insert id="insertSelective" parameterType="org.cwm3.system.model.Department">
+    <insert id="insertSelective" parameterType="org.cwm3.mgrsystem.model.Department">
         insert into department
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -90,7 +90,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="org.cwm3.system.model.Department">
+    <update id="updateByPrimaryKeySelective" parameterType="org.cwm3.mgrsystem.model.Department">
         update department
         <set>
             <if test="name != null">
@@ -111,7 +111,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="org.cwm3.system.model.Department">
+    <update id="updateByPrimaryKey" parameterType="org.cwm3.mgrsystem.model.Department">
     update department
     set name = #{name,jdbcType=VARCHAR},
       parentId = #{parentId,jdbcType=INTEGER},

@@ -1,10 +1,11 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Politicsstatus;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Politicsstatus;
 
 import java.util.List;
 
-public interface PoliticsstatusMapper {
+public interface PoliticsstatusMapper extends BaseMapper<Politicsstatus> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Politicsstatus record);

@@ -1,10 +1,11 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Role;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Role;
 
 import java.util.List;
 
-public interface RoleMapper {
+public interface RoleMapper extends BaseMapper<Role> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Role record);

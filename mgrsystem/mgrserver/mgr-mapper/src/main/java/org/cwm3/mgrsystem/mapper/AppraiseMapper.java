@@ -1,8 +1,9 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Appraise;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Appraise;
 
-public interface AppraiseMapper {
+public interface AppraiseMapper extends BaseMapper<Appraise> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Appraise record);

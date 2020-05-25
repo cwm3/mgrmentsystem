@@ -1,15 +1,16 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
-import org.cwm3.system.model.MailSendLog;
+import org.cwm3.mgrsystem.model.MailSendLog;
 
 import java.util.Date;
 import java.util.List;
 
-public interface MailSendLogMapper {
+public interface MailSendLogMapper extends BaseMapper<MailSendLog> {
     Integer updateMailSendLogStatus(@Param("msgId") String msgId, @Param("status") Integer status);
 
-    Integer insert(MailSendLog mailSendLog);
+    int insert(MailSendLog mailSendLog);
 
     List<MailSendLog> getMailSendLogsByStatus();
 

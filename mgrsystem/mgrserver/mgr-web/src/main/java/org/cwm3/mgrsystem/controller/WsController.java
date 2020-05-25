@@ -1,7 +1,7 @@
-package org.cwm3.system.controller;
+package org.cwm3.mgrsystem.controller;
 
-import org.cwm3.system.model.ChatMsg;
-import org.cwm3.system.model.Hr;
+import org.cwm3.mgrsystem.model.ChatMsg;
+import org.cwm3.mgrsystem.model.Hr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

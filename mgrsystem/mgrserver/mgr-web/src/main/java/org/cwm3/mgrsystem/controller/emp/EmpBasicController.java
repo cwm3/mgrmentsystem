@@ -1,8 +1,8 @@
-package org.cwm3.system.controller.emp;
+package org.cwm3.mgrsystem.controller.emp;
 
-import org.cwm3.system.model.*;
-import org.cwm3.system.service.*;
-import org.cwm3.system.utils.POIUtils;
+import org.cwm3.mgrsystem.model.*;
+import org.cwm3.mgrsystem.service.*;
+import org.cwm3.mgrsystem.utils.POIUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,17 +22,17 @@ import java.util.List;
 @RequestMapping("/employee/basic")
 public class EmpBasicController {
     @Autowired
-    EmployeeService employeeService;
+    IEmployeeService employeeService;
     @Autowired
-    NationService nationService;
+    INationService nationService;
     @Autowired
-    PoliticsstatusService politicsstatusService;
+    IPoliticsstatusService politicsstatusService;
     @Autowired
-    JobLevelService jobLevelService;
+    IJobLevelService jobLevelService;
     @Autowired
-    PositionService positionService;
+    IPositionService positionService;
     @Autowired
-    DepartmentService departmentService;
+    IDepartmentService departmentService;
 
     @GetMapping("/")
     public RespPageBean getEmployeeByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Employee employee, Date[] beginDateScope) {

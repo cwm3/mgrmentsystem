@@ -1,11 +1,12 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
-import org.cwm3.system.model.Position;
+import org.cwm3.mgrsystem.model.Position;
 
 import java.util.List;
 
-public interface PositionMapper {
+public interface PositionMapper  extends BaseMapper<Position> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Position record);

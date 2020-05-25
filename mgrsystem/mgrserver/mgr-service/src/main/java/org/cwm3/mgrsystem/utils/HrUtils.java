@@ -1,6 +1,6 @@
-package org.cwm3.system.utils;
+package org.cwm3.mgrsystem.utils;
 
-import org.cwm3.system.model.Hr;
+import org.cwm3.mgrsystem.model.Hr;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**

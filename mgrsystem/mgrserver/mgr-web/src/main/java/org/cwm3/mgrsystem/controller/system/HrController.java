@@ -1,10 +1,10 @@
-package org.cwm3.system.controller.system;
+package org.cwm3.mgrsystem.controller.system;
 
-import org.cwm3.system.model.Hr;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.model.Role;
-import org.cwm3.system.service.HrService;
-import org.cwm3.system.service.RoleService;
+import org.cwm3.mgrsystem.model.Hr;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.model.Role;
+import org.cwm3.mgrsystem.service.IHrService;
+import org.cwm3.mgrsystem.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +17,12 @@ import java.util.List;
  * @时间 2019-10-24 8:09
  */
 @RestController
-@RequestMapping("/system/hr")
+@RequestMapping("/mgrsystem/hr")
 public class HrController {
     @Autowired
-    HrService hrService;
+    IHrService hrService;
     @Autowired
-    RoleService roleService;
+    IRoleService roleService;
     @GetMapping("/")
     public List<Hr> getAllHrs(String keywords) {
         return hrService.getAllHrs(keywords);

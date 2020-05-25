@@ -1,7 +1,7 @@
-package org.cwm3.system.config;
+package org.cwm3.mgrsystem.config;
 
-import org.cwm3.system.model.MailConstants;
-import org.cwm3.system.service.MailSendLogService;
+import org.cwm3.mgrsystem.model.MailConstants;
+import org.cwm3.mgrsystem.service.impl.MailSendLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Binding;

@@ -1,9 +1,9 @@
-package org.cwm3.system.controller.system.basic;
+package org.cwm3.mgrsystem.controller.system.basic;
 
 import org.apache.ibatis.annotations.Delete;
-import org.cwm3.system.model.JobLevel;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.service.JobLevelService;
+import org.cwm3.mgrsystem.model.JobLevel;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.service.IJobLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +16,10 @@ import java.util.List;
  * @时间 2019-10-01 17:59
  */
 @RestController
-@RequestMapping("/system/basic/joblevel")
+@RequestMapping("/mgrsystem/basic/joblevel")
 public class JobLevelController {
     @Autowired
-    JobLevelService jobLevelService;
+    IJobLevelService jobLevelService;
     @GetMapping("/")
     public List<JobLevel> getAllJobLevels() {
         return jobLevelService.getAllJobLevels();

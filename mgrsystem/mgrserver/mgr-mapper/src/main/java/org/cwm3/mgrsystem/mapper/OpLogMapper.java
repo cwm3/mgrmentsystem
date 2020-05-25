@@ -1,8 +1,9 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.OpLog;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.OpLog;
 
-public interface OpLogMapper {
+public interface OpLogMapper extends BaseMapper<OpLog> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(OpLog record);

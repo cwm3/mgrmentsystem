@@ -1,9 +1,9 @@
-package org.cwm3.system.controller;
+package org.cwm3.mgrsystem.controller;
 
-import org.cwm3.system.config.FastDFSUtils;
-import org.cwm3.system.model.Hr;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.service.HrService;
+import org.cwm3.mgrsystem.config.FastDFSUtils;
+import org.cwm3.mgrsystem.model.Hr;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.service.IHrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,13 +18,12 @@ import java.util.Map;
 
  * @作者 cwm3
 
- * @时间 2020-03-01 13:07
  */
 @RestController
 public class HrInfoController {
 
     @Autowired
-    HrService hrService;
+    IHrService hrService;
 
     @Value("${fastdfs.nginx.host}")
     String nginxHost;

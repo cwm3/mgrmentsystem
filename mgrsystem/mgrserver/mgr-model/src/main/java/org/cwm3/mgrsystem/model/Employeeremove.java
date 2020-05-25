@@ -1,4 +1,4 @@
-package org.cwm3.mgrmgrsystem.model;
+package org.cwm3.mgrsystem.model;
 
 import java.util.Date;
 

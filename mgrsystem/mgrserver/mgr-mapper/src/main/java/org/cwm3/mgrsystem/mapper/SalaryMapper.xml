@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.cwm3.system.mapper.SalaryMapper">
-    <resultMap id="BaseResultMap" type="org.cwm3.system.model.Salary">
+<mapper namespace="org.cwm3.mgrsystem.mapper.SalaryMapper">
+    <resultMap id="BaseResultMap" type="org.cwm3.mgrsystem.model.Salary">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="basicSalary" property="basicSalary" jdbcType="INTEGER"/>
         <result column="bonus" property="bonus" jdbcType="INTEGER"/>
@@ -36,7 +36,7 @@
     delete from salary
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="org.cwm3.system.model.Salary">
+    <insert id="insert" parameterType="org.cwm3.mgrsystem.model.Salary">
     insert into salary (id, basicSalary, bonus, 
       lunchSalary, trafficSalary, allSalary, 
       pensionBase, pensionPer, createDate, 
@@ -48,7 +48,7 @@
       #{medicalBase,jdbcType=INTEGER}, #{medicalPer,jdbcType=REAL}, #{accumulationFundBase,jdbcType=INTEGER}, 
       #{accumulationFundPer,jdbcType=REAL}, #{name,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="org.cwm3.system.model.Salary">
+    <insert id="insertSelective" parameterType="org.cwm3.mgrsystem.model.Salary">
         insert into salary
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -139,7 +139,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="org.cwm3.system.model.Salary">
+    <update id="updateByPrimaryKeySelective" parameterType="org.cwm3.mgrsystem.model.Salary">
         update salary
         <set>
             <if test="basicSalary != null">
@@ -184,7 +184,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="org.cwm3.system.model.Salary">
+    <update id="updateByPrimaryKey" parameterType="org.cwm3.mgrsystem.model.Salary">
     update salary
     set basicSalary = #{basicSalary,jdbcType=INTEGER},
       bonus = #{bonus,jdbcType=INTEGER},

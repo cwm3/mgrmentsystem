@@ -1,8 +1,8 @@
-package org.cwm3.system.controller.system.basic;
+package org.cwm3.mgrsystem.controller.mgrsystem.basic;
 
-import org.cwm3.system.model.Position;
-import org.cwm3.system.model.RespBean;
-import org.cwm3.system.service.PositionService;
+import org.cwm3.mgrsystem.model.Position;
+import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.service.IPositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +15,10 @@ import java.util.List;
  * @时间 2019-10-01 15:52
  */
 @RestController
-@RequestMapping("/system/basic/pos")
+@RequestMapping("/mgrsystem/basic/pos")
 public class PositionController {
     @Autowired
-    PositionService positionService;
+    IPositionService positionService;
     @GetMapping("/")
     public List<Position> getAllPositions() {
         return positionService.getAllPositions();

@@ -1,10 +1,11 @@
-package org.cwm3.system.mapper;
+package org.cwm3.mgrsystem.mapper;
 
-import org.cwm3.system.model.Department;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.cwm3.mgrsystem.model.Department;
 
 import java.util.List;
 
-public interface DepartmentMapper {
+public interface DepartmentMapper extends BaseMapper<Department> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Department record);
