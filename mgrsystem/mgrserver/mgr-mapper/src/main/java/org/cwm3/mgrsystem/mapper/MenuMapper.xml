@@ -75,12 +75,20 @@
     delete from menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.cwm3.mgrsystem.model.Menu" >
-    insert into menu (id, url, path, 
+
+
+  <!--新增所有列-->
+  <insert id="insertOne" keyProperty="id" useGeneratedKeys="true">
+        insert into customer_db.menu(url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled)
+        values (#{url}, #{path}, #{component}, #{name}, #{iconCls}, #{keepAlive}, #{requireAuth}, #{parentId}, #{enabled})
+    </insert>
+
+  <insert id="insert" parameterType="org.cwm3.mgrsystem.model.Menu" keyProperty="id" useGeneratedKeys="true">
+    insert into menu (url, path,
       component, name, iconCls, 
       keepAlive, requireAuth, parentId, 
       enabled)
-    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+    values ( #{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR},
       #{component,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{iconcls,jdbcType=VARCHAR}, 
       #{keepalive,jdbcType=BIT}, #{requireauth,jdbcType=BIT}, #{parentid,jdbcType=INTEGER}, 
       #{enabled,jdbcType=BIT})

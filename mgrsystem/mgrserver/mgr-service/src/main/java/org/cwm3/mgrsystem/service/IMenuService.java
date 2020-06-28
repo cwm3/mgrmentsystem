@@ -20,4 +20,6 @@ public interface IMenuService {
     List<Integer> getMidsByRid(Integer rid);
 
     boolean updateMenuRole(Integer rid, Integer[] mids);
+
+    Integer insertMenu(Menu menu);
 }

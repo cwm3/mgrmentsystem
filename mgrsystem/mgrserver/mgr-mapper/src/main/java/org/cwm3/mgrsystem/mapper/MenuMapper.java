@@ -10,6 +10,8 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     int insert(Menu record);
 
+    int insertOne(Menu record);
+
     int insertSelective(Menu record);
 
     Menu selectByPrimaryKey(Integer id);

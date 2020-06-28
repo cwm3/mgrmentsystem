@@ -24,6 +24,9 @@ public class Menu implements Serializable {
     private List<Menu> children;
     private List<Role> roles;
 
+    public Menu() {
+    }
+
     public List<Role> getRoles() {
         return roles;
     }

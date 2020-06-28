@@ -2,7 +2,7 @@
     <div>
         <el-container>
             <el-header class="homeHeader">
-                <div class="title">微人事</div>
+                <div class="title">管理系统</div>
                 <div>
                     <el-button icon="el-icon-bell" type="text" style="margin-right: 8px;color: #000000;" size="normal" @click="goChat"></el-button>
                     <el-dropdown class="userInfo" @command="commandHandler">
@@ -37,7 +37,7 @@
                         <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
                     </el-breadcrumb>
                     <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
-                        欢迎来到微人事！
+                        欢迎来到管理系统！
                     </div>
                     <router-view class="homeRouterView"/>
                 </el-main>
@@ -98,14 +98,14 @@
 
     .homeWelcome {
         text-align: center;
-        font-size: 30px;
-        font-family: 华文行楷;
+        font-size: 70px;
+        font-family: Cambria;
         color: #409eff;
-        padding-top: 50px;
+        padding-top: 110px;
     }
 
     .homeHeader {
-        background-color: #409eff;
+        background-color: #8896B3;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -114,7 +114,7 @@
     }
 
     .homeHeader .title {
-        font-size: 30px;
+        font-size: 35px;
         font-family: 华文行楷;
         color: #ffffff
     }

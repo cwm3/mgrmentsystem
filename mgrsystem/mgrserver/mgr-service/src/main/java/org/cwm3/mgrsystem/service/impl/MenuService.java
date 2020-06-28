@@ -59,4 +59,9 @@ public class MenuService implements IMenuService {
         Integer result = menuRoleMapper.insertRecord(rid, mids);
         return result==mids.length;
     }
+
+    @Override
+    public Integer insertMenu(Menu menu) {
+       return menuMapper.insertOne(menu);
+    }
 }
