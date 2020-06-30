@@ -49,7 +49,7 @@
                         <el-tag size="small" type="danger" v-else>未启用</el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="200px">
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
@@ -125,7 +125,7 @@
                     this.multipleSelection.forEach(item => {
                         ids += 'ids=' + item.id + '&';
                     })
-                    this.deleteRequest("/system/basic/pos/" + ids).then(resp => {
+                    this.deleteRequest("/mgrsystem/basic/pos/" + ids).then(resp => {
                         if (resp) {
                             this.initPositions();
                         }
@@ -142,7 +142,7 @@
             },
             addPosition() {
                 if (this.pos.name) {
-                    this.postRequest("/system/basic/pos/", this.pos).then(resp => {
+                    this.postRequest("/mgrsystem/basic/pos/", this.pos).then(resp => {
                         if (resp) {
                             this.initPositions();
                             this.pos.name = '';
@@ -157,7 +157,7 @@
                 this.dialogVisible = true;
             },
             doUpdate() {
-                this.putRequest("/system/basic/pos/", this.updatePos).then(resp => {
+                this.putRequest("/mgrsystem/basic/pos/", this.updatePos).then(resp => {
                     if (resp) {
                         this.initPositions();
                         this.updatePos.name = '';
@@ -171,7 +171,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.deleteRequest("/system/basic/pos/" + data.id).then(resp => {
+                    this.deleteRequest("/mgrsystem/basic/pos/" + data.id).then(resp => {
                         if (resp) {
                             this.initPositions();
                         }
@@ -185,7 +185,7 @@
             },
             initPositions() {
                 this.loading = true;
-                this.getRequest("/system/basic/pos/").then(resp => {
+                this.getRequest("/mgrsystem/basic/pos/").then(resp => {
                     this.loading = false;
                     if (resp) {
                         this.positions = resp;

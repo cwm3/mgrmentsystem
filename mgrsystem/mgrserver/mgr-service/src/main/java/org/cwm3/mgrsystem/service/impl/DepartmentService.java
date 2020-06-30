@@ -1,6 +1,8 @@
 package org.cwm3.mgrsystem.service.impl;
 
 
+//import org.cwm3.mgrsystem.common.entity.PageData;
+import org.cwm3.mgrsystem.common.PageData;
 import org.cwm3.mgrsystem.mapper.DepartmentMapper;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.service.IDepartmentService;
@@ -40,4 +42,16 @@ public class DepartmentService implements IDepartmentService {
     public List<Department> getAllDepartmentsWithOutChildren() {
         return departmentMapper.getAllDepartmentsWithOutChildren();
     }
+
+    @Override
+    public Department queryById(Integer id) {
+        return departmentMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public  List<Department> selectAll() {
+        return departmentMapper.selectAll();
+    }
+
+
 }

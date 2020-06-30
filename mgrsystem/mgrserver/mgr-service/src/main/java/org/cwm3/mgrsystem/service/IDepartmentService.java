@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.service;
 
+import org.cwm3.mgrsystem.common.PageData;
+//import org.cwm3.mgrsystem.common.entity.PageData;
 import org.cwm3.mgrsystem.model.Department;
 
 import java.util.List;
@@ -18,4 +20,17 @@ public interface IDepartmentService {
     void deleteDepById(Department dep);
 
     List<Department> getAllDepartmentsWithOutChildren();
+
+    Department queryById(Integer id);
+    /**
+     * @description: 分页查询部门
+     * @Param:
+     * @return:
+     * @author: chengweiming
+     * @time: 2020/6/29 14:57
+     */
+
+    List<Department> selectAll();
+
+
 }

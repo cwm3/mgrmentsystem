@@ -79,7 +79,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.deleteRequest("/system/basic/permiss/role/" + role.id).then(resp => {
+                    this.deleteRequest("/mgrsystem/basic/permiss/role/" + role.id).then(resp => {
                         if (resp) {
                             this.initRoles();
                         }
@@ -94,7 +94,7 @@
             doAddRole() {
                 if (this.role.name && this.role.nameZh) {
                     this.globalLoading = true;
-                    this.postRequest("/system/basic/permiss/role", this.role).then(resp => {
+                    this.postRequest("/mgrsystem/basic/permiss/role", this.role).then(resp => {
                     this.globalLoading = false;
                         if (resp) {
                             this.role.name = '';
@@ -112,7 +112,7 @@
             doUpdate(rid, index) {
                 let tree = this.$refs.tree[index];
                 let selectedKeys = tree.getCheckedKeys(true);
-                let url = '/system/basic/permiss/?rid=' + rid;
+                let url = '/mgrsystem/basic/permiss/?rid=' + rid;
                 selectedKeys.forEach(key => {
                     url += '&mids=' + key;
                 })
@@ -129,14 +129,14 @@
                 }
             },
             initSelectedMenus(rid) {
-                this.getRequest("/system/basic/permiss/mids/" + rid).then(resp => {
+                this.getRequest("/mgrsystem/basic/permiss/mids/" + rid).then(resp => {
                     if (resp) {
                         this.selectedMenus = resp;
                     }
                 })
             },
             initAllMenus() {
-                this.getRequest("/system/basic/permiss/menus").then(resp => {
+                this.getRequest("/mgrsystem/basic/permiss/menus").then(resp => {
                     if (resp) {
                         this.allmenus = resp;
                     }
@@ -144,7 +144,7 @@
             },
             initRoles() {
                 this.loading = true;
-                this.getRequest("/system/basic/permiss/").then(resp => {
+                this.getRequest("/mgrsystem/basic/permiss/").then(resp => {
                     this.loading = false;
                     if (resp) {
                         this.roles = resp;

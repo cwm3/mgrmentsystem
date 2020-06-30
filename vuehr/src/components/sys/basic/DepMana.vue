@@ -113,7 +113,7 @@
                 }
             },
             doAddDep() {
-                this.postRequest("/system/basic/department/", this.dep).then(resp => {
+                this.postRequest("/mgrsystem/basic/department/", this.dep).then(resp => {
                     if (resp) {
                         this.addDep2Deps(this.deps, resp.obj);
                         this.dialogVisible = false;
@@ -145,7 +145,7 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                       this.deleteRequest("/system/basic/department/"+data.id).then(resp=>{
+                       this.deleteRequest("/mgrsystem/basic/department/"+data.id).then(resp=>{
                            if (resp) {
                                this.removeDepFromDeps(null,this.deps,data.id);
                            }
@@ -164,7 +164,7 @@
                 this.dialogVisible = true;
             },
             initDeps() {
-                this.getRequest("/system/basic/department/").then(resp => {
+                this.getRequest("/mgrsystem/basic/department/").then(resp => {
                     if (resp) {
                         this.deps = resp;
                     }

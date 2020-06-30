@@ -1,5 +1,11 @@
-package org.cwm3.mgrsystem.controller.mgrsystem.basic;
+package org.cwm3.mgrsystem.controller.system.basic;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.cwm3.mgrsystem.common.entity.AjaxResult;
+import org.cwm3.mgrsystem.common.PageData;
+import org.cwm3.mgrsystem.common.pager.Page;
+import org.cwm3.mgrsystem.common.system.BaseController;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.model.RespBean;
 import org.cwm3.mgrsystem.service.IDepartmentService;
@@ -16,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mgrsystem/basic/department")
-public class DepartmentController {
+public class DepartmentController extends BaseController {
     @Autowired
     IDepartmentService departmentService;
     @GetMapping("/")
@@ -46,4 +52,34 @@ public class DepartmentController {
         }
         return RespBean.error("删除失败");
     }
+
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("/selectOne")
+    public AjaxResult selectOne(Integer id) {
+        AjaxResult ajaxResult = new AjaxResult(true);
+        if(id == null){
+            ajaxResult.setSuccess(false);
+        }else {
+            ajaxResult.setData(this.departmentService.queryById(id));
+        }
+        return ajaxResult;
+
+    }
+    @GetMapping("/pageList")
+    @ResponseBody
+    public AjaxResult pageList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize){
+        AjaxResult ajaxResult = new AjaxResult(true);
+        PageHelper.startPage(pageNum,pageSize);
+        List<Department> departmentList = departmentService.selectAll();
+        PageInfo<Department> pageInfo = new PageInfo<>(departmentList);
+        ajaxResult.setData(pageInfo);
+        return ajaxResult;
+    }
+
 }

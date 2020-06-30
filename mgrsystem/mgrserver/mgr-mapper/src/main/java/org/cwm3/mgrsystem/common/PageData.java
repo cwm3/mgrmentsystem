@@ -1,23 +1,21 @@
-package org.cwm3.mgrsystem.common.entity;
+package org.cwm3.mgrsystem.common;
 
-/**
- * @description:
- * @author: chengweiming
- * @time: 2020/6/28 9:25
- */
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
-
-public class PageDate extends HashMap implements Map {
+/**
+ * @description:
+ * @author: chengweiming
+ * @time: 2020/6/28 9:25
+ */
+public class PageData extends HashMap implements Map {
     Map map = null;
     HttpServletRequest request = null;
 
-    public PageDate(HttpServletRequest request) {
+    public PageData(HttpServletRequest request) {
         this.request = request;
         Map properties = request.getParameterMap();
         Map returnMap = new HashMap();
@@ -47,7 +45,7 @@ public class PageDate extends HashMap implements Map {
         this.map = returnMap;
     }
 
-    public PageDate() {
+    public PageData() {
         this.map = new HashMap();
     }
 

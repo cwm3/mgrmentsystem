@@ -1,6 +1,8 @@
 package org.cwm3.mgrsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import org.cwm3.mgrsystem.common.PageData;
 import org.cwm3.mgrsystem.model.Department;
 
 import java.util.List;
@@ -25,4 +27,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     void deleteDepById(Department dep);
 
     List<Department> getAllDepartmentsWithOutChildren();
+
+
+    List<Department> selectAll();
 }

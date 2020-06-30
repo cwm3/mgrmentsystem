@@ -120,4 +120,12 @@
       isParent = #{isParent,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <select id="selectAll" resultType="org.cwm3.mgrsystem.model.Department">
+        select
+        <include refid="Base_Column_List">
+        </include>
+        from department
+        order by id desc
+    </select>
 </mapper>

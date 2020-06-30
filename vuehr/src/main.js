@@ -49,7 +49,7 @@ import {
     CollapseItem,
     Switch
 } from 'element-ui';
-// import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.prototype.$ELEMENT = {size: 'small', zIndex: 3000};
 Vue.use(Switch);
@@ -113,7 +113,6 @@ Vue.prototype.deleteRequest = deleteRequest;
 Vue.prototype.getRequest = getRequest;
 
 Vue.config.productionTip = false
-import './element-variables.scss'
 
 router.beforeEach((to, from, next) => {
     if (to.path == '/') {
