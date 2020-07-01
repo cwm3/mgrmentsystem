@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
@@ -74,11 +76,15 @@ public class DepartmentController extends BaseController {
     @GetMapping("/pageList")
     @ResponseBody
     public AjaxResult pageList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize){
+        Department department = new Department();
         AjaxResult ajaxResult = new AjaxResult(true);
-        PageHelper.startPage(pageNum,pageSize);
-        List<Department> departmentList = departmentService.selectAll();
-        PageInfo<Department> pageInfo = new PageInfo<>(departmentList);
-        ajaxResult.setData(pageInfo);
+        IPage<Department> iPage = departmentService.selectPageExt(department, pageNum, pageSize);
+
+
+//        PageHelper.startPage(pageNum,pageSize);
+//        List<Department> departmentList = departmentService.selectAll();
+//        PageInfo<Department> pageInfo = new PageInfo<>(departmentList);
+        ajaxResult.setData( iPage.getRecords());
         return ajaxResult;
     }
 

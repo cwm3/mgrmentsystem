@@ -2,6 +2,8 @@ package org.cwm3.mgrsystem.service.impl;
 
 
 //import org.cwm3.mgrsystem.common.entity.PageData;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.cwm3.mgrsystem.common.PageData;
 import org.cwm3.mgrsystem.mapper.DepartmentMapper;
 import org.cwm3.mgrsystem.model.Department;
@@ -48,9 +50,22 @@ public class DepartmentService implements IDepartmentService {
         return departmentMapper.selectByPrimaryKey(id);
     }
 
+//    @Override
+//    public  List<Department> selectAll() {
+//        return departmentMapper.selectAll();
+//    }
+
     @Override
-    public  List<Department> selectAll() {
-        return departmentMapper.selectAll();
+    public IPage<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize) {
+        try {
+            Page<Department> p = new Page<>(pageNum, pageSize);
+            p.setRecords(departmentMapper.selectPageExt(p, department));
+            return p;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+
     }
 
 

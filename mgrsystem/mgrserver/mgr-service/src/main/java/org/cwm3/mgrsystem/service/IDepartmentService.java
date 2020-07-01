@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.cwm3.mgrsystem.common.PageData;
 //import org.cwm3.mgrsystem.common.entity.PageData;
 import org.cwm3.mgrsystem.model.Department;
@@ -30,7 +31,8 @@ public interface IDepartmentService {
      * @time: 2020/6/29 14:57
      */
 
-    List<Department> selectAll();
+//    List<Department> selectAll();
 
 
+    IPage<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize);
 }

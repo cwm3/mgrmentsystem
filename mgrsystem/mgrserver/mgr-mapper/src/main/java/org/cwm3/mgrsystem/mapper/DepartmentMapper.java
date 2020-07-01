@@ -2,6 +2,7 @@ package org.cwm3.mgrsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.cwm3.mgrsystem.common.PageData;
 import org.cwm3.mgrsystem.model.Department;
 
@@ -29,5 +30,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     List<Department> getAllDepartmentsWithOutChildren();
 
 
-    List<Department> selectAll();
+//    List<Department> selectAll();
+
+    List<Department> selectPageExt(Page<Department> p, Department department);
 }
