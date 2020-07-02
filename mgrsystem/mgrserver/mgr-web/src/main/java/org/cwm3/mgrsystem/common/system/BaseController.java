@@ -3,7 +3,8 @@ package org.cwm3.mgrsystem.common.system;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.cwm3.mgrsystem.common.PageData;
-import org.cwm3.mgrsystem.common.pager.Page;
+
+import org.cwm3.mgrsystem.model.PageBean;
 import org.cwm3.mgrsystem.utils.UuidUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,8 +62,8 @@ public class BaseController {
          /**
          * 得到分页列表的信息
          */
-         public Page getPage(){
-			return new Page();
+         public PageBean getPage(){
+			return new PageBean();
          }
 
     public void startPage() {

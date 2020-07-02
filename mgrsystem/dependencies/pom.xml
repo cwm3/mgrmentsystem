@@ -55,11 +55,11 @@
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${spring-boot-mapper.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>com.github.pagehelper</groupId>-->
-                <!--<artifactId>pagehelper</artifactId>-->
-                <!--<version>5.1.2</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>5.1.8</version>
+            </dependency>
             <!-- Spring Boot Starter End -->
 
             <!-- Spring Cloud Begin -->

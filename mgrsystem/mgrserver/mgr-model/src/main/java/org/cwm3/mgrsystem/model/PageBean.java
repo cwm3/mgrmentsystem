@@ -1,17 +1,19 @@
-package org.cwm3.mgrsystem.common.pager;
+package org.cwm3.mgrsystem.model;
 
-/**
- * @description:
- * @author: chengweiming
- * @time: 2020/6/28 11:06
- */
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+
 import com.github.pagehelper.ISelect;
 import com.github.pagehelper.PageInfo;
+import org.cwm3.mgrsystem.common.pager.LayerUiPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Page<E> extends ArrayList<E> {
+public class PageBean<E> extends ArrayList<E> {
     private static final long serialVersionUID = 1L;
     private int currentIndex;
     private int showCount;
@@ -26,18 +28,18 @@ public class Page<E> extends ArrayList<E> {
     private Boolean reasonable;
     private Boolean pageSizeZero;
 
-    public Page() {
+    public PageBean() {
     }
 
-    public Page(int currentIndex, int pageSize) {
+    public PageBean(int currentIndex, int pageSize) {
         this(currentIndex, pageSize, true, (Boolean)null);
     }
 
-    public Page(int currentIndex, int pageSize, boolean count) {
+    public PageBean(int currentIndex, int pageSize, boolean count) {
         this(currentIndex, pageSize, count, (Boolean)null);
     }
 
-    private Page(int currentIndex, int pageSize, boolean count, Boolean reasonable) {
+    private PageBean(int currentIndex, int pageSize, boolean count, Boolean reasonable) {
         super(0);
         if (currentIndex == 1 && pageSize == 2147483647) {
             this.pageSizeZero = true;
@@ -51,7 +53,7 @@ public class Page<E> extends ArrayList<E> {
         this.setReasonable(reasonable);
     }
 
-    public Page(int[] rowBounds, boolean count) {
+    public PageBean(int[] rowBounds, boolean count) {
         super(0);
         if (rowBounds[0] == 0 && rowBounds[1] == 2147483647) {
             this.pageSizeZero = true;
@@ -74,7 +76,7 @@ public class Page<E> extends ArrayList<E> {
         return this.pages;
     }
 
-    public Page<E> setPages(int pages) {
+    public PageBean<E> setPages(int pages) {
         this.pages = pages;
         return this;
     }
@@ -83,7 +85,7 @@ public class Page<E> extends ArrayList<E> {
         return this.endRow;
     }
 
-    public Page<E> setEndRow(int endRow) {
+    public PageBean<E> setEndRow(int endRow) {
         this.endRow = endRow;
         return this;
     }
@@ -92,7 +94,7 @@ public class Page<E> extends ArrayList<E> {
         return this.currentIndex + 1;
     }
 
-    public Page<E> setCurrentIndex(int currentIndex) {
+    public PageBean<E> setCurrentIndex(int currentIndex) {
         this.currentIndex = this.reasonable != null && this.reasonable && currentIndex <= 0 ? 1 : currentIndex;
         return this;
     }
@@ -101,7 +103,7 @@ public class Page<E> extends ArrayList<E> {
         return this.showCount;
     }
 
-    public Page<E> setShowCount(int showCount) {
+    public PageBean<E> setShowCount(int showCount) {
         this.showCount = showCount;
         return this;
     }
@@ -110,7 +112,7 @@ public class Page<E> extends ArrayList<E> {
         return this.startRow;
     }
 
-    public Page<E> setStartRow(int startRow) {
+    public PageBean<E> setStartRow(int startRow) {
         this.startRow = startRow;
         return this;
     }
@@ -142,7 +144,7 @@ public class Page<E> extends ArrayList<E> {
         return this.reasonable;
     }
 
-    public Page<E> setReasonable(Boolean reasonable) {
+    public PageBean<E> setReasonable(Boolean reasonable) {
         if (reasonable == null) {
             return this;
         } else {
@@ -160,7 +162,7 @@ public class Page<E> extends ArrayList<E> {
         return this.pageSizeZero;
     }
 
-    public Page<E> setPageSizeZero(Boolean pageSizeZero) {
+    public PageBean<E> setPageSizeZero(Boolean pageSizeZero) {
         if (pageSizeZero != null) {
             this.pageSizeZero = pageSizeZero;
         }
@@ -177,7 +179,7 @@ public class Page<E> extends ArrayList<E> {
         return this.count;
     }
 
-    public Page<E> setCount(boolean count) {
+    public PageBean<E> setCount(boolean count) {
         this.count = count;
         return this;
     }
@@ -186,9 +188,9 @@ public class Page<E> extends ArrayList<E> {
         return this.orderBy;
     }
 
-    public  Page<E> setOrderBy(String orderBy) {
+    public  PageBean<E> setOrderBy(String orderBy) {
         this.orderBy = orderBy;
-      return this;
+        return this;
     }
 
     public boolean isOrderByOnly() {
@@ -207,28 +209,28 @@ public class Page<E> extends ArrayList<E> {
         this.countSignal = countSignal;
     }
 
-    public Page<E> pageNum(int pageNum) {
+    public PageBean<E> pageNum(int pageNum) {
         this.currentIndex = this.reasonable != null && this.reasonable && pageNum <= 0 ? 1 : pageNum;
         return this;
     }
 
-    public Page<E> pageSize(int pageSize) {
+    public PageBean<E> pageSize(int pageSize) {
         this.showCount = pageSize;
         this.calculateStartAndEndRow();
         return this;
     }
 
-    public Page<E> count(Boolean count) {
+    public PageBean<E> count(Boolean count) {
         this.count = count;
         return this;
     }
 
-    public Page<E> reasonable(Boolean reasonable) {
+    public PageBean<E> reasonable(Boolean reasonable) {
         this.setReasonable(reasonable);
         return this;
     }
 
-    public Page<E> pageSizeZero(Boolean pageSizeZero) {
+    public PageBean<E> pageSizeZero(Boolean pageSizeZero) {
         this.setPageSizeZero(pageSizeZero);
         return this;
     }
@@ -238,12 +240,12 @@ public class Page<E> extends ArrayList<E> {
         return pageInfo;
     }
 
-    public  Page<E> doSelectPage(ISelect select) {
+    public  PageBean<E> doSelectPage(ISelect select) {
         select.doSelect();
         return this;
     }
 
-    public  PageInfo<E> doSelectPageInfo(ISelect select) {
+    public PageInfo<E> doSelectPageInfo(ISelect select) {
         select.doSelect();
         return this.toPageInfo();
     }
@@ -257,28 +259,10 @@ public class Page<E> extends ArrayList<E> {
 
     @Override
     public String toString() {
-        return "Page{" +
-                "currentIndex=" + currentIndex +
-                ", showCount=" + showCount +
-                ", startRow=" + startRow +
-                ", endRow=" + endRow +
-                ", total=" + total +
-                ", pages=" + pages +
-                ", count=" + count +
-                ", countSignal=" + countSignal +
-                ", orderBy='" + orderBy + '\'' +
-                ", orderByOnly=" + orderByOnly +
-                ", reasonable=" + reasonable +
-                ", pageSizeZero=" + pageSizeZero +
-                '}';
+        return "Page{count=" + this.count + ", currentIndex=" + this.currentIndex + ", showCount=" + this.showCount + ", startRow=" + this.startRow + ", endRow=" + this.endRow + ", total=" + this.total + ", pages=" + this.pages + ", countSignal=" + this.countSignal + ", orderBy='" + this.orderBy + '\'' + ", orderByOnly=" + this.orderByOnly + ", reasonable=" + this.reasonable + ", pageSizeZero=" + this.pageSizeZero + '}';
     }
-//    public String toString() {
-//        return "Page{count=" + this.count + ", currentIndex=" + this.currentIndex + ", showCount=" + this.showCount + ", startRow=" + this.startRow + ", endRow=" + this.endRow + ", total=" + this.total + ", pages=" + this.pages + ", countSignal=" + this.countSignal + ", orderBy='" + this.orderBy + '\'' + ", orderByOnly=" + this.orderByOnly + ", reasonable=" + this.reasonable + ", pageSizeZero=" + this.pageSizeZero + '}';
-//    }
 
-//    public BsPage getBootStrapPage() {
-//        return new BsPage(this.total, (long)this.currentIndex, this.getResult());
-//    }
+
 
     public LayerUiPage getLayerUiPage() {
         return new LayerUiPage(this.getResult(), (new Double((double)this.total)).intValue());
