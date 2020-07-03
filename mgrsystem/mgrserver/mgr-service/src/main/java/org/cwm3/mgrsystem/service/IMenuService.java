@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.Menu;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  * @Author chengweiming
  * @Date 2020/5/25 11:13
  */
-public interface IMenuService {
+public interface IMenuService extends IService<Menu> {
 
     List<Menu> getMenusByHrId();
 

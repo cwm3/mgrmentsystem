@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.PoliticsstatusMapper;
 import org.cwm3.mgrsystem.model.Politicsstatus;
 import org.cwm3.mgrsystem.service.IPoliticsstatusService;
@@ -15,7 +16,7 @@ import java.util.List;
  * @时间 2019-11-03 23:20
  */
 @Service
-public class PoliticsstatusService implements IPoliticsstatusService {
+public class PoliticsstatusService  extends ServiceImpl<PoliticsstatusMapper, Politicsstatus> implements IPoliticsstatusService {
     @Autowired
     PoliticsstatusMapper politicsstatusMapper;
 

@@ -2,6 +2,7 @@ package org.cwm3.mgrsystem.service;
 
 //import org.cwm3.mgrsystem.common.entity.PageData;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.model.PageBean;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @Author chengweiming
  * @Date 2020/5/25 11:10
  */
-public interface IDepartmentService {
+public interface IDepartmentService extends IService<Department> {
 
     List<Department> getAllDepartments();
 

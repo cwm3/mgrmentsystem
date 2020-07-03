@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.SalaryMapper;
 import org.cwm3.mgrsystem.model.Salary;
 import org.cwm3.mgrsystem.service.ISalaryService;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SalaryService  implements ISalaryService {
+public class SalaryService  extends ServiceImpl<SalaryMapper, Salary> implements ISalaryService {
     @Autowired
     SalaryMapper salaryMapper;
 

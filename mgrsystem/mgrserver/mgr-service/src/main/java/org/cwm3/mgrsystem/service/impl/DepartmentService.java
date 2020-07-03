@@ -3,6 +3,7 @@ package org.cwm3.mgrsystem.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.DepartmentMapper;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.service.IDepartmentService;
@@ -18,7 +19,7 @@ import java.util.List;
  * @时间 2019-10-21 8:04
  */
 @Service
-public class DepartmentService implements IDepartmentService {
+public class DepartmentService extends ServiceImpl<DepartmentMapper, Department> implements IDepartmentService  {
     @Autowired
     DepartmentMapper departmentMapper;
 

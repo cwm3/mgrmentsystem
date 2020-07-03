@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.Employee;
 import org.cwm3.mgrsystem.model.RespPageBean;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @Author chengweiming
  * @Date 2020/5/25 11:11
  */
-public interface IEmployeeService {
+public interface IEmployeeService extends IService<Employee> {
 
     RespPageBean getEmployeeByPage(Integer page, Integer size, Employee employee, Date[] beginDateScope);
 

@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.RoleMapper;
 import org.cwm3.mgrsystem.model.Role;
 import org.cwm3.mgrsystem.service.IRoleService;
@@ -15,7 +16,7 @@ import java.util.List;
  * @时间 2019-10-01 19:41
  */
 @Service
-public class RoleService implements IRoleService {
+public class RoleService  extends ServiceImpl<RoleMapper, Role> implements IRoleService {
     @Autowired
     RoleMapper roleMapper;
 

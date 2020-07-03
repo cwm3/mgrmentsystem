@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.MailSendLogMapper;
 import org.cwm3.mgrsystem.model.MailSendLog;
 import org.cwm3.mgrsystem.service.IMailSendLogService;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class MailSendLogService implements IMailSendLogService {
+public class MailSendLogService  extends ServiceImpl<MailSendLogMapper, MailSendLog> implements IMailSendLogService {
     @Autowired
     MailSendLogMapper mailSendLogMapper;
 

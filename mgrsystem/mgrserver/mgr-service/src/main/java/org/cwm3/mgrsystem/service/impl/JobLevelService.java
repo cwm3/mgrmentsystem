@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.JobLevelMapper;
 import org.cwm3.mgrsystem.model.JobLevel;
 import org.cwm3.mgrsystem.service.IJobLevelService;
@@ -16,7 +17,7 @@ import java.util.List;
  * @时间 2019-10-01 18:00
  */
 @Service
-public class JobLevelService implements IJobLevelService {
+public class JobLevelService  extends ServiceImpl<JobLevelMapper, JobLevel> implements IJobLevelService {
     @Autowired
     JobLevelMapper jobLevelMapper;
 

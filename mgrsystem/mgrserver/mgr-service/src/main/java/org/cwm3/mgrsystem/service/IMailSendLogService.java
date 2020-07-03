@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.MailSendLog;
 
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.List;
  * @Author chengweiming
  * @Date 2020/5/25 11:12
  */
-public interface IMailSendLogService {
+public interface IMailSendLogService extends IService<MailSendLog> {
 
     Integer insert(MailSendLog mailSendLog);
 
