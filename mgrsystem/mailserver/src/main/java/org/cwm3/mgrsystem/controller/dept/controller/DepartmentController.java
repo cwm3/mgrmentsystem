@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.controller.dept.controller;
 
-import org.cwm3.mgrsystem.controller.dept.entity.Department;
-import org.cwm3.mgrsystem.controller.dept.service.DepartmentService;
+import org.cwm3.mgrsystem.model.Department;
+import org.cwm3.mgrsystem.service.impl.DepartmentService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

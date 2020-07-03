@@ -1,10 +1,11 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.common.PageData;
-import org.cwm3.mgrsystem.common.pager.Page;
+import org.cwm3.mgrsystem.common.pager.PageBean;
 import org.cwm3.mgrsystem.common.system.BaseController;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.model.RespBean;
@@ -76,8 +77,8 @@ public class DepartmentController extends BaseController {
     public AjaxResult pageList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize){
         AjaxResult ajaxResult = new AjaxResult(true);
         PageHelper.startPage(pageNum,pageSize);
-        List<Department> departmentList = departmentService.selectAll();
-        PageInfo<Department> pageInfo = new PageInfo<>(departmentList);
+        List<Department> departmentList =departmentService.selectAll() ;
+        PageInfo pageInfo = new PageInfo(departmentList);
         ajaxResult.setData(pageInfo);
         return ajaxResult;
     }
