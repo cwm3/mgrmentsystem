@@ -21,6 +21,7 @@ public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
 
+
     /**
      * 通过主键查询单条数据
      *

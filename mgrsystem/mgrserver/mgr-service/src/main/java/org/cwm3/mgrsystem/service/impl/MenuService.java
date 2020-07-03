@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.MenuMapper;
 import org.cwm3.mgrsystem.mapper.MenuRoleMapper;
 import org.cwm3.mgrsystem.model.Hr;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @Service
 @CacheConfig(cacheNames = "menus_cache")
-public class MenuService implements IMenuService {
+public class MenuService  extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
     @Autowired
     MenuMapper menuMapper;
     @Autowired

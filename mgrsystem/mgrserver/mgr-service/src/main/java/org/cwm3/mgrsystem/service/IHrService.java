@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.Hr;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  * @Author chengweiming
  * @Date 2020/5/25 11:11
  */
-public interface IHrService {
+public interface IHrService extends IService<Hr> {
 
     List<Hr> getAllHrs(String keywords);
 

@@ -13,22 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageBean<T> extends ArrayList<T> {
-    // å½“å‰é¡µ
+    // µ±Ç°Ò³
     private Integer currentPage = 1;
     /**
-     * æ¯é¡µæ˜¾ç¤ºçš„æ€»æ¡æ•°
+     * Ã¿Ò³ÏÔÊ¾µÄ×ÜÌõÊı
 
      */
     private Integer pageSize = 10;
-    // æ€»æ¡æ•°
+    // ×ÜÌõÊı
     private Integer totalNum;
-    // æ˜¯å¦æœ‰ä¸‹ä¸€é¡µ
+    // ÊÇ·ñÓĞÏÂÒ»Ò³
     private Integer isMore;
-    // æ€»é¡µæ•°
+    // ×ÜÒ³Êı
     private Integer totalPage;
-    // å¼€å§‹ç´¢å¼•
+    // ¿ªÊ¼Ë÷Òı
     private Integer startIndex;
-    // åˆ†é¡µç»“æœ
+    // ·ÖÒ³½á¹û
     private List<T> items;
 
     public PageBean() {

@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.PositionMapper;
 import org.cwm3.mgrsystem.model.Position;
 import org.cwm3.mgrsystem.model.RespBean;
@@ -17,7 +18,7 @@ import java.util.List;
  * @时间 2019-10-01 15:54
  */
 @Service
-public class PositionService implements IPositionService {
+public class PositionService  extends ServiceImpl<PositionMapper, Position> implements IPositionService {
     @Autowired
     PositionMapper positionMapper;
 

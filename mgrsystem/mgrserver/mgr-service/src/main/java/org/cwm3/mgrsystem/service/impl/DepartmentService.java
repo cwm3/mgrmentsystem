@@ -1,8 +1,9 @@
 package org.cwm3.mgrsystem.service.impl;
 
 
-//import org.cwm3.mgrsystem.common.entity.PageData;
-import org.cwm3.mgrsystem.common.PageData;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.DepartmentMapper;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.service.IDepartmentService;
@@ -18,7 +19,7 @@ import java.util.List;
  * @时间 2019-10-21 8:04
  */
 @Service
-public class DepartmentService implements IDepartmentService {
+public class DepartmentService extends ServiceImpl<DepartmentMapper, Department> implements IDepartmentService  {
     @Autowired
     DepartmentMapper departmentMapper;
 
@@ -48,9 +49,22 @@ public class DepartmentService implements IDepartmentService {
         return departmentMapper.selectByPrimaryKey(id);
     }
 
+//    @Override
+//    public  List<Department> selectAll() {
+//        return departmentMapper.selectAll();
+//    }
+
     @Override
-    public  List<Department> selectAll() {
-        return departmentMapper.selectAll();
+    public Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize) {
+        try {
+            Page<Department> p = new Page<>(pageNum, pageSize);
+            p.setRecords(departmentMapper.selectPageExt(p, department));
+            return p;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+
     }
 
 

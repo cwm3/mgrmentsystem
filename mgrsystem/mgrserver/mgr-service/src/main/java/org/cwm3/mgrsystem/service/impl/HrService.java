@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.HrMapper;
 import org.cwm3.mgrsystem.mapper.HrRoleMapper;
 import org.cwm3.mgrsystem.model.Hr;
@@ -22,7 +23,7 @@ import java.util.List;
  * @时间 2019-09-20 8:21
  */
 @Service
-public class HrService implements UserDetailsService, IHrService {
+public class HrService extends ServiceImpl<HrMapper, Hr> implements UserDetailsService, IHrService {
     @Autowired
     HrMapper hrMapper;
     @Autowired

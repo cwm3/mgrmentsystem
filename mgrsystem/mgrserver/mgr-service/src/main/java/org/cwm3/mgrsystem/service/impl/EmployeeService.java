@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.EmployeeMapper;
 import org.cwm3.mgrsystem.model.Employee;
 import org.cwm3.mgrsystem.model.MailConstants;
@@ -26,7 +27,7 @@ import java.util.UUID;
  * @时间 2019-10-29 7:44
  */
 @Service
-public class EmployeeService implements IEmployeeService {
+public class EmployeeService extends ServiceImpl<EmployeeMapper, Employee> implements IEmployeeService {
     @Autowired
     EmployeeMapper employeeMapper;
     @Autowired

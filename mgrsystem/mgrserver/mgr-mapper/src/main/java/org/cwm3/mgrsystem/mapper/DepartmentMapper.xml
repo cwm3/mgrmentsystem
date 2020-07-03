@@ -121,7 +121,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectAll" resultType="org.cwm3.mgrsystem.model.Department">
+    <select id="selectPageExt" resultType="org.cwm3.mgrsystem.model.Department">
         select
         <include refid="Base_Column_List">
         </include>
