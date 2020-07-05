@@ -10,9 +10,9 @@ import org.cwm3.mgrsystem.common.PageData;
 
 import org.cwm3.mgrsystem.common.system.BaseController;
 import org.cwm3.mgrsystem.model.Department;
-import org.cwm3.mgrsystem.model.PageBean;
 import org.cwm3.mgrsystem.model.RespBean;
 import org.cwm3.mgrsystem.service.IDepartmentService;
+import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +40,19 @@ public class DepartmentController extends BaseController {
             return RespBean.ok("添加成功", dep);
         }
         return RespBean.error("添加失败");
+    }
+    @PostMapping("/upadate")
+    public RespBean upadateDep(@RequestBody Department dep) {
+        if(dep.getId()!=null){
+            departmentService.upadateDep(dep);
+            if (dep.getResult() == 1) {
+                return RespBean.ok("更新成功", dep);
+            }
+            return RespBean.error("更新失败");
+        }else {
+            return RespBean.error("更新id必须传");
+        }
+
     }
 
     @DeleteMapping("/{id}")
@@ -77,7 +90,7 @@ public class DepartmentController extends BaseController {
     }
     @GetMapping("/pageList")
     @ResponseBody
-    public AjaxResult pageList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize){
+    public AjaxResult pageList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize ){
         Department department = new Department();
         AjaxResult ajaxResult = new AjaxResult(true);
         Page<Department> iPage = departmentService.selectPageExt(department, pageNum, pageSize);

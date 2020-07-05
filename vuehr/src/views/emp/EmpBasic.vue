@@ -129,7 +129,9 @@
                         </el-col>
                         <el-col :span="5" :offset="4">
                             <el-button size="mini">取消</el-button>
-                            <el-button size="mini" icon="el-icon-search" type="primary" @click="initEmps('advanced')">搜索</el-button>
+                            <el-button size="mini" icon="el-icon-search" type="primary" @click="initEmps('advanced')">
+                                搜索
+                            </el-button>
                         </el-col>
                     </el-row>
                 </div>

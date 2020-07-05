@@ -10,6 +10,7 @@ import org.cwm3.mgrsystem.service.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -65,6 +66,11 @@ public class DepartmentService extends ServiceImpl<DepartmentMapper, Department>
         }
 
 
+    }
+
+    @Override
+    public Integer upadateDep(Department department) {
+        return departmentMapper.updateByPrimaryKeySelective(department);
     }
 
 

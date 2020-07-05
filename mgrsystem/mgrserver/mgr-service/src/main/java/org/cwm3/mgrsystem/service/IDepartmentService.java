@@ -4,7 +4,6 @@ package org.cwm3.mgrsystem.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.Department;
-import org.cwm3.mgrsystem.model.PageBean;
 
 import java.util.List;
 
@@ -38,4 +37,6 @@ public interface IDepartmentService extends IService<Department> {
 //    Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize);
 
     Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize);
+
+    Integer upadateDep(Department dep);
 }
