@@ -10,11 +10,11 @@ spring:
   rabbitmq:
     username: guest
     password: guest
-    host: 192.168.80.128
+    host: 192.168.134.139
     publisher-confirms: true
     publisher-returns: true
   redis:
-    host: 192.168.80.128
+    host: 192.168.134.139
     database: 0
     port: 6379
     password: ''
@@ -41,4 +41,4 @@ mybatis-plus:
       select-strategy: not_empty
 fastdfs:
   nginx:
-    host: http://192.168.80.128/
+    host: http://192.168.134.139/

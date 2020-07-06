@@ -98,7 +98,7 @@ public class DepartmentController extends BaseController {
 
     @RequestMapping(value = "/exportExcel")
     @ResponseBody
-    public AjaxResult exportExcel(HttpServletResponse response,Integer[] ids) throws Exception {
+    public void exportExcel(HttpServletResponse response,Integer[] ids) throws Exception {
         AjaxResult ajaxResult = new AjaxResult(true);
         String[] headers = {"编号", "名称","父id","路径","是否可能","是否主节点"};
         String fileName = "部门表";
@@ -120,13 +120,10 @@ public class DepartmentController extends BaseController {
         mapList.add(studentMap);
         try {
             ExcelUtil.exportMultisheetExcel(fileName, mapList, response);
-            return ajaxResult;
         }catch (Exception e){
-           ajaxResult.setMessage(e.getMessage());
-           ajaxResult.setSuccess(false);
+           e.printStackTrace();
         }
 
-       return ajaxResult;
     }
 
 
