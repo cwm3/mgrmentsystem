@@ -1,5 +1,8 @@
 package org.cwm3.mgrsystem.utils;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -8,6 +11,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+
+import static org.apache.poi.ss.usermodel.DateUtil.isADateFormat;
+import static org.apache.poi.ss.usermodel.DateUtil.isValidExcelDate;
 
 /**
  * 时间工具类
@@ -45,5 +51,25 @@ public class DateUtil {
     public static String formatInstant(Instant instant, String format) {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return localDateTime.format(DateTimeFormatter.ofPattern(format));
+    }
+    public static boolean isCellDateFormatted(Cell cell) {
+        if (cell == null) {
+            return false;
+        } else {
+            boolean bDate = false;
+            double d = cell.getNumericCellValue();
+            if (isValidExcelDate(d)) {
+                CellStyle style = cell.getCellStyle();
+                if (style == null) {
+                    return false;
+                }
+
+                int i = style.getDataFormat();
+                String f = style.getDataFormatString();
+                bDate = isADateFormat(i, f);
+            }
+
+            return bDate;
+        }
     }
 }

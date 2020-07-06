@@ -36,7 +36,7 @@ public interface IDepartmentService extends IService<Department> {
 
 //    Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize);
 
-    Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize);
+    Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize, String name);
 
     Integer upadateDep(Department dep);
 }
