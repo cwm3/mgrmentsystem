@@ -88,5 +88,10 @@ public class DepartmentService extends ServiceImpl<DepartmentMapper, Department>
         return departmentMapper.updateByPrimaryKeySelective(department);
     }
 
+    @Override
+    public List<Department> findAllDepartments() {
+        LambdaQueryWrapper lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        return departmentMapper.selectList(lambdaQueryWrapper);
+    }
 
 }

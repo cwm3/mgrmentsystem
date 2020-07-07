@@ -8,6 +8,7 @@ package org.cwm3.mgrsystem.utils;
 
 import java.io.*;
 import java.lang.reflect.Field;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,6 +20,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -63,9 +65,10 @@ public class ExcelUtil {
      * @param sheetIndex
      * @return
      */
-    public static List<Map<String, String>> readExcel(String filePath, Integer sheetIndex) {
+    public static List<Map<String, String>> readExcel(MultipartFile file, Integer sheetIndex) {
         List<Map<String, String>> dataList = new ArrayList<>();
-        Workbook wb = ExcelUtil.createWorkBook(filePath);
+        String filePath = file.getOriginalFilename();
+        Workbook wb = ExcelUtil.createWorkBook(filePath,file);
         if (wb != null) {
             Sheet sheet = wb.getSheetAt(sheetIndex);
             int maxRownum = sheet.getPhysicalNumberOfRows();
@@ -100,9 +103,9 @@ public class ExcelUtil {
     }
 
     private static BufferedOutputStream getBufferedOutputStream(String fileName, HttpServletResponse response) throws Exception {
-        response.setContentType("application/x-msdownload");
-        response.setHeader("Content-Disposition", "attachment;filename="
-                + new String(fileName.getBytes("gb2312"), "ISO8859-1"));
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment; filename="
+                + URLEncoder.encode(fileName, "UTF-8"));
         return new BufferedOutputStream(response.getOutputStream());
     }
 
@@ -321,7 +324,7 @@ public class ExcelUtil {
     }
 
 
-    private static Workbook createWorkBook(String filePath) {
+    private static Workbook createWorkBook(String filePath,MultipartFile file) {
         Workbook wb = null;
         if (filePath == null) {
             return null;
@@ -329,7 +332,7 @@ public class ExcelUtil {
         String extString = filePath.substring(filePath.lastIndexOf("."));
         InputStream is = null;
         try {
-            is = new FileInputStream(filePath);
+            is = file.getInputStream();
             if (".xls".equals(extString)) {
                 return wb = new HSSFWorkbook(is);
             } else if (".xlsx".equals(extString)) {
