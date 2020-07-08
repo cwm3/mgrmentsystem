@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.util.StringUtil;
 import org.apache.ibatis.annotations.Param;
@@ -136,12 +137,25 @@ public class DepartmentController extends BaseController {
 
     @PostMapping (value = "/importExcel")
     @ResponseBody
-    public void importExcel(MultipartFile file)throws  Exception {
+    public AjaxResult importExcel(MultipartFile file)throws  Exception {
+        AjaxResult ajaxResult = new AjaxResult(true);
         InputStream inputStream = file.getInputStream();
         Integer sheetIndex = 0;
-        List<Map<String, String>> maps = ExcelUtil.readExcel( file, sheetIndex);
-
-
+        try {
+            List<Map<String, String>> maps = ExcelUtil.readExcel( file, sheetIndex);
+            maps.forEach(map->{
+                Department department = JSON.parseObject(JSON.toJSONString(map), Department.class);
+                boolean b = departmentService.saveOrUpdate(department);
+                if (b == false){
+                    throw  new  RuntimeException(department.getName()+"导入失败");
+                }
+            });
+            return ajaxResult;
+        }catch (Exception e){
+            e.printStackTrace();
+            ajaxResult.setSuccess(false);
+            return ajaxResult;
+        }
     }
 
 }
