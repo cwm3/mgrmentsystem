@@ -11,6 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -24,6 +25,17 @@ public class BaseController {
 
 
     private static final long serialVersionUID = 6357869213649815390L;
+//    private Subject getSubject() {
+//        return SecurityUtils.getSubject();
+//    }
+//
+//    protected User getCurrentUser() {
+//        return (User) getSubject().getPrincipal();
+//    }
+//
+//    protected Session getSession() {
+//        return getSubject().getSession();
+//    }
 
         /**
          * 得到PageData

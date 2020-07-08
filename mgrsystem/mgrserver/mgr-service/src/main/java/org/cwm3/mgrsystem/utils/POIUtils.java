@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class POIUtils {
 
-    public static ResponseEntity<byte[]> employee2Excel(List<Employee> list) {
+    public static ResponseEntity<byte[]> employee2Excel(List<Employee> list ,String fileName) {
         //1. 创建一个 Excel 文档
         HSSFWorkbook workbook = new HSSFWorkbook();
         //2. 创建文档摘要
@@ -52,7 +52,7 @@ public class POIUtils {
         headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         HSSFCellStyle dateCellStyle = workbook.createCellStyle();
         dateCellStyle.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy"));
-        HSSFSheet sheet = workbook.createSheet("员工信息表");
+        HSSFSheet sheet = workbook.createSheet(fileName);
         //设置列的宽度
         sheet.setColumnWidth(0, 5 * 256);
         sheet.setColumnWidth(1, 12 * 256);

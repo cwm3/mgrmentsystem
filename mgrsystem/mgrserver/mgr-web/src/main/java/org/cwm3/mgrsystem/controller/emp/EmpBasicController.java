@@ -98,7 +98,7 @@ public class EmpBasicController {
     @GetMapping("/export")
     public ResponseEntity<byte[]> exportData() {
         List<Employee> list = (List<Employee>) employeeService.getEmployeeByPage(null, null, new Employee(),null).getData();
-        return POIUtils.employee2Excel(list);
+        return POIUtils.employee2Excel(list,"员工信息表");
     }
 
     @PostMapping("/import")

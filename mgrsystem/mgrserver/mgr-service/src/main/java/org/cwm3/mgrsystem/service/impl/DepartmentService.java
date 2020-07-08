@@ -2,8 +2,14 @@ package org.cwm3.mgrsystem.service.impl;
 
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.util.StringUtil;
 import org.cwm3.mgrsystem.mapper.DepartmentMapper;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.service.IDepartmentService;
@@ -56,10 +62,19 @@ public class DepartmentService extends ServiceImpl<DepartmentMapper, Department>
 //    }
 
     @Override
-    public Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize) {
+    public Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize ,String name) {
         try {
             Page<Department> p = new Page<>(pageNum, pageSize);
-            p.setRecords(departmentMapper.selectPageExt(p, department));
+            if (StringUtil.isNotEmpty(name)&& name.trim().toString().length()>0){
+               QueryWrapper queryWrapper = new QueryWrapper<Department>();
+                queryWrapper.like("name",name);
+//                p.setOptimizeCountSql(false);
+//                p.setSearchCount(false);
+                IPage<Department> departmentIPage = departmentMapper.selectPage(p, queryWrapper);
+                p.setRecords(departmentIPage.getRecords());
+            }else{
+                p.setRecords(departmentMapper.selectPageExt(p,department));
+            }
             return p;
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -73,5 +88,10 @@ public class DepartmentService extends ServiceImpl<DepartmentMapper, Department>
         return departmentMapper.updateByPrimaryKeySelective(department);
     }
 
+    @Override
+    public List<Department> findAllDepartments() {
+        LambdaQueryWrapper lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        return departmentMapper.selectList(lambdaQueryWrapper);
+    }
 
 }

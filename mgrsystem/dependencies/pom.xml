@@ -66,6 +66,9 @@
                 <artifactId>pagehelper</artifactId>
                 <version>5.1.8</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+
             <!-- Spring Boot Starter End -->
 
             <!-- Spring Cloud Begin -->
@@ -148,6 +151,11 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger2.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.70</version>
+            </dependency>
             <!-- Swagger2 End -->
 
             <!-- 控制台 SQL日志打印插件 -->
@@ -155,6 +163,12 @@
                 <groupId>p6spy</groupId>
                 <artifactId>p6spy</artifactId>
                 <version>${p6spy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

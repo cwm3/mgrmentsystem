@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ public class Department implements Serializable {
 
     private String name;
 
+    @TableField ("parentId")
     private Integer parentId;
 
     public Department() {
@@ -34,13 +37,19 @@ public class Department implements Serializable {
 
         return Objects.hash(name);
     }
-
+    @TableField ("depPath")
     private String depPath;
 
+    @TableField ("enabled")
     private Boolean enabled;
 
+    @TableField ("isParent")
     private Boolean isParent;
+
+    @TableField(exist = false)
     private List<Department> children = new ArrayList<>();
+
+    @TableField(exist = false)
     private Integer result;
 
     public Integer getResult() {
