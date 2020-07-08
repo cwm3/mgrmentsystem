@@ -25,12 +25,12 @@
                             :on-error="onError"
                             :disabled="importDataDisabled"
                             style="display: inline-flex;margin-right: 8px"
-                            action="/employee/basic/import">
+                            action="/mgrsystem/basic/department/importExcel">
                         <el-button :disabled="importDataDisabled" type="success" :icon="importDataBtnIcon">
                             {{importDataBtnText}}
                         </el-button>
                     </el-upload>
-                    <el-button type="success" @click="exportData" icon="el-icon-download">
+                    <el-button  type="success" @click="exportData" icon="el-icon-download">
                         导出数据
                     </el-button>
                     <el-button type="primary" icon="el-icon-plus" @click="AddDept">
@@ -116,6 +116,8 @@
 
 <script>
     import {postRequest} from "../../utils/api";
+    import { exportMethod } from '@/utils/util';
+    import axios from 'axios'
 
     export default {
         name: "OrganDept",
@@ -192,8 +194,9 @@
                 this.importDataBtnIcon = 'el-icon-loading';
                 this.importDataDisabled = true;
             },
-            exportData() {
-                window.open('/employee/basic/export', '_parent');
+            exportData(data) {
+                 let  val= [data.id]
+                 window.open('/mgrsystem/basic/department/exportExcel'+ "?ids=" + val, '_parent');
             },
             initDep() {
                 this.dep = {
@@ -217,7 +220,6 @@
                 this.dep.name=data.name;
                 this.dep.parentId=data.parentId;
                 this.inputDepName = data.name;
-
                 this.dialogVisible = true;
             },
             deleteDept(data) {
@@ -349,7 +351,7 @@
                 this.loading = true;
                 let url = '/mgrsystem/basic/department/pageList' + '?pageNum='+ this.page + '&pageSize=' + this.size;
 
-                    // url += "&name=" + this.keyword;
+                    url += "&name=" + this.keyword;
 
                 this.getRequest(url).then(resp => {
                     this.loading = false;

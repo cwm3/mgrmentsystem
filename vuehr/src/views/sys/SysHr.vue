@@ -83,7 +83,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.deleteRequest("/system/hr/"+hr.id).then(resp=>{
+                    this.deleteRequest("/mgrsystem/hr/"+hr.id).then(resp=>{
                         if (resp) {
                             this.initHrs();
                         }
@@ -121,7 +121,7 @@
                     }
                 }
                 if (flag) {
-                    let url = '/system/hr/role?hrid=' + hr.id;
+                    let url = '/mgrsystem/hr/role?hrid=' + hr.id;
                     this.selectedRoles.forEach(sr => {
                         url += '&rids=' + sr;
                     });
@@ -142,21 +142,21 @@
             },
             enabledChange(hr) {
                 delete hr.roles;
-                this.putRequest("/system/hr/", hr).then(resp => {
+                this.putRequest("/mgrsystem/hr/", hr).then(resp => {
                     if (resp) {
                         this.initHrs();
                     }
                 })
             },
             initAllRoles() {
-                this.getRequest("/system/hr/roles").then(resp => {
+                this.getRequest("/mgrsystem/hr/roles").then(resp => {
                     if (resp) {
                         this.allroles = resp;
                     }
                 })
             },
             initHrs() {
-                this.getRequest("/system/hr/?keywords="+this.keywords).then(resp => {
+                this.getRequest("/mgrsystem/hr/?keywords="+this.keywords).then(resp => {
                     if (resp) {
                         this.hrs = resp;
                     }
