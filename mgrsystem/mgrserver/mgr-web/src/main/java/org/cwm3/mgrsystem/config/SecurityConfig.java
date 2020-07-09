@@ -2,7 +2,7 @@ package org.cwm3.mgrsystem.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.cwm3.mgrsystem.model.Hr;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IHrService;
 import org.cwm3.mgrsystem.service.impl.HrService;
 import org.springframework.beans.factory.annotation.Autowired;

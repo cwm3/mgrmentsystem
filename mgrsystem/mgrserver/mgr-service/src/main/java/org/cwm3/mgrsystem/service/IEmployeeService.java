@@ -2,7 +2,7 @@ package org.cwm3.mgrsystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.cwm3.mgrsystem.model.Employee;
-import org.cwm3.mgrsystem.model.RespPageBean;
+import org.cwm3.mgrsystem.common.pager.RespPageBean;
 
 import java.util.Date;
 import java.util.List;

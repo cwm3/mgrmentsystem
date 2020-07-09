@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.controller;
 
 import org.cwm3.mgrsystem.config.VerificationCode;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.controller.emp;
 
+import org.cwm3.mgrsystem.common.entily.RespBean;
+import org.cwm3.mgrsystem.common.pager.RespPageBean;
 import org.cwm3.mgrsystem.model.*;
 import org.cwm3.mgrsystem.service.*;
 import org.cwm3.mgrsystem.utils.POIUtils;

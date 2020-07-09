@@ -34,7 +34,7 @@
                         导出数据
                     </el-button>
                     <el-button type="primary" icon="el-icon-plus" @click="AddDept">
-                        添加用户
+                        添加部门
                     </el-button>
                 </div>
             </div>

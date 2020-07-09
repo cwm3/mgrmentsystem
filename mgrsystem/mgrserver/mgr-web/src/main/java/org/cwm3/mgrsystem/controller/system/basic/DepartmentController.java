@@ -2,12 +2,10 @@ package org.cwm3.mgrsystem.controller.system.basic;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.pagehelper.util.StringUtil;
-import org.apache.ibatis.annotations.Param;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.common.system.BaseController;
 import org.cwm3.mgrsystem.model.Department;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IDepartmentService;
 
 import org.cwm3.mgrsystem.utils.ExcelUtil;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
 

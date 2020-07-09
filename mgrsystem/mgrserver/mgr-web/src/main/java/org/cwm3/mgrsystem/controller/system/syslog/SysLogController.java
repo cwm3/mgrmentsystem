@@ -1,16 +1,21 @@
 package org.cwm3.mgrsystem.controller.system.syslog;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.Department;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.model.SysLog;
 import org.cwm3.mgrsystem.service.ISysLogService;
+import org.cwm3.mgrsystem.utils.ExcelUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 操作日志表(TLog)表控制层
@@ -38,6 +43,9 @@ public class SysLogController {
         return this.sysLogService.queryById(id);
     }
 
+
+
+
     /**
      * 通过主键查询单条数据
      *
@@ -58,5 +66,24 @@ public class SysLogController {
         }
         return  ajaxResult;
     }
+
+    @GetMapping("/export")
+    public RespBean export(HttpServletResponse response,String[] headers ,String fileName){
+        List<SysLog> list = this.sysLogService.list();
+        Map<String, Object> studentMap = new HashMap();
+        studentMap.put("headers", headers);
+        studentMap.put("dataList", list);
+        studentMap.put("fileName", fileName);
+        List<Map> mapList = new ArrayList();
+        mapList.add(studentMap);
+        try {
+            ExcelUtil.exportMultisheetExcel(fileName, mapList, response);
+            return RespBean.ok("导出成功");
+        } catch (Exception e) {
+           return RespBean.error(e.getMessage());
+        }
+
+    }
+
 
 }

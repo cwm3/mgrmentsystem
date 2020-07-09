@@ -1,8 +1,7 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
-import org.apache.ibatis.annotations.Delete;
 import org.cwm3.mgrsystem.model.JobLevel;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IJobLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package org.cwm3.mgrsystem.common.entity;
+package org.cwm3.mgrsystem.common.entily;
 
 import lombok.Data;
 import lombok.ToString;

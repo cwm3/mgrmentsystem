@@ -2,7 +2,6 @@ package org.cwm3.mgrsystem.controller.config;
 
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.Menu;
-import org.cwm3.mgrsystem.model.RespBean;
 import org.cwm3.mgrsystem.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

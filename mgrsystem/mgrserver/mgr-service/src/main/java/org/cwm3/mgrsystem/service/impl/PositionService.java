@@ -3,7 +3,6 @@ package org.cwm3.mgrsystem.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.cwm3.mgrsystem.mapper.PositionMapper;
 import org.cwm3.mgrsystem.model.Position;
-import org.cwm3.mgrsystem.model.RespBean;
 import org.cwm3.mgrsystem.service.IPositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

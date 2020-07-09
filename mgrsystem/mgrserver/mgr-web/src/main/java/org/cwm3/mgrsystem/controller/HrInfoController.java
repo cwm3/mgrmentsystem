@@ -2,7 +2,7 @@ package org.cwm3.mgrsystem.controller;
 
 import org.cwm3.mgrsystem.config.FastDFSUtils;
 import org.cwm3.mgrsystem.model.Hr;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IHrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

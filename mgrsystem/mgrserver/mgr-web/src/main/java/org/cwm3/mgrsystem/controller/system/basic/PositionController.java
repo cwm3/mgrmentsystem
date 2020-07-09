@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.controller.mgrsystem.basic;
 
 import org.cwm3.mgrsystem.model.Position;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IPositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

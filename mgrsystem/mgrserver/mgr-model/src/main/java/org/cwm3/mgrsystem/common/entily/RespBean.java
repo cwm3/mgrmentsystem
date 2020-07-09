@@ -1,4 +1,4 @@
-package org.cwm3.mgrsystem.model;
+package org.cwm3.mgrsystem.common.entily;
 
 /**
 
@@ -34,7 +34,7 @@ public class RespBean {
     private RespBean() {
     }
 
-    private RespBean(Integer status, String msg, Object obj) {
+    public RespBean(Integer status, String msg, Object obj) {
         this.status = status;
         this.msg = msg;
         this.obj = obj;

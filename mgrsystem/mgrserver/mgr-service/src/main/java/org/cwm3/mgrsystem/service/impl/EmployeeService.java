@@ -5,7 +5,7 @@ import org.cwm3.mgrsystem.mapper.EmployeeMapper;
 import org.cwm3.mgrsystem.model.Employee;
 import org.cwm3.mgrsystem.model.MailConstants;
 import org.cwm3.mgrsystem.model.MailSendLog;
-import org.cwm3.mgrsystem.model.RespPageBean;
+import org.cwm3.mgrsystem.common.pager.RespPageBean;
 import org.cwm3.mgrsystem.service.IEmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

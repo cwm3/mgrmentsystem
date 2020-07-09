@@ -1,6 +1,6 @@
 package org.cwm3.mgrsystem.controller.salary;
 
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.model.Salary;
 import org.cwm3.mgrsystem.service.ISalaryService;
 import org.springframework.beans.factory.annotation.Autowired;

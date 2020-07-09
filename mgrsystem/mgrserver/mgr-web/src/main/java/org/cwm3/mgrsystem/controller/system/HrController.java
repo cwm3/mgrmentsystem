@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.controller.system;
 
 import org.cwm3.mgrsystem.model.Hr;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.model.Role;
 import org.cwm3.mgrsystem.service.IHrService;
 import org.cwm3.mgrsystem.service.IRoleService;

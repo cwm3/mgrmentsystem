@@ -228,6 +228,13 @@
                         type: ''
                     }
                 },
+            handleDownload() {
+                this.downloadLoading = true
+                let  fileName = '操作日志表'
+                const filterVal = ['序号', '操作人', '操作', '方法', '参数', 'ip', '创建时间', '地址', '开始创建时间','结束创建时间']
+                window.open('/mgrsystem/syslog/export'+ "?headers= " + filterVal + "&fileName="+ fileName, '_parent');
+                this.downloadLoading = false
+            },
                 handleCreate() {
                     this.resetTemp()
                     this.dialogStatus = 'create'

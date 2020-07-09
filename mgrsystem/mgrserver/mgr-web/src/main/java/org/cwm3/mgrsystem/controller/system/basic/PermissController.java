@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
 import org.cwm3.mgrsystem.model.Menu;
-import org.cwm3.mgrsystem.model.RespBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.model.Role;
 import org.cwm3.mgrsystem.service.IMenuService;
 import org.cwm3.mgrsystem.service.IRoleService;

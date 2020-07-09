@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.util.StringUtil;
 import org.cwm3.mgrsystem.mapper.SysLogMapper;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.model.SysLog;
@@ -85,7 +86,11 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
     public Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize, Department department,String name) {
         Page<SysLog> page = new Page<>(pageNum,pageSize);
         LambdaQueryWrapper<SysLog> lambdaQueryWrapper =new LambdaQueryWrapper();
-        lambdaQueryWrapper.like(SysLog::getUsername,name);
+        if (StringUtil.isNotEmpty(name)) {
+            lambdaQueryWrapper.like(SysLog::getUsername, name);
+            Page iPage = (Page) sysLogMapper.selectPage(page, lambdaQueryWrapper);
+            return iPage;
+        }
         Page iPage = (Page) sysLogMapper.selectPage(page, lambdaQueryWrapper);
         return iPage;
     }

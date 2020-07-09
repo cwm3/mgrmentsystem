@@ -1,4 +1,4 @@
-package org.cwm3.mgrsystem.model;
+package org.cwm3.mgrsystem.common.pager;
 
 import java.util.List;
 

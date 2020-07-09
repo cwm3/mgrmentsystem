@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.controller.salary;
 
-import org.cwm3.mgrsystem.model.RespBean;
-import org.cwm3.mgrsystem.model.RespPageBean;
+import org.cwm3.mgrsystem.common.entily.RespBean;
+import org.cwm3.mgrsystem.common.pager.RespPageBean;
 import org.cwm3.mgrsystem.model.Salary;
 import org.cwm3.mgrsystem.service.IEmployeeService;
 import org.cwm3.mgrsystem.service.ISalaryService;
