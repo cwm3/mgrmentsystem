@@ -40,7 +40,9 @@ public class JobLogServiceImpl extends ServiceImpl<JobLogMapper, JobLog> impleme
             queryWrapper.eq(JobLog::getStatus, jobLog.getStatus());
         }
         Page<JobLog> page = new Page<>(request.getPageNum(), request.getPageSize());
-        SortUtil.handlePageSort(request, page, "createTime", FebsConstant.ORDER_DESC, true);
+//        SortUtil.handlePageSort(request, page, "createTime", FebsConstant.ORDER_DESC, true);
+
+        queryWrapper.orderByDesc(JobLog::getCreateTime);
         return this.page(page, queryWrapper);
     }
 

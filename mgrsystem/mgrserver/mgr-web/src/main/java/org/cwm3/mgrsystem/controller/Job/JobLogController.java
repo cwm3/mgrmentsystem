@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
 import org.cwm3.mgrsystem.common.annotation.ControllerEndpoint;
+import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.common.entity.FebsResponse;
 import org.cwm3.mgrsystem.common.system.BaseController;
 import org.cwm3.mgrsystem.model.JobLog;
@@ -39,17 +40,17 @@ public class JobLogController extends BaseController {
     private IJobLogService jobLogService;
 
     @GetMapping
-    public RespBean jobLogList(QueryRequest request, JobLog log) {
+    public AjaxResult jobLogList(QueryRequest request, JobLog log) {
        Page dataTable = (Page) this.jobLogService.findJobLogs(request, log);
-        return new RespBean(200,"ok",dataTable);
+        return new AjaxResult(dataTable);
     }
 
     @GetMapping("delete/{jobIds}")
     @ControllerEndpoint(exceptionMessage = "删除调度日志失败")
-    public FebsResponse deleteJobLog(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public AjaxResult deleteJobLog(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         this.jobLogService.deleteJobLogs(ids);
-        return new FebsResponse().success();
+        return new AjaxResult();
     }
 
     @GetMapping("excel")

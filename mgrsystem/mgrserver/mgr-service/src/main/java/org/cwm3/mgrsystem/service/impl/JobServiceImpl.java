@@ -84,7 +84,8 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobS
                     .le(Job::getCreateTime, job.getCreateTimeTo());
         }
         Page<Job> page = new Page<>(request.getPageNum(), request.getPageSize());
-        SortUtil.handlePageSort(request, page, "createTime", FebsConstant.ORDER_DESC, true);
+//        SortUtil.handlePageSort(request, page, "createTime", FebsConstant.ORDER_DESC, true);
+        queryWrapper.orderByDesc(Job::getCreateTime);
         return this.page(page, queryWrapper);
     }
 

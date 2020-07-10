@@ -2,6 +2,7 @@ package org.cwm3.mgrsystem.controller.system.syslog;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.cwm3.mgrsystem.common.annotation.ControllerEndpoint;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.common.entily.RespBean;
@@ -68,6 +69,7 @@ public class SysLogController {
     }
 
     @GetMapping("/export")
+    @ControllerEndpoint(exceptionMessage = "导出Excel失败")
     public RespBean export(HttpServletResponse response,String[] headers ,String fileName){
         List<SysLog> list = this.sysLogService.list();
         Map<String, Object> studentMap = new HashMap();

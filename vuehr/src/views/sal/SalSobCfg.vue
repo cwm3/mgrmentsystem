@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div>
         <div>
             <el-table :data="emps" border stripe size="mini">

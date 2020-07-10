@@ -3,8 +3,12 @@ package org.cwm3.mgrsystem.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.cwm3.mgrsystem.model.Department;
 import org.cwm3.mgrsystem.model.SysLog;
+import org.springframework.scheduling.annotation.Async;
+
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -57,4 +61,17 @@ public interface ISysLogService extends IService<SysLog> {
     boolean deleteById(Long id);
 
     Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize, Department department ,String name);
+    /**
+     * 异步保存操作日志
+     *
+     * @param point     切点
+     * @param method    Method
+     * @param ip   ip
+     * @param operation 操作内容
+     * @param start     开始时间
+     */
+    @Async()
+    void saveLog(ProceedingJoinPoint point, Method method, String ip, String operation, long start);
+
+
 }
