@@ -29,7 +29,6 @@ public class AddressUtil {
                 file = new File(dbPath);
 //                FileUtils.copyInputStreamToFile(AddressUtil.class.getClassLoader().getResourceAsStream("classpath:ip2region/ip2region.db"), file);
             }
-
             int algorithm = DbSearcher.BTREE_ALGORITHM;
             DbConfig config = new DbConfig();
             searcher = new DbSearcher(config, dbPath);
