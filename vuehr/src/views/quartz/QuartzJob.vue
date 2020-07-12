@@ -445,11 +445,11 @@
                 let url = 'job/jobList'
                 let params=''
                      params={
-                        "beanName": this.searchValue.beanName,
-                        "methodName": this.searchValue.methodName,
-                        "status": this.searchValue.status,
-                        "pageNum":this.page,
-                        "pageSize":this.size
+                        beanName: this.searchValue.beanName,
+                        methodName: this.searchValue.methodName,
+                        status: this.searchValue.status,
+                        pageNum:this.page,
+                        pageSize:this.size
                     }
 
                 console.log(params)
