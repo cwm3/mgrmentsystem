@@ -17,7 +17,7 @@ import java.util.concurrent.Future;
 /**
  * 定时任务
  *
- * @author mrcwm
+ * @author cwm3
  */
 @Slf4j
 public class ScheduleJob extends QuartzJobBean {

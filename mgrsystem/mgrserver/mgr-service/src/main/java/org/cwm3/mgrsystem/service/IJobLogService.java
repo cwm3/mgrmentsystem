@@ -15,5 +15,5 @@ public interface IJobLogService extends IService<JobLog> {
 
     void saveJobLog(JobLog log);
 
-    void deleteJobLogs(String[] jobLogIds);
+    Integer deleteJobLogs(String[] jobLogIds);
 }

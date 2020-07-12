@@ -8,7 +8,7 @@
                           @clear="initJobs"
                           style="width: 200px;margin-right: 10px" v-model="searchValue.beanName"
                           @keydown.enter.native="initJobs" :disabled="showAdvanceSearchView"></el-input>
-                <el-input placeholder="请输入baen名称"
+                <el-input placeholder="请输入方法名称"
                           clearable
                           @clear="initJobs"
                           style="width: 200px;margin-right: 10px" v-model="searchValue.methodName"
@@ -149,14 +149,32 @@
                 :visible.sync="dialogVisible"
                 width="30%">
             <div>
-                <el-form :model="dep" :rules="rules" ref="JobFrom">
-                    <el-form-item label="上级部门:" prop="preantName">
+                <el-form :model="job" :rules="rules" ref="JobFrom">
+                    <el-form-item label="bean名称:" prop="preantName">
                         <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
                         ></el-input>
                     </el-form-item>
-                    <el-form-item label="部门名称:" prop="name">
-                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="dep.name"
-                                  placeholder="请输入部门名称"></el-input>
+                    <el-form-item label="方法名称:" prop="preantName">
+                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="参数:" prop="preantName">
+                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="cron表达式:" prop="preantName">
+                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                        ></el-input>
+                    </el-form-item><el-form-item label="状态:" prop="preantName">
+                    <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                    ></el-input>
+                </el-form-item><el-form-item label="描述:" prop="preantName">
+                    <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                    ></el-input>
+                </el-form-item>
+                    <el-form-item label="创建时间:" prop="preantName">
+                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                        ></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -208,9 +226,17 @@
                 keyword1: '',
                 size: 10,
                 filterText: '',
-                dep: {
-                    name: '',
-                    parentId: -1
+                job: {
+                    beanName: null,
+                    methodName: null,
+                    status: null,
+                    createTime: null,
+                    createTimeFrom: null,
+                    createTimeTo: null,
+                    cronExpression: null,
+                    jobId: null,
+                    params: null,
+                    remark:null
                 },
                 pname: '',
                 deps: [],
@@ -262,8 +288,8 @@
                 this.importDataDisabled = true;
             },
             exportData(data) {
-                let  val= [data.id]
-                window.open('/mgrsystem/basic/department/exportExcel'+ "?ids=" + val, '_parent');
+                // let  val= [data.id]
+                window.open('/job/excel', '_parent');
             },
             initDep() {
                 this.dep = {
@@ -295,7 +321,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.deleteRequest("/mgrsystem/basic/department/" + data.id).then(resp => {
+                    this.getRequest("/job/delete" + "{"+data.logId+"}").then(resp => {
                         if (resp) {
                             this.initJobs();
                         }
@@ -417,19 +443,17 @@
             initJobs(type) {
                 this.loading = true;
                 let url = 'job/jobList'
-                // let params=''
-                // if(type){
-                //      params={
-                //         "beanName": this.searchValue.beanName,
-                //         "methodName": this.searchValue.methodName,
-                //         "status": this.searchValue.status,
-                //         "pageNum":this.page,
-                //         "pageSize":this.size
-                //     }
-                // }
-                // console.log(params)
-                console.log(this.searchValue)
-                this.postRequest(url,this.searchValue).then(resp => {
+                let params=''
+                     params={
+                        "beanName": this.searchValue.beanName,
+                        "methodName": this.searchValue.methodName,
+                        "status": this.searchValue.status,
+                        "pageNum":this.page,
+                        "pageSize":this.size
+                    }
+
+                console.log(params)
+                this.getRequest(url,params).then(resp => {
                     this.loading = false;
                     if (resp) {
                         this.Jobs = resp.data.records;

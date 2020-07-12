@@ -15,11 +15,9 @@ import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +37,7 @@ public class JobLogController extends BaseController {
     @Resource
     private IJobLogService jobLogService;
 
-    @GetMapping
+    @GetMapping("/jobLogList")
     public AjaxResult jobLogList(QueryRequest request, JobLog log) {
        Page dataTable = (Page) this.jobLogService.findJobLogs(request, log);
         return new AjaxResult(dataTable);
@@ -47,10 +45,15 @@ public class JobLogController extends BaseController {
 
     @GetMapping("delete/{jobIds}")
     @ControllerEndpoint(exceptionMessage = "删除调度日志失败")
-    public AjaxResult deleteJobLog(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public AjaxResult deleteJobLog(@PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
-        this.jobLogService.deleteJobLogs(ids);
-        return new AjaxResult();
+        Integer integer = this.jobLogService.deleteJobLogs(ids);
+        System.out.println(integer);
+        if (integer!= -1){
+            return new AjaxResult();
+        }else {
+            return new AjaxResult(false);
+        }
     }
 
     @GetMapping("excel")

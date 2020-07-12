@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.wuwenze.poi.annotation.Excel;
 import com.wuwenze.poi.annotation.ExcelField;
 import lombok.Data;
 
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 @Data
 @TableName("t_job")
+@Excel("定时任务信息表")
 public class Job implements Serializable {
 
     private static final long serialVersionUID = 400066840871805700L;

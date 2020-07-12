@@ -31,10 +31,10 @@ public class JobLogServiceImpl extends ServiceImpl<JobLogMapper, JobLog> impleme
         LambdaQueryWrapper<JobLog> queryWrapper = new LambdaQueryWrapper<>();
 
         if (StringUtils.isNotBlank(jobLog.getBeanName())) {
-            queryWrapper.eq(JobLog::getBeanName, jobLog.getBeanName());
+            queryWrapper.like(JobLog::getBeanName, jobLog.getBeanName());
         }
         if (StringUtils.isNotBlank(jobLog.getMethodName())) {
-            queryWrapper.eq(JobLog::getMethodName, jobLog.getMethodName());
+            queryWrapper.like(JobLog::getMethodName, jobLog.getMethodName());
         }
         if (StringUtils.isNotBlank(jobLog.getStatus())) {
             queryWrapper.eq(JobLog::getStatus, jobLog.getStatus());
@@ -54,9 +54,10 @@ public class JobLogServiceImpl extends ServiceImpl<JobLogMapper, JobLog> impleme
 
     @Override
     @Transactional
-    public void deleteJobLogs(String[] jobLogIds) {
+    public Integer deleteJobLogs(String[] jobLogIds) {
         List<String> list = Arrays.asList(jobLogIds);
-        this.baseMapper.deleteBatchIds(list);
+        int i = this.baseMapper.deleteBatchIds(list);
+        return i;
     }
 
 }

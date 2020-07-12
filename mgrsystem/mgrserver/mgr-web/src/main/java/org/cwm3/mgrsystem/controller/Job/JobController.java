@@ -35,8 +35,8 @@ public class JobController extends BaseController {
     @Resource
     private IJobService jobService;
 
-    @PostMapping("/jobList")
-    public AjaxResult jobList(QueryRequest request, @RequestBody Job job) {
+    @GetMapping("/jobList")
+    public AjaxResult jobList(QueryRequest request,  Job job) {
         AjaxResult ajaxResult = new AjaxResult(true);
         Page dataTable = (Page) this.jobService.findJobs(request, job);
         ajaxResult.setAckCode("200");
