@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
@@ -7,6 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Position implements Serializable {
+    @TableId(value="id",type= IdType.AUTO)
     private Integer id;
 
     @Override

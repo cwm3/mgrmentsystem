@@ -1,4 +1,4 @@
-package org.cwm3.mgrsystem.controller.mgrsystem.basic;
+package org.cwm3.mgrsystem.controller.system.basic;
 
 import org.cwm3.mgrsystem.model.Position;
 import org.cwm3.mgrsystem.common.entily.RespBean;

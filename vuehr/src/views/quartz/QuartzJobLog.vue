@@ -253,6 +253,14 @@
                 }
                 this.pname = '';
             },
+            sizeChange(currentSize) {
+                this.size = currentSize;
+                this.initJobs();
+            },
+            currentChange(currentPage) {
+                this.page = currentPage;
+                this.initJobs();
+            },
             // showAddJobView(data) {
             //
             //     this.inputDepName = data.name;
@@ -277,7 +285,7 @@
                     type: 'warning'
                 }).then(() => {
                     console.log(data)
-                    this.getRequest("/jobLog/delete/"+ "{"+data.logId+"}" ).then(resp => {
+                    this.getRequest("/jobLog/delete/"+data.logId ).then(resp => {
                         if (resp) {
                             this.initJobs();
                         }

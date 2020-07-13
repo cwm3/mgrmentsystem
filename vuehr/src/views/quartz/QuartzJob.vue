@@ -74,14 +74,14 @@
                         fixed
                         align="left"
                         label="bean名称"
-                        width="150">
+                        width="130">
                 </el-table-column>
                 <el-table-column
                         prop="methodName"
                         fixed
                         align="left"
                         label="方法名称"
-                        width="150">
+                        width="130">
                 </el-table-column>
                 <el-table-column
                         prop="params"
@@ -117,14 +117,14 @@
                     fixed
                     align="left"
                     label="状态"
-                    width="150">
+                    width="100">
                     <template slot-scope="scope">
                         <el-button @click="showEditJobView(scope.row)" style="padding: 3px" size="small">暂停</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column
                         fixed="right"
-                        width="200"
+                        width="180"
                         label="操作">
                     <template slot-scope="scope">
                         <el-button @click="showEditJobView(scope.row)" style="padding: 3px" size="small">编辑</el-button>
@@ -306,7 +306,7 @@
                 // this.AddJob();
             },
             showEditJobView(data) {
-                this.title = '编辑部门信息';
+                this.title = '编辑任务信息';
                 console.log(data)
                 this.selectPreant(data.parentId);
                 this.Jobs = data;
@@ -321,7 +321,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.getRequest("/job/delete" + "{"+data.logId+"}").then(resp => {
+                    this.getRequest("/job/delete" + data.logId).then(resp => {
                         if (resp) {
                             this.initJobs();
                         }
