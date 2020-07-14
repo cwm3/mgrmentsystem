@@ -39,7 +39,7 @@
 
                 </template>
             </el-table-column>
-            <el-table-column label="操作"  width="180px" align="center">
+            <el-table-column label="操作"  width="140px" align="center">
                 <template slot-scope="{row}">
                     <span>{{ row.operation }}</span>
                 </template>
@@ -49,7 +49,7 @@
 <!--                    <span >{{ row.time }}</span>-->
 <!--                </template>-->
 <!--            </el-table-column>-->
-            <el-table-column label="方法" width="280px">
+            <el-table-column label="方法" width="200px">
                 <template slot-scope="{row}">
                     <span >{{ row.method}}</span>
                 </template>
@@ -59,7 +59,7 @@
 <!--                    <span >{{ row.params }}</span>-->
 <!--                </template>-->
 <!--            </el-table-column>-->
-            <el-table-column label="IP" align="center" width="95">
+            <el-table-column label="IP" align="center" width="150px">
                 <template slot-scope="{row}">
                     <span>{{ row.ip }}</span>
                 </template>
@@ -69,7 +69,7 @@
                     <span>{{ row.createTime }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="地址" align="center" width="195">
+            <el-table-column label="地址" align="center" width="195px">
                 <template slot-scope="{row}">
                     <span >{{ row.location }}</span>
                 </template>
@@ -231,7 +231,7 @@
             handleDownload() {
                 this.downloadLoading = true
                 let  fileName = '操作日志表'
-                const filterVal = ['序号', '操作人', '操作', '方法', '参数', 'ip', '创建时间', '地址', '开始创建时间','结束创建时间']
+                const filterVal = ['序号', '操作人', '操作', '耗时（毫秒）','方法', '参数', 'ip', '创建时间', '地址']
                 window.open('/mgrsystem/syslog/export'+ "?headers= " + filterVal + "&fileName="+ fileName, '_parent');
                 this.downloadLoading = false
             },

@@ -30,7 +30,7 @@
                             {{importDataBtnText}}
                         </el-button>
                     </el-upload>
-                    <el-button  type="success" @click="exportData" icon="el-icon-download">
+                    <el-button  type="success"  @click="exportData" icon="el-icon-download" >
                         导出数据
                     </el-button>
                     <el-button type="primary" icon="el-icon-plus" @click="AddDept">

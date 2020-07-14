@@ -23,7 +23,7 @@ import java.util.Date;
 @Excel("定时任务信息表")
 public class Job implements Serializable {
 
-    private static final long serialVersionUID = 400066840871805700L;
+//    private static final long serialVersionUID = 400066840871805700L;
 
     /**
      * 任务调度参数 key

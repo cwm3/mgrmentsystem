@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @TableName("sys_log")
 public class SysLog implements Serializable {
-    private static final long serialVersionUID = 706914929809189853L;
+//    private static final long serialVersionUID = 706914929809189853L;
     /**
      * 日志ID
      */

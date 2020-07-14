@@ -33,7 +33,7 @@
             </div>
             <div>
 
-                <el-button  type="success" @click="exportData" icon="el-icon-download">
+                <el-button  type="success" @click="exportData" icon="el-icon-download" >
                     导出数据
                 </el-button>
 <!--                <el-button type="primary" icon="el-icon-plus" @click="AddJob">-->
@@ -51,6 +51,7 @@
                     element-loading-text="正在加载..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
+                    @selection-change="handleSelectionChange"
                     style="width: 100%">
                 <el-table-column
                         type="selection"
@@ -202,6 +203,7 @@
                     children: 'children',
                     label: 'name'
                 },
+                multipleSelection: [],
                 rules: {
 
                 },
@@ -221,10 +223,8 @@
             // this.initPositions();
         },
         methods: {
-            searvhViewHandleNodeClick(data) {
-                this.inputDepName = data.name;
-                this.searchValue.departmentId = data.id;
-                this.popVisible2 = !this.popVisible2
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
             },
             onError(err, file, fileList) {
                 this.importDataBtnText = '导入数据';
@@ -242,9 +242,14 @@
                 this.importDataBtnIcon = 'el-icon-loading';
                 this.importDataDisabled = true;
             },
-            exportData(data) {
+            exportData() {
+                let ids = '?';
+                console.log(this.multipleSelection)
+                this.multipleSelection.forEach(item => {
+                    ids += 'ids=' + item.id + '&';
+                })
                 // let  val= [data.id]
-                window.open('/job/excel', '_parent');
+                window.open('/jobLog/exportExcel'+ids, '_parent');
             },
             initDep() {
                 this.dep = {

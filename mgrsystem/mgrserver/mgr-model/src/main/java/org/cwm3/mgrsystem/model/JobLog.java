@@ -20,7 +20,7 @@ import java.util.Date;
 @Excel("调度日志信息表")
 public class JobLog implements Serializable {
 
-    private static final long serialVersionUID = -7114915445674333148L;
+//    private static final long serialVersionUID = -7114915445674333148L;
     // 任务执行成功
     public static final String JOB_SUCCESS = "0";
     // 任务执行失败

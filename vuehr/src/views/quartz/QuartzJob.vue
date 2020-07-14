@@ -51,6 +51,7 @@
                     element-loading-text="正在加载..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
+                    @selection-change="handleSelectionChange"
                     style="width: 100%">
                 <el-table-column
                         type="selection"
@@ -312,8 +313,11 @@
             //     this.importDataDisabled = true;
             // },
             exportData(data) {
-                // let  val= [data.id]
-                window.open('/job/excel', '_parent');
+                let ids = '?';
+                this.multipleSelection.forEach(item => {
+                    ids += 'ids=' + item.id + '&';
+                })
+                window.open('/job/excel?ids='+ids, '_parent');
             },
             initDep() {
                 this.dep = {
