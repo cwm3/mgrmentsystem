@@ -1036,8 +1036,8 @@ insert  into `menu`(`id`,`url`,`path`,`component`,`name`,`iconCls`,`keepAlive`,`
 (34,'/','/home','Home','ç³»ç»Ÿç›‘æ§','el-icon-camera-solid',NULL,1,1,1),
 (35,'/system/online/**','/monitor/online','MonitorOnline','åœ¨çº¿ç”¨æˆ·',NULL,NULL,1,34,1),
 (36,'/','/home','Home','ä»»åŠ¡è°ƒåº¦','el-icon-s-opportunity',NULL,1,1,1),
-(37,NULL,'/quartz/job','QuartzJob','å®šæ—¶ä»»åŠ¡',NULL,NULL,1,36,1),
-(38,NULL,'/quartz/jobLog','QuartzJobLog','ä»»åŠ¡æ—¥å¿—',NULL,NULL,1,36,1);
+(37,'/job/**','/quartz/job','QuartzJob','å®šæ—¶ä»»åŠ¡',NULL,NULL,1,36,1),
+(38,'/jobLog/**','/quartz/jobLog','QuartzJobLog','ä»»åŠ¡æ—¥å¿—',NULL,NULL,1,36,1);
 
 /*Table structure for table `menu_role` */
 
@@ -1265,7 +1265,7 @@ CREATE TABLE `position` (
   `enabled` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 /*Data for the table `position` */
 
@@ -1326,6 +1326,9 @@ insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`C
 ('FEBS_Scheduler','TASK_11','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
 ('FEBS_Scheduler','TASK_12','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
 ('FEBS_Scheduler','TASK_13','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
+('FEBS_Scheduler','TASK_14','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
+('FEBS_Scheduler','TASK_15','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
+('FEBS_Scheduler','TASK_16','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
 ('FEBS_Scheduler','TASK_2','DEFAULT','0/10 * * * * ?','Asia/Shanghai'),
 ('FEBS_Scheduler','TASK_3','DEFAULT','0/1 * * * * ?','Asia/Shanghai');
 
@@ -1377,6 +1380,9 @@ insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION
 ('FEBS_Scheduler','TASK_11','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aĞ¬Pxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test2pt\0æµ‹è¯•å¼‚å¸¸t\01x\0'),
 ('FEBS_Scheduler','TASK_12','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0myTasksr\0java.util.DatehjKYt\0\0xpw\0\0o² xt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0myTestt\0hellot\0(æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯5ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
 ('FEBS_Scheduler','TASK_13','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0o²+úbxt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0\rt\0	deleteJobt\03t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
+('FEBS_Scheduler','TASK_14','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testsr\0java.util.DatehjKYt\0\0xpw\0\0sLÑ‡yxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\03t\0fadfat\01x\0'),
+('FEBS_Scheduler','TASK_15','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testsr\0java.util.DatehjKYt\0\0xpw\0\0sLÒPExt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\03t\0fadfat\01x\0'),
+('FEBS_Scheduler','TASK_16','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0nysr\0java.util.DatehjKYt\0\0xpw\0\0sLÔCxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\03t\0åˆ é™¤ä»»åŠ¡t\01x\0'),
 ('FEBS_Scheduler','TASK_2','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÇ2˜xt\00/10 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test1pt\0æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•t\01x\0'),
 ('FEBS_Scheduler','TASK_3','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÏ¹¦xt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0testt\0hello worldt\0+æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘t\01x\0');
 
@@ -1423,7 +1429,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 /*Data for the table `qrtz_scheduler_state` */
 
 insert  into `qrtz_scheduler_state`(`SCHED_NAME`,`INSTANCE_NAME`,`LAST_CHECKIN_TIME`,`CHECKIN_INTERVAL`) values 
-('FEBS_Scheduler','cwm-computer1579229646953',1579256553499,15000);
+('FEBS_Scheduler','pc-2019080241594720430679',1594721981037,15000);
 
 /*Table structure for table `qrtz_simple_triggers` */
 
@@ -1500,6 +1506,9 @@ insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NA
 ('FEBS_Scheduler','TASK_11','DEFAULT','TASK_11','DEFAULT',NULL,1578562255000,-1,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aĞ¬Pxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test2pt\0æµ‹è¯•å¼‚å¸¸t\01x\0'),
 ('FEBS_Scheduler','TASK_12','DEFAULT','TASK_12','DEFAULT',NULL,1579242790000,1579242785000,5,'PAUSED','CRON',1579240875000,0,NULL,2,''),
 ('FEBS_Scheduler','TASK_13','DEFAULT','TASK_13','DEFAULT',NULL,1579309200000,1579248055000,5,'WAITING','CRON',1579242228000,0,NULL,2,''),
+('FEBS_Scheduler','TASK_14','DEFAULT','TASK_14','DEFAULT',NULL,1594721670000,-1,5,'PAUSED','CRON',1594721666000,0,NULL,2,''),
+('FEBS_Scheduler','TASK_15','DEFAULT','TASK_15','DEFAULT',NULL,1594721720000,-1,5,'PAUSED','CRON',1594721718000,0,NULL,2,''),
+('FEBS_Scheduler','TASK_16','DEFAULT','TASK_16','DEFAULT',NULL,1594721850000,-1,5,'PAUSED','CRON',1594721846000,0,NULL,2,''),
 ('FEBS_Scheduler','TASK_2','DEFAULT','TASK_2','DEFAULT',NULL,1578562260000,-1,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTaskpt\00/10 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test5t\0\0t\0æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•t\01x\0'),
 ('FEBS_Scheduler','TASK_3','DEFAULT','TASK_3','DEFAULT',NULL,1579230392000,1579230391000,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTaskpt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test1t\0hello worldt\0+æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘t\01x\0');
 
@@ -1677,7 +1686,7 @@ CREATE TABLE `t_job` (
   `REMARK` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'å¤‡æ³¨',
   `CREATE_TIME` datetime DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
   PRIMARY KEY (`JOB_ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='å®šæ—¶ä»»åŠ¡è¡¨';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='å®šæ—¶ä»»åŠ¡è¡¨';
 
 /*Data for the table `t_job` */
 
@@ -1687,7 +1696,10 @@ insert  into `t_job`(`JOB_ID`,`BEAN_NAME`,`METHOD_NAME`,`PARAMS`,`CRON_EXPRESSIO
 (3,'testTask','test1','hello world','0/1 * * * * ?','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘','2018-02-26 09:28:26'),
 (11,'testTask','test2',NULL,'0/5 * * * * ?','1','æµ‹è¯•å¼‚å¸¸','2018-02-26 11:15:30'),
 (12,'myTask','myTest','hello','0/5 * * * * ?','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯5ç§’æ‰§è¡Œä¸€æ¬¡','2020-01-17 14:00:24'),
-(13,'myTest123','deleteJob','3','0/5 0 9,16 * * ? ','0','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡','2020-01-17 14:23:44');
+(13,'myTest123','deleteJob','3','0/5 0 9,16 * * ? ','0','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡','2020-01-17 14:23:44'),
+(14,'test','deleteJob','3','0/5 * * * * ?','1','fadfa','2020-07-14 18:14:27'),
+(15,'test','deleteJob','3','0/5 * * * * ?','1','fadfa','2020-07-14 18:15:18'),
+(16,'ny','deleteJob','3','0/5 * * * * ?','1','åˆ é™¤ä»»åŠ¡','2020-07-14 18:17:26');
 
 /*Table structure for table `t_job_log` */
 
@@ -1711,8 +1723,8 @@ CREATE TABLE `t_job_log` (
 insert  into `t_job_log`(`LOG_ID`,`JOB_ID`,`BEAN_NAME`,`METHOD_NAME`,`PARAMS`,`STATUS`,`ERROR`,`TIMES`,`CREATE_TIME`) values 
 (82,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',1,'2020-01-17 14:29:29'),
 (83,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',1,'2020-01-17 14:30:12'),
-(84,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',0,'2020-01-17 14:30:30'),
-(85,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',1,'2020-01-17 14:30:35'),
+(84,12,'cheng','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',0,'2020-01-17 14:30:30'),
+(85,12,'huang','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',1,'2020-01-17 14:30:35'),
 (86,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',0,'2020-01-17 14:30:40'),
 (87,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',1,'2020-01-17 14:30:45'),
 (88,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',0,'2020-01-17 14:30:50'),
@@ -1743,7 +1755,6 @@ insert  into `t_job_log`(`LOG_ID`,`JOB_ID`,`BEAN_NAME`,`METHOD_NAME`,`PARAMS`,`S
 (113,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',0,'2020-01-17 14:32:55'),
 (114,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',1,'2020-01-17 14:33:00'),
 (115,12,'myTask','myTest','hello','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTask\' available',0,'2020-01-17 14:33:05'),
-(116,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',1,'2020-01-17 16:00:00'),
 (117,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',0,'2020-01-17 16:00:05'),
 (118,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',0,'2020-01-17 16:00:10'),
 (119,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',0,'2020-01-17 16:00:15'),
