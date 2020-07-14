@@ -53,9 +53,9 @@ public class JobController extends BaseController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/addJob")
     @ControllerEndpoint(operation = "新增定时任务", exceptionMessage = "新增定时任务失败")
-    public AjaxResult addJob(@Valid Job job) {
+    public AjaxResult addJob(@RequestBody Job job) {
         AjaxResult ajaxResult = new AjaxResult(true);
         this.jobService.createJob(job);
         return ajaxResult;

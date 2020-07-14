@@ -21,7 +21,8 @@
                             :value="item.value">
                     </el-option>
                 </el-select>
-                <el-button icon="el-icon-search" type="primary" style="margin-right: 20px" @click="initJobs" :disabled="showAdvanceSearchView">
+                <el-button icon="el-icon-search" type="primary" style="margin-right: 20px" @click="initJobs"
+                           :disabled="showAdvanceSearchView">
                     搜索
                 </el-button>
                 <!--                    <el-button type="primary" @click="showAdvanceSearchView = !showAdvanceSearchView">-->
@@ -32,10 +33,10 @@
             </div>
             <div>
 
-                <el-button  type="success" @click="exportData" icon="el-icon-download">
+                <el-button type="success" @click="exportData" icon="el-icon-download">
                     导出数据
                 </el-button>
-                <el-button type="primary" icon="el-icon-plus" @click="AddJob">
+                <el-button type="primary" icon="el-icon-plus" @click="showAddJobView">
                     添加任务
                 </el-button>
             </div>
@@ -67,21 +68,21 @@
                         fixed
                         align="left"
                         label="任务ID"
-                        width="80">
+                        width="150">
                 </el-table-column>
                 <el-table-column
                         prop="beanName"
                         fixed
                         align="left"
                         label="bean名称"
-                        width="130">
+                        width="150">
                 </el-table-column>
                 <el-table-column
                         prop="methodName"
                         fixed
                         align="left"
                         label="方法名称"
-                        width="130">
+                        width="150">
                 </el-table-column>
                 <el-table-column
                         prop="params"
@@ -95,31 +96,34 @@
                         fixed
                         align="left"
                         label="Cron表达式"
-                        width="150">
-                 </el-table-column>
+                        width="180">
+                </el-table-column>
                 <el-table-column
                         prop="remark"
                         fixed
                         align="left"
                         label="备注"
-                        width="150">
+                        width="250">
                 </el-table-column>
                 <el-table-column
                         prop="createTime"
                         fixed
                         align="left"
                         label="创建时间"
-                        width="150">
+                        width="180">
                 </el-table-column>
 
                 <el-table-column
-                    prop="status"
-                    fixed
-                    align="left"
-                    label="状态"
-                    width="100">
+                        prop="status"
+                        fixed
+                        align="left"
+                        label="状态"
+                        width="100">
                     <template slot-scope="scope">
-                        <el-button @click="showEditJobView(scope.row)" style="padding: 3px" size="small">暂停</el-button>
+                        <el-button v-if="scope.row.status==1" style="padding: 3px" size="small" type="danger">暂停
+                        </el-button>
+                        <el-button v-if="scope.row.status==0" style="padding: 3px" size="small" type="green">正常
+                        </el-button>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -147,40 +151,49 @@
         <el-dialog
                 :title="title"
                 :visible.sync="dialogVisible"
-                width="30%">
+                width="40%">
             <div>
-                <el-form :model="job" :rules="rules" ref="JobFrom">
-                    <el-form-item label="bean名称:" prop="preantName">
-                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                <el-form  :label-position="labelPosition" label-width="100px" :model="ruleFrom" :rules="rules" ref="jobFrom">
+                    <el-form-item  label="bean名称:" prop="beanName" style="align-content: center">
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit"
+                                  v-model="ruleFrom.beanName"
                         ></el-input>
                     </el-form-item>
-                    <el-form-item label="方法名称:" prop="preantName">
-                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                    <el-form-item label="方法名称:" prop="methodName">
+                        <el-input size="small" style="width: 400px" prefix-icon="el-icon-edit"
+                                  v-model="ruleFrom.methodName"
                         ></el-input>
                     </el-form-item>
                     <el-form-item label="参数:" prop="preantName">
-                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit" v-model="ruleFrom.params"
                         ></el-input>
                     </el-form-item>
                     <el-form-item label="cron表达式:" prop="preantName">
-                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
-                        ></el-input>
-                    </el-form-item><el-form-item label="状态:" prop="preantName">
-                    <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
-                    ></el-input>
-                </el-form-item><el-form-item label="描述:" prop="preantName">
-                    <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
-                    ></el-input>
-                </el-form-item>
-                    <el-form-item label="创建时间:" prop="preantName">
-                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit"
+                                  v-model="ruleFrom.cronExpression"
                         ></el-input>
                     </el-form-item>
+<!--                    <el-form-item label="状态:" prop="preantName">-->
+<!--                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit" v-model="ruleFrom.status"-->
+<!--                        ></el-input>-->
+<!--                    </el-form-item>-->
+                    <el-form-item label="描述:" prop="preantName">
+                        <el-input type="textarea"
+                                  :rows="4"
+                                  placeholder="请输入内容"    style="width: 400px" prefix-icon="el-icon-edit" v-model="ruleFrom.remark"
+                        ></el-input>
+                    </el-form-item>
+<!--                    <el-form-item label="创建时间:" prop="preantName">-->
+<!--                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit"-->
+<!--                                  v-model="ruleFrom.createTime"-->
+<!--                        ></el-input>-->
+<!--                    </el-form-item>-->
                 </el-form>
             </div>
             <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click=" submitForm('jobFrom')">确 定</el-button>
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click=" editJob">确 定</el-button>
+
   </span>
         </el-dialog>
     </div>
@@ -189,7 +202,7 @@
 
 <script>
     import {postRequest} from "../../utils/api";
-    import { exportMethod } from '@/utils/util';
+    import {exportMethod} from '@/utils/util';
     import axios from 'axios'
 
     export default {
@@ -206,10 +219,11 @@
                     cronExpression: null,
                     jobId: null,
                     params: null,
-                    remark:null
+                    remark: null
                 },
-                title: '',
-                id:'',
+                title: '添加任务',
+                id: '',
+                labelPosition: 'right',
                 importDataBtnText: '导入数据',
                 importDataBtnIcon: 'el-icon-upload2',
                 importDataDisabled: false,
@@ -236,8 +250,9 @@
                     cronExpression: null,
                     jobId: null,
                     params: null,
-                    remark:null
+                    remark: null
                 },
+                rules: {},
                 pname: '',
                 deps: [],
 
@@ -247,15 +262,24 @@
                     children: 'children',
                     label: 'name'
                 },
-                rules: {
-
+                ruleFrom: {
+                    beanName: null,
+                    methodName: null,
+                    status: null,
+                    createTime: null,
+                    createTimeFrom: null,
+                    createTimeTo: null,
+                    cronExpression: null,
+                    jobId: null,
+                    params: null,
+                    remark: null
                 },
                 options: [{
                     value: '1',
                     label: '正常'
-                 }, {
-                 value: '0',
-                 label: '暂停'
+                }, {
+                    value: '0',
+                    label: '暂停'
                 }]
 
             }
@@ -271,22 +295,22 @@
                 this.searchValue.departmentId = data.id;
                 this.popVisible2 = !this.popVisible2
             },
-            onError(err, file, fileList) {
-                this.importDataBtnText = '导入数据';
-                this.importDataBtnIcon = 'el-icon-upload2';
-                this.importDataDisabled = false;
-            },
-            onSuccess(response, file, fileList) {
-                this.importDataBtnText = '导入数据';
-                this.importDataBtnIcon = 'el-icon-upload2';
-                this.importDataDisabled = false;
-                this.initEmps();
-            },
-            beforeUpload() {
-                this.importDataBtnText = '正在导入';
-                this.importDataBtnIcon = 'el-icon-loading';
-                this.importDataDisabled = true;
-            },
+            // onError(err, file, fileList) {
+            //     this.importDataBtnText = '导入数据';
+            //     this.importDataBtnIcon = 'el-icon-upload2';
+            //     this.importDataDisabled = false;
+            // },
+            // onSuccess(response, file, fileList) {
+            //     this.importDataBtnText = '导入数据';
+            //     this.importDataBtnIcon = 'el-icon-upload2';
+            //     this.importDataDisabled = false;
+            //     this.initEmps();
+            // },
+            // beforeUpload() {
+            //     this.importDataBtnText = '正在导入';
+            //     this.importDataBtnIcon = 'el-icon-loading';
+            //     this.importDataDisabled = true;
+            // },
             exportData(data) {
                 // let  val= [data.id]
                 window.open('/job/excel', '_parent');
@@ -299,21 +323,39 @@
                 this.pname = '';
             },
             showAddJobView(data) {
-
-                this.inputDepName = data.name;
-                this.dep.parentId = data.id;
                 this.dialogVisible = true;
                 // this.AddJob();
             },
             showEditJobView(data) {
                 this.title = '编辑任务信息';
                 console.log(data)
-                this.selectPreant(data.parentId);
                 this.Jobs = data;
-                this.dep.name=data.name;
-                this.dep.parentId=data.parentId;
+                this.dep.name = data.name;
+                this.dep.parentId = data.parentId;
                 this.inputDepName = data.name;
                 this.dialogVisible = true;
+            },
+            submitForm(ruleFrom) {
+                this.dialogVisible = false;
+                this.$refs[ruleFrom].validate((valid) => {
+                    if (valid) {
+                        console.log(this.ruleFrom)
+                        // this.postRequest("/job/addJob",JSON.stringify(this.ruleFrom)).then(resp => {
+                            axios.post("/job/addJob",this.ruleFrom).then(resp => {
+                            console.log(resp);
+                            if (resp) {
+                                this.message.success("添加成功");
+                                this.initJobs();
+                            } else {
+                                this.message.error("添加失败");
+                            }
+                        });
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+
             },
             deleteJob(data) {
                 this.$confirm('此操作将永久删除【' + data.name + '】, 是否继续?', '提示', {
@@ -336,7 +378,7 @@
             editJob() {
                 console.log(this.dep)
                 if (this.dep.id) {
-                    this.$refs['JobFrom'].validate(valid => {
+                    this.$refs['ruleFrom'].validate(valid => {
                         if (valid) {
                             this.postRequest("/mgrsystem/basic/department/upadate", this.Jobs).then(resp => {
                                 if (resp) {
@@ -347,7 +389,7 @@
                         }
                     });
                 } else {
-                    this.$refs['JobFrom'].validate(valid => {
+                    this.$refs['ruleFrom'].validate(valid => {
                         if (valid) {
                             this.postRequest("/mgrsystem/basic/department/", this.Jobs).then(resp => {
                                 if (resp) {
@@ -443,17 +485,15 @@
             initJobs(type) {
                 this.loading = true;
                 let url = 'job/jobList'
-                let params=''
-                     params={
-                        beanName: this.searchValue.beanName,
-                        methodName: this.searchValue.methodName,
-                        status: this.searchValue.status,
-                        pageNum:this.page,
-                        pageSize:this.size
-                    }
-
-                console.log(params)
-                this.getRequest(url,params).then(resp => {
+                let params = ''
+                params = {
+                    beanName: this.searchValue.beanName,
+                    methodName: this.searchValue.methodName,
+                    status: this.searchValue.status,
+                    pageNum: this.page,
+                    pageSize: this.size
+                }
+                this.getRequest(url, params).then(resp => {
                     this.loading = false;
                     if (resp) {
                         this.Jobs = resp.data.records;
@@ -467,7 +507,7 @@
 
                 // url += "&name=" + this.keyword;
 
-                this.getRequest("/mgrsystem/basic/department/selectOne" +'?id='+val).then(resp => {
+                this.getRequest("/mgrsystem/basic/department/selectOne" + '?id=' + val).then(resp => {
                     this.loading = false;
                     if (resp) {
                         this.pname = resp.data.name;
@@ -497,4 +537,5 @@
         transform: translateX(10px);
         opacity: 0;
     }
+
 </style>
