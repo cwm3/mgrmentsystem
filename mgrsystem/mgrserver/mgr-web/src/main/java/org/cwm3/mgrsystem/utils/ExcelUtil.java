@@ -117,7 +117,7 @@ public class ExcelUtil {
             for (int i = 0; i < mapList.size(); i++) {
                 Map map = mapList.get(i);
                 String[] headers = (String[]) map.get("headers");
-                Collection<T> dataList = (Collection<T>) map.get("dataList");
+                List<Object[]> dataList = (List<Object[]>) map.get("dataList");
                 String fileName = (String) map.get("fileName");
                 createSheet(wb, null, headers, dataList, fileName, maxBuff);
             }
@@ -131,7 +131,7 @@ public class ExcelUtil {
 
     }
 
-    private static <T> void createSheet(SXSSFWorkbook wb, String[] exportFields, String[] headers, Collection<T> dataList, String fileName, int maxBuff) throws NoSuchFieldException, IllegalAccessException, IOException {
+    private static <T> void createSheet(SXSSFWorkbook wb, String[] exportFields, String[] headers, List<Object[]> dataList, String fileName, int maxBuff) throws NoSuchFieldException, IllegalAccessException, IOException {
 
         Sheet sh = wb.createSheet(fileName);
 
@@ -165,24 +165,33 @@ public class ExcelUtil {
         for (int cellnum = 0; cellnum < headerSize; cellnum++) {
             Cell cell = headerRow.createCell(cellnum);
             cell.setCellStyle(style);
-            sh.setColumnWidth(cellnum, 4000);
+            sh.setColumnWidth(cellnum, 5000);
             cell.setCellValue(headers[cellnum]);
         }
 
         int rownum = 0;
-        Iterator<T> iterator = dataList.iterator();
-        while (iterator.hasNext()) {
-            T data = iterator.next();
-            Row row = sh.createRow(rownum + 1);
+        // 创建数据行
+        for (int i = 0; i < dataList.size(); i++) {
+            Row row = sh.createRow(i + 1);
 
-            Field[] fields = getExportFields(data.getClass(), exportFields);
-            for (int cellnum = 0; cellnum < headerSize; cellnum++) {
-                Cell cell = row.createCell(cellnum);
-                cell.setCellStyle(style2);
-                Field field = fields[cellnum];
-
-                setData(field, data, field.getName(), cell);
+            Object[] datas = dataList.get(i);
+            for (int j = 0; j < datas.length; j++) {
+                Cell cell2 = row.createCell(j);
+                cell2.setCellStyle(style2);
+                cell2.setCellValue(datas[j] == null ? "" : datas[j].toString());
             }
+//        while (iterator.hasNext()) {
+//            T data = iterator.next();
+//            Row row = sh.createRow(rownum + 1);
+//
+//            Field[] fields = getExportFields(data.getClass(), exportFields);
+//            for (int cellnum = 0; cellnum < headerSize; cellnum++) {
+//                Cell cell = row.createCell(cellnum);
+//                cell.setCellStyle(style2);
+//                Field field = fields[cellnum];
+//
+//                setData(field, data, field.getName(), cell);
+//            }
             rownum = sh.getLastRowNum();
             // 大数据量时将之前的数据保存到硬盘
             if (rownum % maxBuff == 0) {
@@ -193,7 +202,7 @@ public class ExcelUtil {
     }
 
 
-    private static <T> void doExport(String[] headers, String[] exportFields, Collection<T> dataList,
+    private static <T> void doExport(String[] headers, String[] exportFields, List<Object[]> dataList,
                                      String fileName, OutputStream outputStream) {
 
         int maxBuff = 100;

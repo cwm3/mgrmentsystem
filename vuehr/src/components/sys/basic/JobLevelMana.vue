@@ -182,6 +182,7 @@
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+
             },
             showEditView(data) {
                 Object.assign(this.updateJl, data);

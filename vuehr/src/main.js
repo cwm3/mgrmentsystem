@@ -105,6 +105,7 @@ import {deleteRequest} from "./utils/api";
 import {getRequest} from "./utils/api";
 import {initMenu} from "./utils/menus";
 import 'font-awesome/css/font-awesome.min.css'
+import moment from 'moment'
 
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.postKeyValueRequest = postKeyValueRequest;
@@ -113,6 +114,10 @@ Vue.prototype.deleteRequest = deleteRequest;
 Vue.prototype.getRequest = getRequest;
 
 Vue.config.productionTip = false
+
+Vue.filter('fmtdate', (v) => {
+    return moment.unix(v).format("YYYY-MM-DD HH:mm:ss")
+})
 
 router.beforeEach((to, from, next) => {
     if (to.path == '/') {

@@ -2,6 +2,7 @@ package org.cwm3.mgrsystem.controller.system.syslog;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.checkerframework.checker.units.qual.A;
 import org.cwm3.mgrsystem.common.annotation.ControllerEndpoint;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.Department;
@@ -67,6 +68,21 @@ public class SysLogController {
         }
         return  ajaxResult;
     }
+    @GetMapping("/delete")
+    public AjaxResult deletebyId(@RequestParam Integer id){
+        if (id == null){
+            throw new IllegalArgumentException("id不能为空");
+//            return new AjaxResult(false);
+        }else{
+            boolean b = sysLogService.deleteById(id);
+            if (b == true){
+               return new AjaxResult();
+            }else{
+                return new AjaxResult(false);
+            }
+        }
+    }
+
 
     @GetMapping("/export")
     @ControllerEndpoint(exceptionMessage = "导出Excel失败")

@@ -21,7 +21,7 @@
                             :value="item.value">
                     </el-option>
                 </el-select>
-                <el-button icon="el-icon-search" type="primary" style="margin-right: 20px" @click="initJobs"
+                <el-button icon="el-icon-search" type="primary" style="margin-left: 20px" @click="initJobs"
                            :disabled="showAdvanceSearchView">
                     搜索
                 </el-button>
@@ -33,7 +33,7 @@
             </div>
             <div>
 
-                <el-button type="success" @click="exportData" icon="el-icon-download">
+                <el-button type="success" @click="exportData(multipleSelection)" icon="el-icon-download">
                     导出数据
                 </el-button>
                 <el-button type="primary" icon="el-icon-plus" @click="showAddJobView">
@@ -69,7 +69,7 @@
                         fixed
                         align="left"
                         label="任务ID"
-                        width="150">
+                        width="70">
                 </el-table-column>
                 <el-table-column
                         prop="beanName"
@@ -83,7 +83,7 @@
                         fixed
                         align="left"
                         label="方法名称"
-                        width="150">
+                        width="100">
                 </el-table-column>
                 <el-table-column
                         prop="params"
@@ -97,7 +97,7 @@
                         fixed
                         align="left"
                         label="Cron表达式"
-                        width="180">
+                        width="120">
                 </el-table-column>
                 <el-table-column
                         prop="remark"
@@ -112,6 +112,9 @@
                         align="left"
                         label="创建时间"
                         width="180">
+                    <template  scope="scope">
+                             {{timestampToTime(scope.row.createTime)}}
+                    </template>
                 </el-table-column>
 
                 <el-table-column
@@ -223,7 +226,7 @@
                     remark: null
                 },
                 title: '添加任务',
-                id: '',
+                ids:[],
                 labelPosition: 'right',
                 importDataBtnText: '导入数据',
                 importDataBtnIcon: 'el-icon-upload2',
@@ -256,8 +259,9 @@
                 rules: {},
                 pname: '',
                 deps: [],
+                multipleSelection: [],
 
-                inputDepName: '所属部门',
+                inputDepName: '任务',
 
                 defaultProps: {
                     children: 'children',
@@ -276,10 +280,10 @@
                     remark: null
                 },
                 options: [{
-                    value: '1',
+                    value: '0',
                     label: '正常'
                 }, {
-                    value: '0',
+                    value: '1',
                     label: '暂停'
                 }]
 
@@ -291,6 +295,22 @@
             // this.initPositions();
         },
         methods: {
+            timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + ' ';
+                var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + ':';
+                var m = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + ':';
+                var s = (date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds());
+                return Y+M+D+h+m+s;
+                // return Y+M+D;
+            },
+
+            handleSelectionChange(val) {
+                console.log(val)
+                this.multipleSelection = val;
+            },
             searvhViewHandleNodeClick(data) {
                 this.inputDepName = data.name;
                 this.searchValue.departmentId = data.id;
@@ -312,12 +332,12 @@
             //     this.importDataBtnIcon = 'el-icon-loading';
             //     this.importDataDisabled = true;
             // },
-            exportData(data) {
-                let ids = '?';
-                this.multipleSelection.forEach(item => {
-                    ids += 'ids=' + item.id + '&';
+            exportData(rows) {
+                var _this = this;
+                rows.forEach(element  => {
+                    _this.ids.push(element.jobId);
                 })
-                window.open('/job/excel?ids='+ids, '_parent');
+                window.open('/job/exportExcel?ids=' + _this.ids , '_parent');
             },
             initDep() {
                 this.dep = {
@@ -332,11 +352,7 @@
             },
             showEditJobView(data) {
                 this.title = '编辑任务信息';
-                console.log(data)
-                this.Jobs = data;
-                this.dep.name = data.name;
-                this.dep.parentId = data.parentId;
-                this.inputDepName = data.name;
+                this.ruleFrom = data;
                 this.dialogVisible = true;
             },
             submitForm(ruleFrom) {
@@ -362,13 +378,14 @@
 
             },
             deleteJob(data) {
-                this.$confirm('此操作将永久删除【' + data.name + '】, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除【' + data.beanName + '】, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.getRequest("/job/delete" + data.logId).then(resp => {
+                    this.getRequest("/job/delete/" + data.jobId).then(resp => {
                         if (resp) {
+                            this.message.success("删除成功");
                             this.initJobs();
                         }
                     })

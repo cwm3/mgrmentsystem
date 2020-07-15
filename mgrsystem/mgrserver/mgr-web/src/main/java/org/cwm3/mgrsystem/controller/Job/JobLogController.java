@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotBlank;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -69,7 +70,7 @@ public class JobLogController extends BaseController {
     public void exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
         AjaxResult ajaxResult = new AjaxResult(true);
         String fileName = "任务日志表";
-        String[] headers={"编号","日志id","bean名称","方法名称","参数","状态","异常信息","耗时（毫秒）","创建时间"};
+        String[] headers={"任务ID","bean名称","方法名称","参数","状态","异常信息","耗时（毫秒）","创建时间"};
         List<JobLog> jobLogList = new ArrayList<>();
         if ( ids!= null &&ids.length > 0 ) {
             List<Integer> list = Arrays.asList(ids);
@@ -81,8 +82,22 @@ public class JobLogController extends BaseController {
             jobLogList = jobLogService.list();
         }
         Map<String, Object> studentMap = new HashMap();
+        List<Object[]> dataList = new ArrayList<Object[]>();
+        for (int i = 0; i < jobLogList.size(); i++) {
+            JobLog jobLog = jobLogList.get(i);
+            Object[] datas = new Object[8];
+            datas[0] = jobLog.getJobId();
+            datas[1] = jobLog.getBeanName();
+            datas[2] = jobLog.getMethodName();
+            datas[3] = jobLog.getParams();
+            datas[4] = jobLog.getStatus();
+            datas[5] = jobLog.getError();
+            datas[6] = jobLog.getTimes();
+            datas[7] = new SimpleDateFormat("yyyy-MM-dd").format(jobLog.getCreateTime());
+            dataList.add(datas);
+        }
         studentMap.put("headers", headers);
-        studentMap.put("dataList", jobLogList);
+        studentMap.put("dataList", dataList);
         studentMap.put("fileName", fileName);
         List<Map> mapList = new ArrayList();
         mapList.add(studentMap);

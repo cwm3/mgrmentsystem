@@ -1,6 +1,5 @@
 package org.cwm3.mgrsystem.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -58,7 +57,7 @@ public interface ISysLogService extends IService<SysLog> {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Long id);
+    boolean deleteById(Integer id);
 
     Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize, Department department ,String name);
     /**

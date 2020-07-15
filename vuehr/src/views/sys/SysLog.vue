@@ -33,7 +33,7 @@
                     <span>{{ row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="操作人" width="80px">
+            <el-table-column label="操作人" width="120px">
                 <template slot-scope="{row}">
                     <span>{{ row.username}}</span>
 
@@ -49,7 +49,7 @@
 <!--                    <span >{{ row.time }}</span>-->
 <!--                </template>-->
 <!--            </el-table-column>-->
-            <el-table-column label="方法" width="200px">
+            <el-table-column label="方法" width="250px">
                 <template slot-scope="{row}">
                     <span >{{ row.method}}</span>
                 </template>
@@ -66,20 +66,20 @@
             </el-table-column>
             <el-table-column label="创建时间" width="250px" align="center">
                 <template slot-scope="{row}">
-                    <span>{{ row.createTime }}</span>
+                    <span>{{ timestampToTime(row.createTime) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="地址" align="center" width="195px">
+            <el-table-column label="地址" align="center" width="250px">
                 <template slot-scope="{row}">
                     <span >{{ row.location }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="操作" align="center"  class-name="small-padding fixed-width">
                 <template slot-scope="{row,$index}">
-                    <el-button type="primary" size="small" @click="handleUpdate(row)">
-                        编辑
-                    </el-button>
-                    <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
+<!--                    <el-button type="primary" size="small" @click="handleUpdate(row)">-->
+<!--                        编辑-->
+<!--                    </el-button>-->
+                    <el-button  size="mini" type="danger" @click="handleDelete(row)">
                         删除
                     </el-button>
                 </template>
@@ -102,6 +102,7 @@
     import waves from '@/directive/waves' // waves directive
     // import { parseTime } from '@/utils'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+
 
 
 
@@ -176,6 +177,17 @@
             this.getList()
         },
         methods: {
+            timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + ' ';
+                var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + ':';
+                var m = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + ':';
+                var s = (date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds());
+                return Y+M+D+h+m+s;
+                // return Y+M+D;
+            },
             getList(type) {
                 let url = '/mgrsystem/syslog/?pageNum=' + this.page + '&pageSize=' + this.size;
                 if (type) {
@@ -270,33 +282,32 @@
                         this.$refs['dataForm'].clearValidate()
                     })
                 },
-                updateData() {
-                    this.$refs['dataForm'].validate((valid) => {
-                        if (valid) {
-                            const tempData = Object.assign({}, this.temp)
-                            tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-                            updateArticle(tempData).then(() => {
-                                const index = this.list.findIndex(v => v.id === this.temp.id)
-                                this.list.splice(index, 1, this.temp)
-                                this.dialogFormVisible = false
-                                this.$notify({
-                                    title: 'Success',
-                                    message: 'Update Successfully',
-                                    type: 'success',
-                                    duration: 2000
-                                })
-                            })
-                        }
-                    })
-                },
-                handleDelete(row, index) {
-                    this.$notify({
-                        title: 'Success',
-                        message: 'Delete Successfully',
-                        type: 'success',
-                        duration: 2000
-                    })
-                    this.list.splice(index, 1)
+
+                handleDelete(data) {
+                   let _that = this
+                    this.$confirm('此操作将永久删除【' + data.id + '】, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.getRequest("/mgrsystem/syslog/delete?id=" + data.id).then(resp => {
+                            if (resp) {
+                                // _that.$message.success('删除成功');
+
+                                // Vue.prototype.$message({
+                                //     type: 'success',
+                                //     message: '删除成功',
+                                // });
+                                this.getList();
+                            }
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
+
                 },
                 handleFetchPv(pv) {
                     fetchPv(pv).then(response => {

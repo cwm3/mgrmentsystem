@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
+import org.cwm3.mgrsystem.model.JobLog;
+import org.cwm3.mgrsystem.utils.ExcelUtil;
 import org.quartz.CronExpression;
 import org.cwm3.mgrsystem.common.annotation.ControllerEndpoint;
 import org.cwm3.mgrsystem.common.entily.QueryRequest;
@@ -20,8 +22,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author mrcwm
@@ -101,10 +103,57 @@ public class JobController extends BaseController {
         return new AjaxResult();
     }
 
-    @GetMapping("excel")
+//    @GetMapping("excel")
+//    @ControllerEndpoint(exceptionMessage = "导出Excel失败")
+//    public void export(QueryRequest request, Job job, HttpServletResponse response) {
+//        List<Job> jobs = this.jobService.findJobs(request, job).getRecords();
+//        ExcelKit.$Export(Job.class, response).downXlsx(jobs, false);
+//    }
+    @GetMapping("exportExcel")
     @ControllerEndpoint(exceptionMessage = "导出Excel失败")
-    public void export(QueryRequest request, Job job, HttpServletResponse response) {
-        List<Job> jobs = this.jobService.findJobs(request, job).getRecords();
-        ExcelKit.$Export(Job.class, response).downXlsx(jobs, false);
+    public AjaxResult exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
+        AjaxResult ajaxResult = new AjaxResult(true);
+        String fileName = "任务表";
+        String[] headers={"任务ID","bean名称","方法名称","参数","状态","异常信息","耗时（毫秒）","创建时间"};
+        List<Job> jobList = new ArrayList<>();
+        if ( ids!= null &&ids.length > 0 ) {
+            List<Integer> list = Arrays.asList(ids);
+            for (Integer id : list) {
+                Job job= jobService.getById(id);
+                jobList.add(job);
+            }
+        } else {
+            jobList = jobService.list();
+        }
+        Map<String, Object> studentMap = new HashMap();
+        List<Object[]> dataList = new ArrayList<Object[]>();
+        for (int i = 0; i < jobList.size(); i++) {
+            Job job = jobList.get(i);
+            Object[] datas = new Object[8];
+            datas[0] = job.getJobId();
+            datas[1] = job.getBeanName();
+            datas[2] = job.getMethodName();
+            datas[3] = job.getParams();
+            datas[4] = job.getCronExpression();
+            datas[5] = job.getStatus();
+            datas[6] = job.getRemark();
+            datas[7] = new SimpleDateFormat("yyyy-MM-dd").format(job.getCreateTime());
+            dataList.add(datas);
+        }
+        studentMap.put("headers", headers);
+        studentMap.put("dataList", dataList);
+        studentMap.put("fileName", fileName);
+        List<Map> mapList = new ArrayList();
+        mapList.add(studentMap);
+        try {
+            ExcelUtil.exportMultisheetExcel(fileName, mapList, response);
+            return ajaxResult;
+        } catch (Exception e) {
+            e.printStackTrace();
+             ajaxResult.setMessage(e.getMessage());
+             ajaxResult.setSuccess(false);
+             return ajaxResult;
+        }
+
     }
 }
