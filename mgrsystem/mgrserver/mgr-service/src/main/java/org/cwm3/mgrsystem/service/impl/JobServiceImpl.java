@@ -63,10 +63,10 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobS
         LambdaQueryWrapper<Job> queryWrapper = new LambdaQueryWrapper<>();
 
         if (StringUtils.isNotBlank(job.getBeanName())) {
-            queryWrapper.eq(Job::getBeanName, job.getBeanName());
+            queryWrapper.like(Job::getBeanName, job.getBeanName());
         }
         if (StringUtils.isNotBlank(job.getMethodName())) {
-            queryWrapper.eq(Job::getMethodName, job.getMethodName());
+            queryWrapper.like(Job::getMethodName, job.getMethodName());
         }
         if (StringUtils.isNotBlank(job.getParams())) {
             queryWrapper.like(Job::getParams, job.getParams());

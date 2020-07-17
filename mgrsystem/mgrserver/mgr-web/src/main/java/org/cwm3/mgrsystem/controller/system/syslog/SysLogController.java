@@ -55,30 +55,26 @@ public class SysLogController {
      * @return 所有数据
      */
     @GetMapping("/")
-    public AjaxResult getAllSysLog(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize ,String name){
+    public RespBean getAllSysLog(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize ,String name){
         Department department = new Department();
-        AjaxResult ajaxResult = new AjaxResult();
         try {
             Page<SysLog> iPage = sysLogService.selectPageExt(pageNum,pageSize,department ,name);
-            ajaxResult.setSuccess(true);
-            ajaxResult.setData(iPage);
+           return RespBean.ok("",iPage);
         }catch (Exception e){
-            ajaxResult.setSuccess(false);
-            ajaxResult.setMessage(e.getMessage());
+          return    RespBean.error(e.getMessage());
         }
-        return  ajaxResult;
     }
     @GetMapping("/delete")
-    public AjaxResult deletebyId(@RequestParam Integer id){
+    public RespBean deletebyId(@RequestParam Integer id){
         if (id == null){
             throw new IllegalArgumentException("id不能为空");
 //            return new AjaxResult(false);
         }else{
             boolean b = sysLogService.deleteById(id);
             if (b == true){
-               return new AjaxResult();
+               return  RespBean.ok("删除成功");
             }else{
-                return new AjaxResult(false);
+                return RespBean.error("删除失败");
             }
         }
     }

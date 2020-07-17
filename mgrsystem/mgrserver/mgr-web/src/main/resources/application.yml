@@ -6,19 +6,19 @@ spring:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     username: root
     password: root
-    url: jdbc:p6spy:mysql://localhost:3306/mgrsystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:p6spy:mysql://192.168.80.1:3306/mgrsystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
   rabbitmq:
     username: guest
     password: guest
 #    host: 192.168.134.139
-    host: 192.168.80.131
+    host: 192.168.80.132
     port: 5672
     publisher-confirms: true
     publisher-returns: true
     virtual-host: my_vhost
   redis:
 #    host: 192.168.134.139
-    host: 192.168.80.131
+    host: 192.168.80.132
     database: 0
     port: 6379
     password: ''
@@ -26,6 +26,10 @@ spring:
     cache-names: menus_cache
 server:
   port: 8082
+  servlet:
+    session:
+      # session超时时间，单位为秒
+      timeout: 3600
   compression:
     enabled: true
 # 日志配置
@@ -46,4 +50,4 @@ mybatis-plus:
 fastdfs:
   nginx:
 #    host: http://192.168.134.139/
-    host: http://192.168.80.131/
+    host: http://192.168.80.132/

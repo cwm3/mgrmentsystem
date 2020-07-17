@@ -22,7 +22,7 @@
                             :value="item.value">
                     </el-option>
                 </el-select>
-                <el-button icon="el-icon-search" type="primary" style="margin-right: 20px" @click="initJobs" :disabled="showAdvanceSearchView">
+                <el-button icon="el-icon-search" type="primary" style="margin-left: 20px" @click="initJobs" :disabled="showAdvanceSearchView">
                     搜索
                 </el-button>
                 <!--                    <el-button type="primary" @click="showAdvanceSearchView = !showAdvanceSearchView">-->
@@ -177,6 +177,7 @@
                 },
                 title: '',
                 logId:'',
+                ids:[],
                 importDataBtnText: '导入数据',
                 importDataBtnIcon: 'el-icon-upload2',
                 importDataDisabled: false,
@@ -212,10 +213,10 @@
                 },
                 options: [{
                     value: '1',
-                    label: '正常'
+                    label: '失败'
                 }, {
                     value: '0',
-                    label: '暂停'
+                    label: '成功'
                 }]
 
             }
@@ -260,7 +261,7 @@
             exportData(data) {
                 var _this = this;
                 data.forEach(element  => {
-                    _this.ids.push(element.jobId);
+                    _this.ids.push(element.logId);
                 })
                 // let  val= [data.id]
                 window.open('/jobLog/exportExcel?ids='+ _this.ids, '_parent');
@@ -336,8 +337,8 @@
                 this.getRequest(url,params).then(resp => {
                     this.loading = false;
                     if (resp) {
-                        this.Jobs = resp.data.records;
-                        this.total = resp.data.total;
+                        this.Jobs = resp.obj.records;
+                        this.total = resp.obj.total;
                     }
                 });
             },

@@ -40,21 +40,21 @@ public class JobLogController extends BaseController {
     private IJobLogService jobLogService;
 
     @GetMapping("/jobLogList")
-    public AjaxResult jobLogList(QueryRequest request, JobLog log) {
+    public RespBean jobLogList(QueryRequest request, JobLog log) {
        Page dataTable = (Page) this.jobLogService.findJobLogs(request, log);
-        return new AjaxResult(dataTable);
+        return RespBean.ok(dataTable);
     }
 
     @GetMapping("delete/{jobIds}")
     @ControllerEndpoint(exceptionMessage = "删除调度日志失败")
-    public AjaxResult deleteJobLog(@PathVariable String jobIds) {
+    public RespBean deleteJobLog(@PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         Integer integer = this.jobLogService.deleteJobLogs(ids);
         System.out.println(integer);
         if (integer!= -1){
-            return new AjaxResult();
+            return RespBean.ok("删除成功");
         }else {
-            return new AjaxResult(false);
+            return RespBean.error("删除成功");
         }
     }
 
@@ -67,8 +67,7 @@ public class JobLogController extends BaseController {
 
     @GetMapping(value = "/exportExcel")
     @ResponseBody
-    public void exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
         String fileName = "任务日志表";
         String[] headers={"任务ID","bean名称","方法名称","参数","状态","异常信息","耗时（毫秒）","创建时间"};
         List<JobLog> jobLogList = new ArrayList<>();
@@ -103,8 +102,10 @@ public class JobLogController extends BaseController {
         mapList.add(studentMap);
         try {
             ExcelUtil.exportMultisheetExcel(fileName, mapList, response);
+            return RespBean.ok("导出成功");
         } catch (Exception e) {
             e.printStackTrace();
+            return RespBean.error("导出失败");
         }
 
     }

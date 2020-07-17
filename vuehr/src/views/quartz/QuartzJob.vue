@@ -346,7 +346,7 @@
                 }
                 this.pname = '';
             },
-            showAddJobView(data) {
+            showAddJobView() {
                 this.dialogVisible = true;
                 // this.AddJob();
             },
@@ -354,27 +354,50 @@
                 this.title = '编辑任务信息';
                 this.ruleFrom = data;
                 this.dialogVisible = true;
+                this.submitForm(data);
             },
-            submitForm(ruleFrom) {
-                this.dialogVisible = false;
-                this.$refs[ruleFrom].validate((valid) => {
-                    if (valid) {
-                        console.log(this.ruleFrom)
-                        // this.postRequest("/job/addJob",JSON.stringify(this.ruleFrom)).then(resp => {
-                            axios.post("/job/addJob",this.ruleFrom).then(resp => {
-                            console.log(resp);
-                            if (resp) {
-                                this.message.success("添加成功");
-                                this.initJobs();
-                            } else {
-                                this.message.error("添加失败");
-                            }
-                        });
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
+            submitForm(data) {
+                if (this.ruleFrom.jobId) {
+                    console.log(this.ruleFrom)
+                    this.$refs['jobFrom'].validate(valid => {
+                        if (valid) {
+                            this.postRequest("/job/update", this.ruleFrom).then(resp => {
+                                if (resp) {
+                                    this.dialogVisible = false;
+                                    this.initJobs();
+                                }
+                            })
+                        }
+                    });
+                } else {
+                    this.$refs['jobFrom'].validate(valid => {
+                        if (valid) {
+                            this.postRequest("/job/addJob", this.ruleFrom).then(resp => {
+                                if (resp) {
+                                    this.dialogVisible = false;
+                                    this.initJobs();
+                                }
+                            })
+                        }
+                    });
+                }
+                // const _this = this;
+                // this.$refs[ruleFrom].validate((valid) => {
+                //     if (valid) {
+                //         console.log(this.ruleFrom)
+                //         // this.postRequest("/job/addJob",JSON.stringify(this.ruleFrom)).then(resp => {
+                //             axios.post("/job/addJob",this.ruleFrom).then(resp => {
+                //             if (resp) {
+                //                 this.initJobs();
+                //             } else {
+                //                 this.$message.error("添加失败");
+                //             }
+                //         });
+                //     } else {
+                //         console.log('error submit!!');
+                //         return false;
+                //     }
+                // });
 
             },
             deleteJob(data) {
@@ -385,7 +408,6 @@
                 }).then(() => {
                     this.getRequest("/job/delete/" + data.jobId).then(resp => {
                         if (resp) {
-                            this.message.success("删除成功");
                             this.initJobs();
                         }
                     })
@@ -396,32 +418,9 @@
                     });
                 });
             },
-            editJob() {
-                console.log(this.dep)
-                if (this.dep.id) {
-                    this.$refs['ruleFrom'].validate(valid => {
-                        if (valid) {
-                            this.postRequest("/mgrsystem/basic/department/upadate", this.Jobs).then(resp => {
-                                if (resp) {
-                                    this.dialogVisible = false;
-                                    this.initJobs();
-                                }
-                            })
-                        }
-                    });
-                } else {
-                    this.$refs['ruleFrom'].validate(valid => {
-                        if (valid) {
-                            this.postRequest("/mgrsystem/basic/department/", this.Jobs).then(resp => {
-                                if (resp) {
-                                    this.dialogVisible = false;
-                                    this.initJobs();
-                                }
-                            })
-                        }
-                    });
-                }
-            },
+
+
+
             // handleNodeClick(data) {
             //     this.inputDepName = data.name;
             //     this.emp.departmentId = data.id;
@@ -517,8 +516,8 @@
                 this.getRequest(url, params).then(resp => {
                     this.loading = false;
                     if (resp) {
-                        this.Jobs = resp.data.records;
-                        this.total = resp.data.total;
+                        this.Jobs = resp.obj.records;
+                        this.total = resp.obj.total;
                     }
                 });
             },
@@ -531,7 +530,7 @@
                 this.getRequest("/mgrsystem/basic/department/selectOne" + '?id=' + val).then(resp => {
                     this.loading = false;
                     if (resp) {
-                        this.pname = resp.data.name;
+                        this.pname = resp.obj.name;
 
                     }
                 });

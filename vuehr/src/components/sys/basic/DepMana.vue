@@ -62,7 +62,6 @@
         </el-dialog>
     </div>
 </template>
-
 <script>
     export default {
         name: "DepMana",
@@ -145,11 +144,11 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                       this.deleteRequest("/mgrsystem/basic/department/"+data.id).then(resp=>{
-                           if (resp) {
-                               this.removeDepFromDeps(null,this.deps,data.id);
-                           }
-                       })
+                        this.deleteRequest("/mgrsystem/basic/department/"+data.id).then(resp=>{
+                            if (resp) {
+                                this.removeDepFromDeps(null,this.deps,data.id);
+                            }
+                        })
                     }).catch(() => {
                         this.$message({
                             type: 'info',
@@ -177,7 +176,6 @@
         }
     }
 </script>
-
 <style>
     .depBtn {
         padding: 2px;

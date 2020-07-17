@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
+import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.JobLog;
 import org.cwm3.mgrsystem.utils.ExcelUtil;
@@ -38,12 +39,9 @@ public class JobController extends BaseController {
     private IJobService jobService;
 
     @GetMapping("/jobList")
-    public AjaxResult jobList(QueryRequest request,  Job job) {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean jobList(QueryRequest request, Job job) {
         Page dataTable = (Page) this.jobService.findJobs(request, job);
-        ajaxResult.setAckCode("200");
-        ajaxResult.setData(dataTable);
-        return ajaxResult;
+        return RespBean.ok(dataTable);
     }
 
      @GetMapping("cron/check")
@@ -57,50 +55,46 @@ public class JobController extends BaseController {
 
     @PostMapping("/addJob")
     @ControllerEndpoint(operation = "新增定时任务", exceptionMessage = "新增定时任务失败")
-    public AjaxResult addJob(@RequestBody Job job) {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean addJob(@RequestBody Job job) {
         this.jobService.createJob(job);
-        return ajaxResult;
+        return RespBean.ok("添加成功");
 
     }
 
     @GetMapping("delete/{jobIds}")
     @ControllerEndpoint(operation = "删除定时任务", exceptionMessage = "删除定时任务失败")
-    public AjaxResult deleteJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean deleteJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         this.jobService.deleteJobs(ids);
-        return ajaxResult;
+        return RespBean.ok("删除成功");
     }
 
-    @PostMapping("update")
+    @PostMapping("/update")
     @ControllerEndpoint(operation = "修改定时任务", exceptionMessage = "修改定时任务失败")
-    public AjaxResult updateJob(@Valid Job job) {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean updateJob(@RequestBody Job job) {
         this.jobService.updateJob(job);
-        return ajaxResult;
+        return RespBean.ok("修改成功");
     }
 
     @GetMapping("run/{jobIds}")
     @ControllerEndpoint(operation = "执行定时任务", exceptionMessage = "执行定时任务失败")
-    public AjaxResult runJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean runJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.run(jobIds);
-        return ajaxResult;
+        return RespBean.ok("执行成功");
     }
 
     @GetMapping("pause/{jobIds}")
     @ControllerEndpoint(operation = "暂停定时任务", exceptionMessage = "暂停定时任务失败")
-    public AjaxResult pauseJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public RespBean pauseJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.pause(jobIds);
-        return new AjaxResult();
+        return RespBean.ok("暂停定时任务");
     }
 
     @GetMapping("resume/{jobIds}")
     @ControllerEndpoint(operation = "恢复定时任务", exceptionMessage = "恢复定时任务失败")
-    public AjaxResult resumeJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public RespBean resumeJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.resume(jobIds);
-        return new AjaxResult();
+        return RespBean.ok("恢复定时任务");
     }
 
 //    @GetMapping("excel")
@@ -111,8 +105,7 @@ public class JobController extends BaseController {
 //    }
     @GetMapping("exportExcel")
     @ControllerEndpoint(exceptionMessage = "导出Excel失败")
-    public AjaxResult exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
         String fileName = "任务表";
         String[] headers={"任务ID","bean名称","方法名称","参数","状态","异常信息","耗时（毫秒）","创建时间"};
         List<Job> jobList = new ArrayList<>();
@@ -147,12 +140,10 @@ public class JobController extends BaseController {
         mapList.add(studentMap);
         try {
             ExcelUtil.exportMultisheetExcel(fileName, mapList, response);
-            return ajaxResult;
+            return RespBean.ok("导出成功");
         } catch (Exception e) {
             e.printStackTrace();
-             ajaxResult.setMessage(e.getMessage());
-             ajaxResult.setSuccess(false);
-             return ajaxResult;
+             return RespBean.error("导出失败");
         }
 
     }
