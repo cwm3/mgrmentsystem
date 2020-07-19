@@ -123,8 +123,8 @@
                         label="状态"
                         width="80">
                     <template slot-scope="scope">
-                        <el-button  v-if="scope.row.status==1"style="padding: 3px" size="small" type="danger">失败</el-button>
-                        <el-button  v-if="scope.row.status==0"style="padding: 3px" size="small" type="green">成功</el-button>
+                        <el-button  v-if="scope.row.status==1"style="padding: 3px" disabled="true" size="medium" type="danger">失败</el-button>
+                        <el-button  v-if="scope.row.status==0"style="padding: 3px"  disabled="true" size="medium" type="success">成功</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column

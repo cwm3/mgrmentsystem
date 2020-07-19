@@ -60,10 +60,37 @@ public class SysLog implements Serializable {
     private String ip;
 
     /**
+     * 操作状态
+     */
+    @TableField("STATUS")
+    private Integer status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
      * 创建时间
      */
     @TableField("CREATE_TIME")
     private Date createTime;
+    /**
+     * 操作类型
+     */
+    @TableField("TYPE")
+    private String type;
 
     /**
      * 操作地点

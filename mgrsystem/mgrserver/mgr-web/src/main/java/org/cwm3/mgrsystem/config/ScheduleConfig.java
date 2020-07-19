@@ -1,4 +1,4 @@
-package org.cwm3.mgrsystem.common.configure;
+package org.cwm3.mgrsystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import java.util.Properties;
  * @author mrcwm
  */
 @Configuration
-public class ScheduleConfigure {
+public class ScheduleConfig {
 
 //    可以配置多数据源，分库设置
 //    @Autowired
@@ -58,40 +58,44 @@ public class ScheduleConfigure {
 //        return factory;
 //    }
 
-    @Bean
-    public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
-        SchedulerFactoryBean factory = new SchedulerFactoryBean();
-        factory.setDataSource(dataSource);
-        // quartz参数
-        Properties prop = new Properties();
-        prop.put("org.quartz.scheduler.instanceName", "MyScheduler");
-        prop.put("org.quartz.scheduler.instanceId", "AUTO");
-        // 线程池配置
-        prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
-        prop.put("org.quartz.threadPool.threadCount", "20");
-        prop.put("org.quartz.threadPool.threadPriority", "5");
-        // JobStore配置
-        prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
-        // 集群配置
-        prop.put("org.quartz.jobStore.isClustered", "true");
-        prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
-        prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
 
-        prop.put("org.quartz.jobStore.misfireThreshold", "12000");
-        prop.put("org.quartz.jobStore.tablePrefix", "QRTZ_");
-        factory.setQuartzProperties(prop);
 
-        factory.setSchedulerName("FEBS_Scheduler");
-        // 延时启动
-        factory.setStartupDelay(1);
-        factory.setApplicationContextSchedulerContextKey("applicationContextKey");
-        // 可选，QuartzScheduler
-        // 启动时更新己存在的 Job，这样就不用每次修改 targetObject后删除 qrtz_job_details表对应记录了
-        factory.setOverwriteExistingJobs(true);
-        // 设置自动启动，默认为 true
-        factory.setAutoStartup(true);
+        @Bean
+        public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
+            SchedulerFactoryBean factory = new SchedulerFactoryBean();
+            factory.setDataSource(dataSource);
+            // quartz参数
+            Properties prop = new Properties();
+            prop.put("org.quartz.scheduler.instanceName", "MyScheduler");
+            prop.put("org.quartz.scheduler.instanceId", "AUTO");
+            // 线程池配置
+            prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
+            prop.put("org.quartz.threadPool.threadCount", "20");
+            prop.put("org.quartz.threadPool.threadPriority", "5");
+            // JobStore配置
+            prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
+            // 集群配置
+            prop.put("org.quartz.jobStore.isClustered", "true");
+            prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
+            prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
 
-        return factory;
-    }
+            prop.put("org.quartz.jobStore.misfireThreshold", "12000");
+            prop.put("org.quartz.jobStore.tablePrefix", "QRTZ_");
+            factory.setQuartzProperties(prop);
+
+            factory.setSchedulerName("MyScheduler");
+            // 延时启动
+            factory.setStartupDelay(1);
+            factory.setApplicationContextSchedulerContextKey("applicationContextKey");
+            // 可选，QuartzScheduler
+            // 启动时更新己存在的 Job，这样就不用每次修改 targetObject后删除 qrtz_job_details表对应记录了
+            factory.setOverwriteExistingJobs(true);
+            // 设置自动启动，默认为 true
+            factory.setAutoStartup(true);
+
+            return factory;
+        }
+
+
 
 }

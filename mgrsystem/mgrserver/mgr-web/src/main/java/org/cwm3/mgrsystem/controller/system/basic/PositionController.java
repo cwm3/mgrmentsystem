@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.model.Position;
 import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.service.IPositionService;
@@ -24,6 +26,7 @@ public class PositionController {
         return positionService.getAllPositions();
     }
 
+    @Log(value="添加职位信息",table="role",type = FuncLogEnum.OPERATE)
     @PostMapping("/")
     public RespBean addPosition(@RequestBody Position position) {
         if (positionService.addPosition(position) == 1) {
@@ -32,6 +35,7 @@ public class PositionController {
         return RespBean.error("添加失败!");
     }
 
+    @Log(value="更新职位信息",table="role",type = FuncLogEnum.OPERATE)
     @PutMapping("/")
     public RespBean updatePositions(@RequestBody Position position) {
         if (positionService.updatePositions(position) == 1) {
@@ -40,6 +44,7 @@ public class PositionController {
         return RespBean.error("更新失败!");
     }
 
+    @Log(value="删除职位信息",table="role",type = FuncLogEnum.OPERATE)
     @DeleteMapping("/{id}")
     public RespBean deletePositionById(@PathVariable Integer id) {
         if (positionService.deletePositionById(id) == 1) {
@@ -48,6 +53,7 @@ public class PositionController {
         return RespBean.error("删除失败!");
     }
 
+    @Log(value="删除职位信息",table="role",type = FuncLogEnum.OPERATE)
     @DeleteMapping("/")
     public RespBean deletePositionsByIds(Integer[] ids) {
         if (positionService.deletePositionsByIds(ids) == ids.length) {

@@ -1,7 +1,7 @@
 package org.cwm3.mgrsystem.common.annotation;
 
 /**
-* @描述: GIS运维日志状态常量
+* @描述: 日志状态常量
 * @作者: 代鹏刚
 * @日期: 2020/7/9 11:07
 **/

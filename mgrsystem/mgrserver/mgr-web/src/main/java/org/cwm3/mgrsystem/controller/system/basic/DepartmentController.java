@@ -2,6 +2,8 @@ package org.cwm3.mgrsystem.controller.system.basic;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.common.system.BaseController;
 import org.cwm3.mgrsystem.model.Department;
@@ -33,6 +35,7 @@ public class DepartmentController extends BaseController {
     }
 
     @PostMapping("/")
+    @Log(value="添加部门信息",table="department",type = FuncLogEnum.OPERATE)
     public RespBean addDep(@RequestBody Department dep) {
         departmentService.addDep(dep);
         if (dep.getResult() == 1) {
@@ -41,6 +44,7 @@ public class DepartmentController extends BaseController {
         return RespBean.error("添加失败");
     }
 
+    @Log(value="更新部门信息",table="department",type = FuncLogEnum.OPERATE)
     @PostMapping("/upadate")
     public RespBean upadateDep(@RequestBody Department dep) {
         if (dep.getId() != null) {
@@ -55,6 +59,7 @@ public class DepartmentController extends BaseController {
 
     }
 
+    @Log(value="删除部门信息",table="department",type = FuncLogEnum.OPERATE)
     @DeleteMapping("/{id}")
     public RespBean deleteDepById(@PathVariable Integer id) {
         Department dep = new Department();

@@ -1,5 +1,8 @@
 package org.cwm3.mgrsystem.common.aspect;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -62,15 +65,24 @@ public class LogAspect {
         // 设置IP地址
         String ip = IPUtils.getIpAddr(request);
         long time = System.currentTimeMillis() - beginTime;
+
+        JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(result));
+        Map<String,Object> map = (Map<String,Object>)jsonObject;
+        Integer status;
+        if (map.get("status").equals(200)) {
+             status = 1;
+        }else{
+            status = 0;
+        }
         if (openAopLog) {
             // 保存日志
-            this.saveLog(point, time, ip);
+            this.saveLog(point, time, ip ,status);
         }
         return result;
     }
 
     @Async
-    public void saveLog(ProceedingJoinPoint joinPoint, long time, String ip) throws IOException {
+    public void saveLog(ProceedingJoinPoint joinPoint, long time, String ip ,Integer status) throws IOException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String principalJson = objectMapper.writeValueAsString(principal);
         JsonNode node = objectMapper.readTree(principalJson);
@@ -82,6 +94,7 @@ public class LogAspect {
         if (logAnnotation != null) {
             // 注解上的描述
             log.setOperation(logAnnotation.value());
+            log.setType(logAnnotation.type().getType());
         }
         // 请求的类名
         String className = joinPoint.getTarget().getClass().getName();
@@ -105,6 +118,7 @@ public class LogAspect {
         log.setTime((double) time);
         log.setCreateTime(new Date());
         log.setLocation(AddressUtil.getCityInfo(log.getIp()));
+        log.setStatus(status);
         // 保存系统日志
         this.logService.save(log);
     }

@@ -33,13 +33,13 @@
                     <span>{{ row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="操作人" width="120px">
+            <el-table-column label="操作人" width="80px">
                 <template slot-scope="{row}">
                     <span>{{ row.username}}</span>
 
                 </template>
             </el-table-column>
-            <el-table-column label="操作"  width="140px" align="center">
+            <el-table-column label="操作"  width="120px" align="center">
                 <template slot-scope="{row}">
                     <span>{{ row.operation }}</span>
                 </template>
@@ -49,7 +49,7 @@
 <!--                    <span >{{ row.time }}</span>-->
 <!--                </template>-->
 <!--            </el-table-column>-->
-            <el-table-column label="方法" width="250px">
+            <el-table-column label="方法" >
                 <template slot-scope="{row}">
                     <span >{{ row.method}}</span>
                 </template>
@@ -59,22 +59,30 @@
 <!--                    <span >{{ row.params }}</span>-->
 <!--                </template>-->
 <!--            </el-table-column>-->
-            <el-table-column label="IP" align="center" width="150px">
+            <el-table-column label="IP" align="center" width="120px">
                 <template slot-scope="{row}">
                     <span>{{ row.ip }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="创建时间" width="250px" align="center">
+            <el-table-column label="创建时间" width="150px" align="center">
                 <template slot-scope="{row}">
                     <span>{{ timestampToTime(row.createTime) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="地址" align="center" width="250px">
+            <el-table-column label="地址" align="center" width="230px">
                 <template slot-scope="{row}">
                     <span >{{ row.location }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="操作" align="center"  class-name="small-padding fixed-width">
+                <el-table-column label="操作状态" align="center" width="70px">
+                    <template slot-scope="{row}">
+
+                            <el-button  v-if="row.status==0"style="padding: 3px" disabled="true" size="medium" type="danger">失败</el-button>
+                            <el-button  v-if="row.status==1 "style="padding: 3px" disabled="true" size="medium" type="success">成功</el-button>
+
+                    </template>
+                </el-table-column>
+            <el-table-column label="操作" align="center"width="170px"  class-name="small-padding fixed-width">
                 <template slot-scope="{row,$index}">
 <!--                    <el-button type="primary" size="small" @click="handleUpdate(row)">-->
 <!--                        编辑-->
@@ -154,6 +162,8 @@
                     params: '',
                     ip: '',
                     location: '',
+                    status:1,
+                    type:1,
                     createTime: new Date(),
 
                 },
@@ -198,8 +208,8 @@
                 this.getRequest(url).then(resp => {
                     this.loading = false;
                     if (resp) {
-                        this.list = resp.data.records;
-                        this.total = resp.data.total;
+                        this.list = resp.obj.records;
+                        this.total = resp.obj.total;
                     }
                 })
             },
@@ -243,7 +253,7 @@
             handleDownload() {
                 this.downloadLoading = true
                 let  fileName = '操作日志表'
-                const filterVal = ['序号', '操作人', '操作', '耗时（毫秒）','方法', '参数', 'ip', '创建时间', '地址']
+                // const filterVal = ['序号', '操作人', '操作', '耗时（毫秒）','方法', '参数', 'ip', '创建时间', '地址']
                 window.open('/mgrsystem/syslog/export'+ "?headers= " + filterVal + "&fileName="+ fileName, '_parent');
                 this.downloadLoading = false
             },

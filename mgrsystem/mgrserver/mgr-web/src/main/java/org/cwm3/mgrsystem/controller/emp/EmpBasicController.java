@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.controller.emp;
 
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.common.pager.RespPageBean;
 import org.cwm3.mgrsystem.model.*;
@@ -41,6 +43,7 @@ public class EmpBasicController {
         return employeeService.getEmployeeByPage(page, size, employee,beginDateScope);
     }
 
+    @Log(value="添加员工信息",table="employee",type = FuncLogEnum.OPERATE)
     @PostMapping("/")
     public RespBean addEmp(@RequestBody Employee employee) {
         if (employeeService.addEmp(employee) == 1) {
@@ -49,6 +52,7 @@ public class EmpBasicController {
         return RespBean.error("添加失败!");
     }
 
+    @Log(value="删除员工信息",table="employee",type = FuncLogEnum.OPERATE)
     @DeleteMapping("/{id}")
     public RespBean deleteEmpByEid(@PathVariable Integer id) {
         if (employeeService.deleteEmpByEid(id) == 1) {
@@ -57,6 +61,7 @@ public class EmpBasicController {
         return RespBean.error("删除失败!");
     }
 
+    @Log(value="更新员工信息",table="employee",type = FuncLogEnum.OPERATE)
     @PutMapping("/")
     public RespBean updateEmp(@RequestBody Employee employee) {
         if (employeeService.updateEmp(employee) == 1) {

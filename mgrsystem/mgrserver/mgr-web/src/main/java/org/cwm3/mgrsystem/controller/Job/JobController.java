@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.common.entily.RespBean;
-import org.cwm3.mgrsystem.common.entity.AjaxResult;
-import org.cwm3.mgrsystem.model.JobLog;
+
 import org.cwm3.mgrsystem.utils.ExcelUtil;
 import org.quartz.CronExpression;
-import org.cwm3.mgrsystem.common.annotation.ControllerEndpoint;
 import org.cwm3.mgrsystem.common.entily.QueryRequest;
 import org.cwm3.mgrsystem.common.entity.FebsResponse;
 import org.cwm3.mgrsystem.common.system.BaseController;
@@ -54,44 +54,43 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/addJob")
-    @ControllerEndpoint(operation = "新增定时任务", exceptionMessage = "新增定时任务失败")
     public RespBean addJob(@RequestBody Job job) {
         this.jobService.createJob(job);
         return RespBean.ok("添加成功");
 
     }
 
+    @Log(value="删除定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
     @GetMapping("delete/{jobIds}")
-    @ControllerEndpoint(operation = "删除定时任务", exceptionMessage = "删除定时任务失败")
     public RespBean deleteJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         this.jobService.deleteJobs(ids);
         return RespBean.ok("删除成功");
     }
 
+    @Log(value="更新定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
     @PostMapping("/update")
-    @ControllerEndpoint(operation = "修改定时任务", exceptionMessage = "修改定时任务失败")
     public RespBean updateJob(@RequestBody Job job) {
         this.jobService.updateJob(job);
         return RespBean.ok("修改成功");
     }
-
+    @Log(value="运行定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
     @GetMapping("run/{jobIds}")
-    @ControllerEndpoint(operation = "执行定时任务", exceptionMessage = "执行定时任务失败")
+
     public RespBean runJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.run(jobIds);
         return RespBean.ok("执行成功");
     }
 
+    @Log(value="暂停定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
     @GetMapping("pause/{jobIds}")
-    @ControllerEndpoint(operation = "暂停定时任务", exceptionMessage = "暂停定时任务失败")
     public RespBean pauseJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.pause(jobIds);
         return RespBean.ok("暂停定时任务");
     }
 
+    @Log(value="恢复定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
     @GetMapping("resume/{jobIds}")
-    @ControllerEndpoint(operation = "恢复定时任务", exceptionMessage = "恢复定时任务失败")
     public RespBean resumeJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.resume(jobIds);
         return RespBean.ok("恢复定时任务");
@@ -104,7 +103,6 @@ public class JobController extends BaseController {
 //        ExcelKit.$Export(Job.class, response).downXlsx(jobs, false);
 //    }
     @GetMapping("exportExcel")
-    @ControllerEndpoint(exceptionMessage = "导出Excel失败")
     public RespBean exportExcel(HttpServletResponse response, Integer[] ids) throws Exception {
         String fileName = "任务表";
         String[] headers={"任务ID","bean名称","方法名称","参数","状态","异常信息","耗时（毫秒）","创建时间"};

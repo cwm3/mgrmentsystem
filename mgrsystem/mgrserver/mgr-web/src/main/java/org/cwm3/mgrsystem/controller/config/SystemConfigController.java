@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.controller.config;
 
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.Menu;
 import org.cwm3.mgrsystem.service.IMenuService;
@@ -27,6 +29,7 @@ public class SystemConfigController {
         return menuService.getMenusByHrId();
     }
 
+    @Log(value="添加菜单",table="menu",type = FuncLogEnum.SYS_FUNCTION)
     @RequestMapping("/addMenu")
     @ResponseBody
     public AjaxResult addMenu (Menu menu){

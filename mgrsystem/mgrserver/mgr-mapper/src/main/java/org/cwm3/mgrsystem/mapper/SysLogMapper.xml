@@ -12,12 +12,14 @@
         <result property="ip" column="IP" jdbcType="VARCHAR"/>
         <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
         <result property="location" column="location" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS" jdbcType="INTEGER"/>
+        <result property="type" column="TYPE" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="SysLogMap">
         select
-          ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, CREATE_TIME, location
+          ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP,STATUS, TYPE,CREATE_TIME, location
         from mgrsystem.sys_log
         where ID = #{id}
     </select>
@@ -25,7 +27,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SysLogMap">
         select
-          ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, CREATE_TIME, location
+          ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP,STATUS, TYPE, CREATE_TIME, location
         from mgrsystem.sys_log
         limit #{offset}, #{limit}
     </select>
@@ -33,7 +35,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="SysLogMap">
         select
-          ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, CREATE_TIME, location
+          ID, USERNAME, OPERATION, TIME, METHOD, PARAMS, IP,STATUS, TYPE, CREATE_TIME, location
         from mgrsystem.sys_log
         <where>
             <if test="id != null">
@@ -68,8 +70,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into mgrsystem.sys_log(USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, CREATE_TIME, location)
-        values (#{username}, #{operation}, #{time}, #{method}, #{params}, #{ip}, #{createTime}, #{location})
+        insert into mgrsystem.sys_log(USERNAME, OPERATION, TIME, METHOD, PARAMS, IP, STATUS, TYPE,CREATE_TIME, location)
+        values (#{username}, #{operation}, #{time}, #{method}, #{params}, #{ip}, #{status},#{type},#{createTime}, #{location})
     </insert>
 
     <!--通过主键修改数据-->
@@ -93,6 +95,12 @@
             </if>
             <if test="ip != null and ip != ''">
                 IP = #{ip},
+            </if>
+            <if test="status != null and ip != ''">
+                STATUS = #{status},
+            </if>
+            <if test="type != null and type != ''">
+                TYPE = #{type},
             </if>
             <if test="createTime != null">
                 CREATE_TIME = #{createTime},

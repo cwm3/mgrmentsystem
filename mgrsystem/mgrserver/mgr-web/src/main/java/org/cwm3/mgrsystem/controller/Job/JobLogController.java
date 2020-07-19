@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
-import org.cwm3.mgrsystem.common.annotation.ControllerEndpoint;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.common.entity.FebsResponse;
 import org.cwm3.mgrsystem.common.system.BaseController;
@@ -46,7 +45,6 @@ public class JobLogController extends BaseController {
     }
 
     @GetMapping("delete/{jobIds}")
-    @ControllerEndpoint(exceptionMessage = "删除调度日志失败")
     public RespBean deleteJobLog(@PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         Integer integer = this.jobLogService.deleteJobLogs(ids);
@@ -59,7 +57,6 @@ public class JobLogController extends BaseController {
     }
 
 //    @GetMapping("excel")
-//    @ControllerEndpoint(exceptionMessage = "导出Excel失败")
 //    public void export(QueryRequest request, JobLog jobLog, HttpServletResponse response) {
 //        List<JobLog> jobLogs = this.jobLogService.findJobLogs(request, jobLog).getRecords();
 //        ExcelKit.$Export(JobLog.class, response).downXlsx(jobLogs, false);

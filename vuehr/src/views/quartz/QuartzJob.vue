@@ -76,7 +76,7 @@
                         fixed
                         align="left"
                         label="bean名称"
-                        width="150">
+                        width="100">
                 </el-table-column>
                 <el-table-column
                         prop="methodName"
@@ -90,7 +90,7 @@
                         fixed
                         align="left"
                         label="参数"
-                        width="150">
+                        width="80">
                 </el-table-column>
                 <el-table-column
                         prop="cronExpression"
@@ -104,7 +104,7 @@
                         fixed
                         align="left"
                         label="备注"
-                        width="250">
+                        width="200">
                 </el-table-column>
                 <el-table-column
                         prop="createTime"
@@ -132,7 +132,7 @@
                 </el-table-column>
                 <el-table-column
                         fixed="right"
-                        width="180"
+                        width="150"
                         label="操作">
                     <template slot-scope="scope">
                         <el-button @click="showEditJobView(scope.row)" style="padding: 3px" size="small">编辑</el-button>

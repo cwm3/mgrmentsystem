@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.controller.system.basic;
 
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.model.Menu;
 import org.cwm3.mgrsystem.common.entily.RespBean;
 import org.cwm3.mgrsystem.model.Role;
@@ -37,6 +39,7 @@ public class PermissController {
         return menuService.getMidsByRid(rid);
     }
 
+    @Log(value="更新菜单权限信息",table="role",type = FuncLogEnum.POWER)
     @PutMapping("/")
     public RespBean updateMenuRole(Integer rid, Integer[] mids) {
         if (menuService.updateMenuRole(rid, mids)) {
@@ -45,6 +48,7 @@ public class PermissController {
         return RespBean.error("更新失败!");
     }
 
+    @Log(value="添加角色权限信息",table="role",type = FuncLogEnum.POWER)
     @PostMapping("/role")
     public RespBean addRole(@RequestBody Role role) {
         if (roleService.addRole(role) == 1) {
@@ -53,6 +57,7 @@ public class PermissController {
         return RespBean.error("添加失败!");
     }
 
+    @Log(value="删除角色权限信息",table="role",type = FuncLogEnum.POWER)
     @DeleteMapping("/role/{rid}")
     public RespBean deleteRoleById(@PathVariable Integer rid) {
         if (roleService.deleteRoleById(rid) == 1) {
