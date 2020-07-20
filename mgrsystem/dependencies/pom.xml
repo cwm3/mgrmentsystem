@@ -26,6 +26,8 @@
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
         <spring-boot-admin.version>2.0.1</spring-boot-admin.version>
         <spring-boot-alibaba-druid.version>1.1.10</spring-boot-alibaba-druid.version>
+        <spring-cloud.alibaba.version>0.2.2.RELEASE</spring-cloud.alibaba.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <spring-boot-mapper.version>2.0.2</spring-boot-mapper.version>
         <spring-boot-pagehelper.version>1.2.5</spring-boot-pagehelper.version>
         <zipkin.version>2.10.1</zipkin.version>
@@ -79,6 +81,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--springcloud阿里巴巴包 采用2.2-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Spring Cloud End -->
 
             <!-- Spring Boot Admin Begin -->

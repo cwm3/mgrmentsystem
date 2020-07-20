@@ -1,6 +1,10 @@
 package org.cwm3.mgrsystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
+import org.cwm3.mgrsystem.common.entily.QueryRequest;
 import org.cwm3.mgrsystem.mapper.MenuMapper;
 import org.cwm3.mgrsystem.mapper.MenuRoleMapper;
 import org.cwm3.mgrsystem.model.Hr;
@@ -64,5 +68,20 @@ public class MenuService  extends ServiceImpl<MenuMapper, Menu> implements IMenu
     @Override
     public Integer insertMenu(Menu menu) {
        return menuMapper.insertOne(menu);
+    }
+
+    @Override
+    public Object findjobList(QueryRequest request, Menu menu) {
+        LambdaQueryWrapper<Menu> queryWrapper = new LambdaQueryWrapper<>();
+
+        if (StringUtils.isNotBlank(menu.getName())) {
+            queryWrapper.like(Menu::getName, menu.getName());
+        }
+        if (StringUtils.isNotBlank(menu.getComponent())) {
+            queryWrapper.like(Menu::getComponent, menu.getComponent());
+        }
+        Page<Menu> page = new Page<>(request.getPageNum(), request.getPageSize());
+        queryWrapper.orderByDesc(Menu::getId);
+        return this.page(page, queryWrapper);
     }
 }

@@ -1,6 +1,7 @@
 package org.cwm3.mgrsystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.cwm3.mgrsystem.common.entily.QueryRequest;
 import org.cwm3.mgrsystem.model.Menu;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface IMenuService extends IService<Menu> {
     boolean updateMenuRole(Integer rid, Integer[] mids);
 
     Integer insertMenu(Menu menu);
+
+    Object findjobList(QueryRequest request, Menu menu);
 }

@@ -28,12 +28,12 @@
                 fit
                 style="width: 100%;"
                 @sort-change="sortChange">
-            <el-table-column label="序号" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
+            <el-table-column label="序号" prop="id" sortable="custom" align="center" width="70" :class-name="getSortClass('id')">
                 <template slot-scope="{row}">
                     <span>{{ row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="操作人" width="80px">
+            <el-table-column label="操作人" width="70px">
                 <template slot-scope="{row}">
                     <span>{{ row.username}}</span>
 
@@ -59,7 +59,7 @@
 <!--                    <span >{{ row.params }}</span>-->
 <!--                </template>-->
 <!--            </el-table-column>-->
-            <el-table-column label="IP" align="center" width="120px">
+            <el-table-column label="IP" align="center" width="100px">
                 <template slot-scope="{row}">
                     <span>{{ row.ip }}</span>
                 </template>
@@ -69,7 +69,7 @@
                     <span>{{ timestampToTime(row.createTime) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="地址" align="center" width="230px">
+            <el-table-column label="地址" align="center" width="180px">
                 <template slot-scope="{row}">
                     <span >{{ row.location }}</span>
                 </template>
@@ -82,7 +82,12 @@
 
                     </template>
                 </el-table-column>
-            <el-table-column label="操作" align="center"width="170px"  class-name="small-padding fixed-width">
+                <el-table-column label="操作类型描述" align="center" width="100px">
+                    <template slot-scope="{row}">
+                        <span >{{ row.description}}</span>
+                    </template>
+                </el-table-column>
+            <el-table-column label="操作" align="center"width="150px"  class-name="small-padding fixed-width">
                 <template slot-scope="{row,$index}">
 <!--                    <el-button type="primary" size="small" @click="handleUpdate(row)">-->
 <!--                        编辑-->
@@ -164,6 +169,7 @@
                     location: '',
                     status:1,
                     type:1,
+                    description:'',
                     createTime: new Date(),
 
                 },

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
+import org.cwm3.mgrsystem.common.annotation.FuncLogEnum;
+import org.cwm3.mgrsystem.common.annotation.Log;
 import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.common.entity.FebsResponse;
 import org.cwm3.mgrsystem.common.system.BaseController;
@@ -44,6 +46,7 @@ public class JobLogController extends BaseController {
         return RespBean.ok(dataTable);
     }
 
+    @Log(value="删除定时任务日志",table="t_job_log",type = FuncLogEnum.SYS_FUNCTION)
     @GetMapping("delete/{jobIds}")
     public RespBean deleteJobLog(@PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);

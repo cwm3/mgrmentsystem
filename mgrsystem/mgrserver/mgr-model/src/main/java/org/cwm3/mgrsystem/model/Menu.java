@@ -1,27 +1,43 @@
 package org.cwm3.mgrsystem.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class Menu implements Serializable {
+    @TableId(value = "id")
     private Integer id;
 
+    @TableField(value = "url")
     private String url;
 
+    @TableField(value = "path")
     private String path;
 
+    @TableField(value = "component")
     private String component;
 
+    @TableField(value = "name")
     private String name;
 
+    @TableField(value = "iconCls")
     private String iconCls;
 
+    @TableField(exist = false)
     private Meta meta;
 
+    @TableField(value = "parentId")
     private Integer parentId;
 
+    @TableField(value = "enabled")
     private Boolean enabled;
+
+    @TableField(exist = false)
     private List<Menu> children;
+
+    @TableField(exist = false)
     private List<Role> roles;
 
     public Menu() {

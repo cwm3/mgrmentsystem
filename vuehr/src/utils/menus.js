@@ -54,6 +54,9 @@ export const formatRoutes = (routes) => {
                 else if (component.startsWith("Quartz")) {
                     require(['../views/quartz/' + component + '.vue'], resolve);
                 }
+                else if (component.startsWith("Menu")) {
+                    require(['../views/menu/' + component + '.vue'], resolve);
+                }
             }
         }
         fmRoutes.push(fmRouter);

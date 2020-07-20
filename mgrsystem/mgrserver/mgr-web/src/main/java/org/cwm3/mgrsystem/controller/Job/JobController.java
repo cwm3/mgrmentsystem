@@ -60,7 +60,7 @@ public class JobController extends BaseController {
 
     }
 
-    @Log(value="删除定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
+    @Log(value="删除定时任务",table="t_job",type = FuncLogEnum.OPERATE)
     @GetMapping("delete/{jobIds}")
     public RespBean deleteJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);

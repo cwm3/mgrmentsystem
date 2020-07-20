@@ -92,6 +92,20 @@ public class SysLog implements Serializable {
     @TableField("TYPE")
     private String type;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * 操作描述
+     */
+    @TableField("DESCRIPTION")
+    private String description;
+
     /**
      * 操作地点
      */

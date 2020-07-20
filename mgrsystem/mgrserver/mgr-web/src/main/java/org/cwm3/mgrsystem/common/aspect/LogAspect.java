@@ -94,7 +94,8 @@ public class LogAspect {
         if (logAnnotation != null) {
             // 注解上的描述
             log.setOperation(logAnnotation.value());
-            log.setType(logAnnotation.type().getType());
+            log.setType(logAnnotation.type().getCode());
+            log.setDescription(logAnnotation.type().getDescription());
         }
         // 请求的类名
         String className = joinPoint.getTarget().getClass().getName();
