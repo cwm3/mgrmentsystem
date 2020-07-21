@@ -19,7 +19,7 @@
         <module>mgrserver</module>
         <module>mailserver</module>
         <module>dependencies</module>
-        <module>service-gateway</module>
+        <module>gateway-server</module>
     </modules>
 
 
