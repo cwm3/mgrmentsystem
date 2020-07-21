@@ -84,4 +84,14 @@ public class MenuService  extends ServiceImpl<MenuMapper, Menu> implements IMenu
         queryWrapper.orderByDesc(Menu::getId);
         return this.page(page, queryWrapper);
     }
+
+    @Override
+    public void deleteByParentId(Integer id) {
+        LambdaQueryWrapper<Menu> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Menu::getParentId,id);
+        this.menuMapper.delete(queryWrapper);
+        LambdaQueryWrapper<MenuRole> queryWrapper1 = new LambdaQueryWrapper<>();
+        queryWrapper1.eq(MenuRole::getMid,id);
+        this.menuRoleMapper.delete(queryWrapper1);
+    }
 }

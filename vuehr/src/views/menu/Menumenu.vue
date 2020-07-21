@@ -14,7 +14,7 @@
 
             </div>
             <div>
-                <el-button type="primary" icon="el-icon-plus" @click="AddDept">
+                <el-button type="primary" icon="el-icon-plus" @click="showAddDeptView">
                     添加菜单
                 </el-button>
             </div>
@@ -29,6 +29,7 @@
                     element-loading-text="正在加载..."
                     element-loading-spinner="el-icon-loading"
                     element-loading-background="rgba(0, 0, 0, 0.8)"
+                    @selection-change="handleSelectionChange"
                     style="width: 100%">
                 <el-table-column
                         type="selection"
@@ -46,21 +47,21 @@
                         fixed
                         align="left"
                         label="url"
-                        width="150">
+                        width="180">
                 </el-table-column>
                 <el-table-column
                         prop="path"
                         fixed
                         align="left"
                         label="path"
-                        width="150">
+                        width="180">
                 </el-table-column>
                 <el-table-column
                         prop="component"
                         fixed
                         align="left"
                         label="组件"
-                        width="150">
+                        width="180">
                 </el-table-column>
                 <el-table-column
                     prop="name"
@@ -73,32 +74,37 @@
                         prop="iconCls"
                         fixed
                         align="left"
-                        label="菜单名"
-                        width="150">
+                        label="菜单图标"
+                        width="250">
                 </el-table-column>
 
                 <el-table-column
-                        prop="name"
+                        prop="parentId"
                         fixed
                         align="left"
                         label="上级菜单"
                         width="150">
                 </el-table-column>
-                <el-table-column
-                        prop="name"
-                        fixed
-                        align="left"
-                        label="菜单权限"
-                       >
-                </el-table-column>
+<!--                <el-table-column-->
+<!--                        prop="requireAuth"-->
+<!--                        fixed-->
+<!--                        align="left"-->
+<!--                        label="菜单权限"-->
+<!--                       >-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <el-button v-if="scope.row.requireAuth==1" style="padding: 3px" size="small" >是-->
+<!--                        </el-button>-->
+<!--                        <el-button v-if="scope.row.requireAuth==0" style="padding: 3px" size="small" >否-->
+<!--                        </el-button>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
 
                 <el-table-column
                         fixed="right"
-                        width="200"
+
                         label="操作">
-                    <template slot-scope="scope">
+                    <template slot-scope="scope" style="align-content: center">
                         <el-button @click="showEditDeptView(scope.row)" style="padding: 3px" size="small">编辑</el-button>
-                        <!--                            <el-button style="padding: 3px" size="mini" type="primary">查看高级资料</el-button>-->
                         <el-button @click="deleteDept(scope.row)" style="padding: 3px" size="small" type="danger">删除
                         </el-button>
                     </template>
@@ -114,36 +120,54 @@
                 </el-pagination>
             </div>
         </div>
-<!--        <el-dialog-->
-<!--                :title="title"-->
-<!--                :visible.sync="dialogVisible"-->
-<!--                width="30%">-->
-<!--            <div>-->
-<!--                <el-form :model="dep" :rules="rules" ref="deptFrom">-->
-<!--                    <el-form-item label="上级部门:" prop="preantName">-->
-<!--                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"-->
-<!--                        ></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="部门名称:" prop="name">-->
-<!--                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="dep.name"-->
-<!--                                  placeholder="请输入部门名称"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                </el-form>-->
-<!--            </div>-->
-<!--            <span slot="footer" class="dialog-footer">-->
-<!--    <el-button @click="dialogVisible = false">取 消</el-button>-->
-<!--    <el-button type="primary" @click=" editDept">确 定</el-button>-->
-<!--  </span>-->
-<!--        </el-dialog>-->
+        <el-dialog
+                :title="title"
+                :visible.sync="dialogVisible"
+                width="40%">
+            <div>
+                <el-form  :label-position="labelPosition" label-width="100px" :model="ruleFrom" :rules="rules" ref="menuFrom">
+                    <el-form-item  label="url:" prop="url" style="align-content: center">
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit"
+                                  v-model="ruleFrom.url"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="路径:" prop="path">
+                        <el-input size="small" style="width: 400px" prefix-icon="el-icon-edit"
+                                  v-model="ruleFrom.path"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="组件:" prop="component">
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit" v-model="ruleFrom.component"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="菜单名:" prop="name">
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit"
+                                  v-model="ruleFrom.name"
+                        ></el-input>
+
+                    </el-form-item>
+                    <el-form-item label="菜单图标:" prop="iconCls">
+                        <el-input size="mini" style="width: 400px" prefix-icon="el-icon-edit" v-model="ruleFrom.iconCls"
+                        ></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="上级菜单:" prop="parentId">
+                        <el-input size="mini" style="width: 150px" prefix-icon="el-icon-edit" v-model="pname"></el-input>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click=" editDept">确 定</el-button>
+            </span>
+        </el-dialog>
+
+
     </div>
 </template>
 
 
 <script>
-    import {postRequest} from "../../utils/api";
-    import { exportMethod } from '@/utils/util';
-    import axios from 'axios'
-
     export default {
         name: "OrganDept",
         data() {
@@ -163,27 +187,45 @@
                 allDeps: [],
                 menus: [],
                 loading: false,
+                labelPosition: 'right',
                 popVisible: false,
                 popVisible2: false,
                 dialogVisible: false,
+                multipleSelection: [],
                 total: 0,
                 page: 1,
                 keyword: '',
                 size: 10,
                 filterText: '',
                 menu: {
-                    component: "Home",
-                    enabled: true,
-                    iconCls: "el-icon-user-solid",
-                    id: 2,
+                    component: null,
+                    enabled: null,
+                    iconCls: null,
+                    id: null,
                     keepAlive: null,
-                    requireAuth: true,
-                    name: "员工管理",
-                    parentId: 1,
-                    path: "/home",
+                    requireAuth:null,
+                    name: null,
+                    parentId: null,
+                    path: null,
                     roles: null,
-                    url: "/"
+                    url: null,
+                    pname:null
                 },
+                ruleFrom:{
+                    component: null,
+                    enabled: null,
+                    iconCls: null,
+                    id: null,
+                    keepAlive: null,
+                    requireAuth:null,
+                    name: null,
+                    parentId: null,
+                    path: null,
+                    roles: null,
+                    url: null
+
+                },
+                pname:"",
 
                 rules: {
 
@@ -192,58 +234,38 @@
         },
         mounted() {
             this.initMenus();
-            // this.initData();
-            // this.initPositions();
         },
         methods: {
+            handleSelectionChange(val) {
+                console.log(val)
+                this.multipleSelection = val;
+            },
             searvhViewHandleNodeClick(data) {
                 this.inputDepName = data.name;
                 this.searchValue.departmentId = data.id;
                 this.popVisible2 = !this.popVisible2
             },
-            onError(err, file, fileList) {
-                this.importDataBtnText = '导入数据';
-                this.importDataBtnIcon = 'el-icon-upload2';
-                this.importDataDisabled = false;
-            },
-            onSuccess(response, file, fileList) {
-                this.importDataBtnText = '导入数据';
-                this.importDataBtnIcon = 'el-icon-upload2';
-                this.importDataDisabled = false;
-                this.initEmps();
-            },
-            beforeUpload() {
-                this.importDataBtnText = '正在导入';
-                this.importDataBtnIcon = 'el-icon-loading';
-                this.importDataDisabled = true;
-            },
-            exportData(data) {
-                let  val= [data.id]
-                window.open('/mgrsystem/basic/department/exportExcel'+ "?ids=" + val, '_parent');
-            },
-            initDep() {
-                this.dep = {
-                    name: '',
-                    parentId: -1
-                }
-                this.pname = '';
-            },
-            showAddDeptView(data) {
-
-                this.inputDepName = data.name;
-                this.dep.parentId = data.id;
+            showAddDeptView() {
+                this.title = '添加菜单';
                 this.dialogVisible = true;
-                // this.AddDept();
             },
             showEditDeptView(data) {
-                this.title = '编辑部门信息';
+                this.title = '编辑菜单信息';
                 console.log(data)
                 this.selectPreant(data.parentId);
-                this.menus = data;
-                this.dep.name=data.name;
-                this.dep.parentId=data.parentId;
-                this.inputDepName = data.name;
+                this.ruleFrom = data;
                 this.dialogVisible = true;
+            },
+            selectPreant(val){
+                this.loading = true;
+                let url = '/mgrsystem/config/getMenuByParentId?id=' + val;
+                this.getRequest(url).then(resp => {
+                    this.loading = false;
+                    if (resp) {
+                        this.pname = resp.obj.name;
+                    }
+                });
+
             },
             deleteDept(data) {
                 this.$confirm('此操作将永久删除【' + data.name + '】, 是否继续?', '提示', {
@@ -251,7 +273,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.deleteRequest("/mgrsystem/basic/department/" + data.id).then(resp => {
+                    this.deleteRequest("/mgrsystem/config/delete?id=" + data.id).then(resp => {
                         if (resp) {
                             this.initMenus();
                         }
@@ -264,11 +286,10 @@
                 });
             },
             editDept() {
-                console.log(this.dep)
-                if (this.dep.id) {
-                    this.$refs['deptFrom'].validate(valid => {
+                if (this.ruleFrom.id) {
+                    this.$refs['ruleFrom'].validate(valid => {
                         if (valid) {
-                            this.postRequest("/mgrsystem/basic/department/upadate", this.menus).then(resp => {
+                            this.postRequest("/mgrsystem/config/updateMenu", this.ruleFrom).then(resp => {
                                 if (resp) {
                                     this.dialogVisible = false;
                                     this.initMenus();
@@ -277,9 +298,9 @@
                         }
                     });
                 } else {
-                    this.$refs['deptFrom'].validate(valid => {
+                    this.$refs['ruleFrom'].validate(valid => {
                         if (valid) {
-                            this.postRequest("/mgrsystem/basic/department/", this.menus).then(resp => {
+                            this.postRequest("/mgrsystem/basic/config/addMenu/", this.ruleFrom).then(resp => {
                                 if (resp) {
                                     this.dialogVisible = false;
                                     this.initMenus();
@@ -289,73 +310,6 @@
                     });
                 }
             },
-            // handleNodeClick(data) {
-            //     this.inputDepName = data.name;
-            //     this.emp.departmentId = data.id;
-            //     this.popVisible = !this.popVisible
-            // },
-            // showDepView() {
-            //     this.popVisible = !this.popVisible
-            // },
-            // showDepView2() {
-            //     this.popVisible2 = !this.popVisible2
-            // },
-            // initPositions() {
-            //     this.getRequest('/employee/basic/positions').then(resp => {
-            //         if (resp) {
-            //             this.positions = resp;
-            //         }
-            //     })
-            // },
-            // getMaxWordID() {
-            //     this.getRequest("/employee/basic/maxWorkID").then(resp => {
-            //         if (resp) {
-            //             this.emp.workID = resp.obj;
-            //         }
-            //     })
-            // },
-            // initData() {
-            //     if (!window.sessionStorage.getItem("nations")) {
-            //         this.getRequest('/employee/basic/nations').then(resp => {
-            //             if (resp) {
-            //                 this.nations = resp;
-            //                 window.sessionStorage.setItem("nations", JSON.stringify(resp));
-            //             }
-            //         })
-            //     } else {
-            //         this.nations = JSON.parse(window.sessionStorage.getItem("nations"));
-            //     }
-            //     if (!window.sessionStorage.getItem("joblevels")) {
-            //         this.getRequest('/employee/basic/joblevels').then(resp => {
-            //             if (resp) {
-            //                 this.joblevels = resp;
-            //                 window.sessionStorage.setItem("joblevels", JSON.stringify(resp));
-            //             }
-            //         })
-            //     } else {
-            //         this.joblevels = JSON.parse(window.sessionStorage.getItem("joblevels"));
-            //     }
-            //     if (!window.sessionStorage.getItem("politicsstatus")) {
-            //         this.getRequest('/employee/basic/politicsstatus').then(resp => {
-            //             if (resp) {
-            //                 this.politicsstatus = resp;
-            //                 window.sessionStorage.setItem("politicsstatus", JSON.stringify(resp));
-            //             }
-            //         })
-            //     } else {
-            //         this.politicsstatus = JSON.parse(window.sessionStorage.getItem("politicsstatus"));
-            //     }
-            //     if (!window.sessionStorage.getItem("deps")) {
-            //         this.getRequest('/employee/basic/deps').then(resp => {
-            //             if (resp) {
-            //                 this.allDeps = resp;
-            //                 window.sessionStorage.setItem("deps", JSON.stringify(resp));
-            //             }
-            //         })
-            //     } else {
-            //         this.allDeps = JSON.parse(window.sessionStorage.getItem("deps"));
-            //     }
-            // },
             sizeChange(currentSize) {
                 this.size = currentSize;
                 this.initMenus();
@@ -377,26 +331,12 @@
                 this.getRequest(url).then(resp => {
                     this.loading = false;
                     if (resp) {
-                        this.menus = resp.data.records;
-                        this.total = resp.data.total;
+                        this.menus = resp.obj.records;
+                        this.total = resp.obj.total;
                     }
                 });
             },
-            selectPreant(val) {
-                this.loading = true;
-                // let url = '/mgrsystem/basic/department/selectOne'+val ;
 
-                // url += "&name=" + this.keyword;
-
-                this.getRequest("/mgrsystem/basic/department/selectOne" +'?id='+val).then(resp => {
-                    this.loading = false;
-                    if (resp) {
-                        this.pname = resp.data.name;
-
-                    }
-                });
-
-            }
         }
     }
 </script>

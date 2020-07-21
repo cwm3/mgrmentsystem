@@ -1,14 +1,5 @@
 spring:
-  application.name:  mgrsystem
-  cloud:
-    nacos:
-      # Nacos 作为注册中心的配置项，对应 NacosDiscoveryProperties 配置类
-      discovery:
-        register-enabled: true
-        server-addr: 127.0.0.1:8848 # Nacos 服务器地址
-        # 注册到 Nacos 的服务名。默认值为 ${spring.application.name}。
-        service: ${spring.application.name}
-
+  profiles.active: [dev]
   datasource:
     # 是否开启 SQL日志输出，生产环境建议关闭，有性能损耗
     p6spy: true
@@ -21,27 +12,20 @@ spring:
     username: guest
     password: guest
 #    host: 192.168.134.139
-    host: 192.168.80.132
+    host: 192.168.80.130
     port: 5672
     publisher-confirms: true
     publisher-returns: true
     virtual-host: my_vhost
   redis:
 #    host: 192.168.134.139
-    host: 192.168.80.132
+    host: 192.168.80.130
     database: 0
     port: 6379
     password: ''
   cache:
     cache-names: menus_cache
-server:
-  port: 8082
-  servlet:
-    session:
-      # session超时时间，单位为秒
-      timeout: 3600
-  compression:
-    enabled: true
+
 # 日志配置
 logging:
     config: classpath:logback-spring.xml
@@ -60,4 +44,4 @@ mybatis-plus:
 fastdfs:
   nginx:
 #    host: http://192.168.134.139/
-    host: http://192.168.80.132/
+    host: http://192.168.80.130/

@@ -26,4 +26,6 @@ public interface IMenuService extends IService<Menu> {
     Integer insertMenu(Menu menu);
 
     Object findjobList(QueryRequest request, Menu menu);
+
+    void deleteByParentId(Integer id);
 }

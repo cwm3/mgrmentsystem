@@ -1,5 +1,7 @@
 package org.cwm3.mgrsystem.common.entily;
 
+import java.io.Serializable;
+
 /**
 
  * @作者 cwm3

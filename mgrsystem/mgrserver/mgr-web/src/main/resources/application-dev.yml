@@ -1,0 +1,27 @@
+#spring:
+#  cloud.nacos.discovery:
+#    server-addr: 10.0.1.146:8888
+#
+#    #namespace: 15b2f341-7659-48b1-858a-1729903d1268
+#gateway.url: 10.0.1.146:9000
+#redis.name: sps  #内存前缀
+#server.port: 9003
+spring:
+  application.name:  mgrsystem
+  cloud:
+    nacos:
+      # Nacos 作为注册中心的配置项，对应 NacosDiscoveryProperties 配置类
+      discovery:
+        register-enabled: true
+        server-addr: 127.0.0.1:8848 # Nacos 服务器地址
+        # 注册到 Nacos 的服务名。默认值为 ${spring.application.name}。
+        service: ${spring.application.name}
+
+server:
+  port: 8085
+  servlet:
+    session:
+      # session超时时间，单位为秒
+      timeout: 3600
+  compression:
+    enabled: true

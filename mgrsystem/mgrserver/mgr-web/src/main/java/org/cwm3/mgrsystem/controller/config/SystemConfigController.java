@@ -9,12 +9,11 @@ import org.cwm3.mgrsystem.common.entity.AjaxResult;
 import org.cwm3.mgrsystem.model.Menu;
 import org.cwm3.mgrsystem.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.awt.SystemColor.menu;
 
 /**
 
@@ -41,13 +40,41 @@ public class SystemConfigController {
     @Log(value="添加菜单",table="menu",type = FuncLogEnum.SYS_FUNCTION)
     @RequestMapping("/addMenu")
     @ResponseBody
-    public AjaxResult addMenu (Menu menu){
-        AjaxResult ajaxResult = new AjaxResult(true);
+    public RespBean addMenu (Menu menu){
         if(menuService.insertMenu(menu)==1){
-            return ajaxResult;
+            return RespBean.ok("添加成功");
         }
-        ajaxResult.setSuccess(false);
-        return ajaxResult;
+        return RespBean.error("添加失败");
+    }
+
+    @Log(value="更新菜单",table="menu",type = FuncLogEnum.SYS_FUNCTION)
+    @RequestMapping("/updateMenu")
+    @ResponseBody
+    public RespBean updateMenu (Menu menu){
+        if (menu.getId() != null) {
+            if (menuService.insertMenu(menu) == 1) {
+                return RespBean.ok("更新成功");
+            }
+            return RespBean.error("更新失败");
+        }else{
+            return RespBean.error("id必须传");
+        }
+    }
+    @GetMapping("/getMenuByParentId")
+    public RespBean getMenuByParentId(@RequestParam Integer id) {
+        Menu menu = this.menuService.getById(id);
+        return RespBean.ok(menu);
+    }
+    @Log(value="删除菜单",table="menu",type = FuncLogEnum.SYS_FUNCTION)
+    @DeleteMapping("/delete")
+    public RespBean delete(@RequestParam Integer id) {
+        boolean b = this.menuService.removeById(id);
+        this.menuService.deleteByParentId(id);
+        if (b == true) {
+            return RespBean.ok("删除成功");
+        }else {
+            return RespBean.error("删除失败");
+        }
     }
 
 }
