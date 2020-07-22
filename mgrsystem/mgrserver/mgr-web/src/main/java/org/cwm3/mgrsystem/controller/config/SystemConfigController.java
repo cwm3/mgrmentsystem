@@ -40,7 +40,7 @@ public class SystemConfigController {
     @Log(value="添加菜单",table="menu",type = FuncLogEnum.SYS_FUNCTION)
     @RequestMapping("/addMenu")
     @ResponseBody
-    public RespBean addMenu (Menu menu){
+    public RespBean addMenu (@RequestBody Menu menu){
         if(menuService.insertMenu(menu)==1){
             return RespBean.ok("添加成功");
         }
@@ -50,7 +50,7 @@ public class SystemConfigController {
     @Log(value="更新菜单",table="menu",type = FuncLogEnum.SYS_FUNCTION)
     @RequestMapping("/updateMenu")
     @ResponseBody
-    public RespBean updateMenu (Menu menu){
+    public RespBean updateMenu (@RequestBody Menu menu){
         if (menu.getId() != null) {
             if (menuService.insertMenu(menu) == 1) {
                 return RespBean.ok("更新成功");
