@@ -14,12 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
+
 @Configuration
 public class RabbitConfig {
     public final static Logger logger = LoggerFactory.getLogger(RabbitConfig.class);
     @Autowired
     CachingConnectionFactory cachingConnectionFactory;
-    @Autowired
+    @Resource
     MailSendLogService mailSendLogService;
 
     @Bean
