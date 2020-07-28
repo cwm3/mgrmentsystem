@@ -26,3 +26,6 @@ server:
       timeout: 3600
   compression:
     enabled: true
+    servlet:
+      context-path: /mgrsystem
+

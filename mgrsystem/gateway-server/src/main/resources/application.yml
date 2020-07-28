@@ -2,6 +2,20 @@ spring:
   profiles.active: [dev]
   cloud:
     gateway:
+      routes:
+        - id: mgrsystem_route
+          uri: lb://mgrsystem
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+#        - id: third_party_route
+#          uri: lb://gulimall-third-party
+#          predicates:
+#            - Path=/api/thirdparty/**
+#          filters:
+#            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
       httpclient:
         ssl:
           useInsecureTrustManager: true  #开启https转发
