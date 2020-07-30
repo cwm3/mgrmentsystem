@@ -79,8 +79,6 @@ public class DepartmentService extends ServiceImpl<DepartmentMapper, Department>
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
-
-
     }
 
     @Override

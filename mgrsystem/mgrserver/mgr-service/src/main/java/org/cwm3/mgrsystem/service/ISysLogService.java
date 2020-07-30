@@ -59,7 +59,7 @@ public interface ISysLogService extends IService<SysLog> {
      */
     boolean deleteById(Integer id);
 
-    Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize, Department department ,String name);
+    Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize ,String name);
     /**
      * 异步保存操作日志
      *

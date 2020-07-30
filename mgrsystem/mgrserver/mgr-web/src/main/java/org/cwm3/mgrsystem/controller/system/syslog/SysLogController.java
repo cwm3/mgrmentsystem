@@ -54,9 +54,8 @@ public class SysLogController {
      */
     @GetMapping("/")
     public RespBean getAllSysLog(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize ,String name){
-        Department department = new Department();
         try {
-            Page<SysLog> iPage = sysLogService.selectPageExt(pageNum,pageSize,department ,name);
+            Page<SysLog> iPage = sysLogService.selectPageExt(pageNum,pageSize ,name);
            return RespBean.ok("",iPage);
         }catch (Exception e){
           return    RespBean.error(e.getMessage());

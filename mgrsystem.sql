@@ -871,7 +871,7 @@ CREATE TABLE `flyway_schema_history` (
 /*Data for the table `flyway_schema_history` */
 
 insert  into `flyway_schema_history`(`installed_rank`,`version`,`description`,`type`,`script`,`checksum`,`installed_by`,`installed_on`,`execution_time`,`success`) values 
-(1,'1','vhr','SQL','V1__vhr.sql',121732763,'root','2020-07-04 13:39:49',293,1);
+(1,'1.2','mgrsystem','SQL','V1.2__mgrsystem.sql',-458113117,'root','2020-07-28 10:42:54',70685,1);
 
 /*Table structure for table `hr` */
 
@@ -1027,7 +1027,7 @@ insert  into `menu`(`id`,`url`,`path`,`component`,`name`,`iconCls`,`keepAlive`,`
 (27,'/mgrsystem/data/**','/sys/data','SysData','å¤‡ä»½æ¢å¤æ•°æ®åº“',NULL,NULL,1,6,1),
 (28,'/mgrsystem/init/**','/sys/init','SysInit','åˆå§‹åŒ–æ•°æ®åº“',NULL,NULL,1,6,1),
 (29,'/','/home','Home','èœå•ç®¡ç†','el-icon-menu',NULL,1,1,1),
-(30,'/employee/basic/**','/emp/basic','EmpBasic','å‘˜å·¥ç®¡ç†',NULL,NULL,1,29,1),
+(30,'/mgrsystem/config/**','/menu/menu','Menumenu','èœå•ç®¡ç†',NULL,NULL,1,29,1),
 (31,'/','/home','Home','ç»„ç»‡æž¶æž„ç®¡ç†','el-icon-s-check',NULL,1,1,1),
 (32,'/mgrsystem/basic/**','/organ/','Organ','ç»„ç»‡æž¶æž„',NULL,NULL,1,31,1),
 (33,'/mgrsystem/basic/**','/organ/dept','OrganDept','éƒ¨é—¨ç®¡ç†',NULL,NULL,1,31,1),
@@ -1318,24 +1318,7 @@ CREATE TABLE `qrtz_cron_triggers` (
 /*Data for the table `qrtz_cron_triggers` */
 
 insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values 
-('FEBS_Scheduler','TASK_1','DEFAULT','0/1 * * * * ?','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_11','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_12','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_13','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_2','DEFAULT','0/10 * * * * ?','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_20','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_21','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_22','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
-('FEBS_Scheduler','TASK_3','DEFAULT','0/1 * * * * ?','Asia/Shanghai'),
-('MyScheduler','TASK_1','DEFAULT','0/1 * * * * ?','Asia/Shanghai'),
-('MyScheduler','TASK_11','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
-('MyScheduler','TASK_12','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
-('MyScheduler','TASK_13','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
-('MyScheduler','TASK_2','DEFAULT','0/10 * * * * ?','Asia/Shanghai'),
-('MyScheduler','TASK_20','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
-('MyScheduler','TASK_21','DEFAULT','0/5 0 9,16 * * ? ','Asia/Shanghai'),
-('MyScheduler','TASK_22','DEFAULT','0/5 * * * * ?','Asia/Shanghai'),
-('MyScheduler','TASK_3','DEFAULT','0/1 * * * * ?','Asia/Shanghai');
+('MyScheduler','TASK_1','DEFAULT','0 0/30 * * * ?','Asia/Shanghai');
 
 /*Table structure for table `qrtz_fired_triggers` */
 
@@ -1381,24 +1364,7 @@ CREATE TABLE `qrtz_job_details` (
 /*Data for the table `qrtz_job_details` */
 
 insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`JOB_CLASS_NAME`,`IS_DURABLE`,`IS_NONCONCURRENT`,`IS_UPDATE_DATA`,`REQUESTS_RECOVERY`,`JOB_DATA`) values 
-('FEBS_Scheduler','TASK_1','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÆëppxt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0testt\0mrbirdt\0\Zæœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•~~t\01x\0'),
-('FEBS_Scheduler','TASK_11','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÐ¬Pxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test2pt\0æµ‹è¯•å¼‚å¸¸t\01x\0'),
-('FEBS_Scheduler','TASK_12','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0myTasksr\0java.util.DatehjKYt\0\0xpw\0\0o² xt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0myTestt\0hellot\0(æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯5ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('FEBS_Scheduler','TASK_13','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0o²+úbxt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0\rt\0	deleteJobt\03t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('FEBS_Scheduler','TASK_2','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÇ2˜xt\00/10 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test1pt\0æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•t\01x\0'),
-('FEBS_Scheduler','TASK_20','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUtöÄxt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\04t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('FEBS_Scheduler','TASK_21','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUy2«xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\05t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('FEBS_Scheduler','TASK_22','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0dafdsr\0java.util.DatehjKYt\0\0xpw\0\0sUªwñxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0dfat\03t\0dfadsfdt\01x\0'),
-('FEBS_Scheduler','TASK_3','DEFAULT',NULL,'ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÏ¹¦xt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0testt\0hello worldt\0+æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘t\01x\0'),
-('MyScheduler','TASK_1','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÆëppxt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0testt\0mrcwmt\0\Zæœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•~~t\01x\0'),
-('MyScheduler','TASK_11','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÐ¬Pxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test2pt\0æµ‹è¯•å¼‚å¸¸t\01x\0'),
-('MyScheduler','TASK_12','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0myTasksr\0java.util.DatehjKYt\0\0xpw\0\0o²œÀxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0myTestt\0hellot\0(æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯5ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('MyScheduler','TASK_13','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0o²+ù€xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0\rt\0	deleteJobt\03t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\00x\0'),
-('MyScheduler','TASK_2','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÇ2˜xt\00/10 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test5t\0\0t\0æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•t\01x\0'),
-('MyScheduler','TASK_20','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUtø xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\04t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('MyScheduler','TASK_21','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUy2¨xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\05t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('MyScheduler','TASK_22','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0123sr\0java.util.DatehjKYt\0\0xpw\0\0sUªwðxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0dfat\03t\0dfadsfdt\01x\0'),
-('MyScheduler','TASK_3','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÏ¹¦xt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test1t\0hello worldt\0+æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘t\01x\0');
+('MyScheduler','TASK_1','DEFAULT',NULL,'org.cwm3.mgrsystem.utils.ScheduleJob','0','0','0','0','¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0sQ†hðxt\00 0/30 * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0\0t\0cwmpt\00x\0');
 
 /*Table structure for table `qrtz_locks` */
 
@@ -1413,8 +1379,6 @@ CREATE TABLE `qrtz_locks` (
 /*Data for the table `qrtz_locks` */
 
 insert  into `qrtz_locks`(`SCHED_NAME`,`LOCK_NAME`) values 
-('FEBS_Scheduler','STATE_ACCESS'),
-('FEBS_Scheduler','TRIGGER_ACCESS'),
 ('MyScheduler','STATE_ACCESS'),
 ('MyScheduler','TRIGGER_ACCESS');
 
@@ -1445,8 +1409,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 /*Data for the table `qrtz_scheduler_state` */
 
 insert  into `qrtz_scheduler_state`(`SCHED_NAME`,`INSTANCE_NAME`,`LAST_CHECKIN_TIME`,`CHECKIN_INTERVAL`) values 
-('FEBS_Scheduler','localhost.localdomain1594974774281',1595216536855,15000),
-('MyScheduler','pc-2019080241595228236013',1595229672191,15000);
+('MyScheduler','pc-2019080241596096771577',1596101772723,15000);
 
 /*Table structure for table `qrtz_simple_triggers` */
 
@@ -1519,24 +1482,7 @@ CREATE TABLE `qrtz_triggers` (
 /*Data for the table `qrtz_triggers` */
 
 insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`NEXT_FIRE_TIME`,`PREV_FIRE_TIME`,`PRIORITY`,`TRIGGER_STATE`,`TRIGGER_TYPE`,`START_TIME`,`END_TIME`,`CALENDAR_NAME`,`MISFIRE_INSTR`,`JOB_DATA`) values 
-('FEBS_Scheduler','TASK_1','DEFAULT','TASK_1','DEFAULT',NULL,1578562253000,-1,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÆëppxt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0testt\0mrbirdt\0\Zæœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•~~t\01x\0'),
-('FEBS_Scheduler','TASK_11','DEFAULT','TASK_11','DEFAULT',NULL,1578562255000,-1,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÐ¬Pxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test2pt\0æµ‹è¯•å¼‚å¸¸t\01x\0'),
-('FEBS_Scheduler','TASK_12','DEFAULT','TASK_12','DEFAULT',NULL,1579242790000,1579242785000,5,'PAUSED','CRON',1579240875000,0,NULL,2,''),
-('FEBS_Scheduler','TASK_13','DEFAULT','TASK_13','DEFAULT',NULL,1579309200000,1579248055000,5,'WAITING','CRON',1579242228000,0,NULL,2,''),
-('FEBS_Scheduler','TASK_2','DEFAULT','TASK_2','DEFAULT',NULL,1578562260000,-1,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTaskpt\00/10 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test5t\0\0t\0æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•t\01x\0'),
-('FEBS_Scheduler','TASK_20','DEFAULT','TASK_20','DEFAULT',NULL,1594886400000,-1,5,'PAUSED','CRON',1594866595000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUtø xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\04t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('FEBS_Scheduler','TASK_21','DEFAULT','TASK_21','DEFAULT',NULL,1594886400000,-1,5,'PAUSED','CRON',1594866873000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUy2¨xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\05t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('FEBS_Scheduler','TASK_22','DEFAULT','TASK_22','DEFAULT',NULL,1594870105000,-1,5,'PAUSED','CRON',1594870102000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0123sr\0java.util.DatehjKYt\0\0xpw\0\0sUªwðxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0dfat\03t\0dfadsfdt\01x\0'),
-('FEBS_Scheduler','TASK_3','DEFAULT','TASK_3','DEFAULT',NULL,1579230392000,1579230391000,5,'PAUSED','CRON',1578562253000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0cc.mrbird.febs.job.entity.JobR¬“£\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTaskpt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test1t\0hello worldt\0+æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘t\01x\0'),
-('MyScheduler','TASK_1','DEFAULT','TASK_1','DEFAULT',NULL,1595215384000,-1,5,'PAUSED','CRON',1595215384000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÆëppxt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0testt\0mrcwmt\0\Zæœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•~~t\01x\0'),
-('MyScheduler','TASK_11','DEFAULT','TASK_11','DEFAULT',NULL,1595215390000,-1,5,'PAUSED','CRON',1595215386000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÐ¬Pxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test2pt\0æµ‹è¯•å¼‚å¸¸t\01x\0'),
-('MyScheduler','TASK_12','DEFAULT','TASK_12','DEFAULT',NULL,1595215390000,-1,5,'PAUSED','CRON',1595215386000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0myTasksr\0java.util.DatehjKYt\0\0xpw\0\0o²œÀxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0myTestt\0hellot\0(æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯5ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('MyScheduler','TASK_13','DEFAULT','TASK_13','DEFAULT',NULL,1595232000000,-1,5,'WAITING','CRON',1595215387000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0o²+ù€xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0\rt\0	deleteJobt\03t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\00x\0'),
-('MyScheduler','TASK_2','DEFAULT','TASK_2','DEFAULT',NULL,1595215390000,-1,5,'PAUSED','CRON',1595215385000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÇ2˜xt\00/10 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test5t\0\0t\0æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•t\01x\0'),
-('MyScheduler','TASK_20','DEFAULT','TASK_20','DEFAULT',NULL,1595232000000,-1,5,'PAUSED','CRON',1595215387000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUtø xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\04t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('MyScheduler','TASK_21','DEFAULT','TASK_21','DEFAULT',NULL,1595232000000,-1,5,'PAUSED','CRON',1595215387000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0	myTest123sr\0java.util.DatehjKYt\0\0xpw\0\0sUy2¨xt\00/5 0 9,16 * * ? sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0	deleteJobt\05t\0=æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡t\01x\0'),
-('MyScheduler','TASK_22','DEFAULT','TASK_22','DEFAULT',NULL,1595215390000,-1,5,'PAUSED','CRON',1595215388000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0123sr\0java.util.DatehjKYt\0\0xpw\0\0sUªwðxt\0\r0/5 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0dfat\04t\0dfadsfdt\01x\0'),
-('MyScheduler','TASK_3','DEFAULT','TASK_3','DEFAULT',NULL,1595215386000,-1,5,'PAUSED','CRON',1595215386000,0,NULL,2,'¬í\0sr\0org.quartz.JobDataMapŸ°ƒè¿©°Ë\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap‚èÃûÅ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapæ.­(v\nÎ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÚÁÃ`Ñ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0org.cwm3.mgrsystem.model.JobÂU¶ànŸ™\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statusq\0~\0	xpt\0testTasksr\0java.util.DatehjKYt\0\0xpw\0\0aÏ¹¦xt\0\r0/1 * * * * ?sr\0java.lang.Long;‹äÌ#ß\0J\0valuexr\0java.lang.Number†¬•”à‹\0\0xp\0\0\0\0\0\0\0t\0test1t\0hello worldt\0+æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘t\01x\0');
+('MyScheduler','TASK_1','DEFAULT','TASK_1','DEFAULT',NULL,1596103200000,1596101400000,5,'WAITING','CRON',1596096772000,0,NULL,2,'');
 
 /*Table structure for table `role` */
 
@@ -1710,15 +1656,7 @@ CREATE TABLE `t_job` (
 /*Data for the table `t_job` */
 
 insert  into `t_job`(`JOB_ID`,`BEAN_NAME`,`METHOD_NAME`,`PARAMS`,`CRON_EXPRESSION`,`STATUS`,`REMARK`,`CREATE_TIME`) values 
-(1,'testTask','test','mrcwm','0/1 * * * * ?','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•~~','2018-02-24 16:26:14'),
-(2,'testTask','test5','','0/10 * * * * ?','1','æ— å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•','2018-02-24 17:06:23'),
-(3,'testTask','test1','hello world','0/1 * * * * ?','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦æµ‹è¯•,æ¯éš”ä¸€ç§’è§¦å‘','2018-02-26 09:28:26'),
-(11,'testTask','test2',NULL,'0/5 * * * * ?','1','æµ‹è¯•å¼‚å¸¸','2018-02-26 11:15:30'),
-(12,'myTask','myTest','hello','0/5 * * * * ?','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯5ç§’æ‰§è¡Œä¸€æ¬¡','2020-01-17 14:00:24'),
-(13,'myTest123','deleteJob','3','0/5 0 9,16 * * ? ','0','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡','2020-01-17 14:23:44'),
-(20,'myTest123','deleteJob','4','0/5 0 9,16 * * ? ','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡','2020-07-16 10:29:56'),
-(21,'myTest123','deleteJob','5','0/5 0 9,16 * * ? ','1','æœ‰å‚ä»»åŠ¡è°ƒåº¦ï¼Œæ¯å¤©9ç‚¹åˆ°16ç‚¹ï¼Œæ¯3ç§’æ‰§è¡Œä¸€æ¬¡','2020-07-16 10:34:33'),
-(22,'123','dfa','4','0/5 * * * * ?','1','dfadsfd','2020-07-16 11:28:22');
+(1,'testTask','','cwm','0 0/30 * * * ?','0',NULL,'2020-07-15 16:10:30');
 
 /*Table structure for table `t_job_log` */
 
@@ -1735,12 +1673,14 @@ CREATE TABLE `t_job_log` (
   `TIMES` decimal(11,0) DEFAULT NULL COMMENT 'è€—æ—¶(å•ä½ï¼šæ¯«ç§’)',
   `CREATE_TIME` datetime DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
   PRIMARY KEY (`LOG_ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='è°ƒåº¦æ—¥å¿—è¡¨';
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='è°ƒåº¦æ—¥å¿—è¡¨';
 
 /*Data for the table `t_job_log` */
 
 insert  into `t_job_log`(`LOG_ID`,`JOB_ID`,`BEAN_NAME`,`METHOD_NAME`,`PARAMS`,`STATUS`,`ERROR`,`TIMES`,`CREATE_TIME`) values 
-(82,13,'myTest123','deleteJob','3','1','org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named \'myTest123\' available',1,'2020-01-17 14:29:29');
+(128,1,'testTask','','cwm','1','java.lang.NoSuchMethodException: org.cwm3.mgrsystem.task.TestTask.(java.lang.String)',3,'2020-07-30 16:30:01'),
+(129,1,'testTask','','cwm','1','java.lang.NoSuchMethodException: org.cwm3.mgrsystem.task.TestTask.(java.lang.String)',0,'2020-07-30 17:00:00'),
+(130,1,'testTask','','cwm','1','java.lang.NoSuchMethodException: org.cwm3.mgrsystem.task.TestTask.(java.lang.String)',0,'2020-07-30 17:30:00');
 
 /*Table structure for table `t_login_log` */
 
@@ -1769,16 +1709,16 @@ insert  into `t_login_log`(`ID`,`USERNAME`,`LOGIN_TIME`,`LOCATION`,`IP`,`SYSTEM`
 DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `addDep`(in depName varchar(32),in parentId int,in enabled boolean,out result int,out result2 int)
-begin
-  declare did int;
-  declare pDepPath varchar(64);
-  insert into department set name=depName,parentId=parentId,enabled=enabled;
-  select row_count() into result;
-  select last_insert_id() into did;
-  set result2=did;
-  select depPath into pDepPath from department where id=parentId;
-  update department set depPath=concat(pDepPath,'.',did) where id=did;
-  update department set isParent=true where id=parentId;
+begin
+  declare did int;
+  declare pDepPath varchar(64);
+  insert into department set name=depName,parentId=parentId,enabled=enabled;
+  select row_count() into result;
+  select last_insert_id() into did;
+  set result2=did;
+  select depPath into pDepPath from department where id=parentId;
+  update department set depPath=concat(pDepPath,'.',did) where id=did;
+  update department set isParent=true where id=parentId;
 end */$$
 DELIMITER ;
 
@@ -1789,25 +1729,25 @@ DELIMITER ;
 DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteDep`(in did int,out result int)
-begin
-  declare ecount int;
-  declare pid int;
-  declare pcount int;
-  declare a int;
-  select count(*) into a from department where id=did and isParent=false;
-  if a=0 then set result=-2;
-  else
-  select count(*) into ecount from employee where departmentId=did;
-  if ecount>0 then set result=-1;
-  else
-  select parentId into pid from department where id=did;
-  delete from department where id=did and isParent=false;
-  select row_count() into result;
-  select count(*) into pcount from department where parentId=pid;
-  if pcount=0 then update department set isParent=false where id=pid;
-  end if;
-  end if;
-  end if;
+begin
+  declare ecount int;
+  declare pid int;
+  declare pcount int;
+  declare a int;
+  select count(*) into a from department where id=did and isParent=false;
+  if a=0 then set result=-2;
+  else
+  select count(*) into ecount from employee where departmentId=did;
+  if ecount>0 then set result=-1;
+  else
+  select parentId into pid from department where id=did;
+  delete from department where id=did and isParent=false;
+  select row_count() into result;
+  select count(*) into pcount from department where parentId=pid;
+  if pcount=0 then update department set isParent=false where id=pid;
+  end if;
+  end if;
+  end if;
 end */$$
 DELIMITER ;
 

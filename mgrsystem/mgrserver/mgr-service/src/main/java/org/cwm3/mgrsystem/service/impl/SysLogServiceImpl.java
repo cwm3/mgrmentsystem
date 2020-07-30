@@ -8,6 +8,7 @@ import com.github.pagehelper.util.StringUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.cwm3.mgrsystem.mapper.SysLogMapper;
 import org.cwm3.mgrsystem.model.Department;
+import org.cwm3.mgrsystem.model.JobLog;
 import org.cwm3.mgrsystem.model.SysLog;
 import org.cwm3.mgrsystem.service.ISysLogService;
 import org.cwm3.mgrsystem.utils.AddressUtil;
@@ -95,15 +96,16 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
     }
 
     @Override
-    public Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize, Department department,String name) {
+    public Page<SysLog> selectPageExt(Integer pageNum, Integer pageSize,String name) {
+        SysLog sysLog = new SysLog();
         Page<SysLog> page = new Page<>(pageNum,pageSize);
         LambdaQueryWrapper<SysLog> lambdaQueryWrapper =new LambdaQueryWrapper();
         if (StringUtil.isNotEmpty(name)) {
             lambdaQueryWrapper.like(SysLog::getUsername, name);
-            Page iPage = (Page) sysLogMapper.selectPage(page, lambdaQueryWrapper);
-            return iPage;
+
         }
-        Page iPage = (Page) sysLogMapper.selectPage(page, lambdaQueryWrapper);
+        lambdaQueryWrapper.orderByDesc(SysLog::getCreateTime);
+        Page iPage = (Page) this.page(page,lambdaQueryWrapper);
         return iPage;
     }
     @Override

@@ -31,7 +31,7 @@ public class DepartmentController extends BaseController {
 
     @GetMapping("/")
     public List<Department> getAllDepartments() {
-        return departmentService.findAllDepartments();
+        return departmentService.getAllDepartments();
     }
 
     @PostMapping("/")
@@ -100,9 +100,6 @@ public class DepartmentController extends BaseController {
         Department department = new Department();
         AjaxResult ajaxResult = new AjaxResult(true);
         Page<Department> iPage = departmentService.selectPageExt(department, pageNum, pageSize, name);
-//        PageHelper.startPage(pageNum,pageSize);
-//        List<Department> departmentList = departmentService.selectAll();
-//        PageInfo<Department> pageInfo = new PageInfo<>(departmentList);
         ajaxResult.setData(iPage);
         return ajaxResult;
     }
