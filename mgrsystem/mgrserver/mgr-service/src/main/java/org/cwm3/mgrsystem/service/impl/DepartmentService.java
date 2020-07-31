@@ -56,11 +56,6 @@ public class DepartmentService extends ServiceImpl<DepartmentMapper, Department>
         return departmentMapper.selectByPrimaryKey(id);
     }
 
-//    @Override
-//    public  List<Department> selectAll() {
-//        return departmentMapper.selectAll();
-//    }
-
     @Override
     public Page<Department> selectPageExt(Department department, Integer pageNum, Integer pageSize ,String name) {
         try {

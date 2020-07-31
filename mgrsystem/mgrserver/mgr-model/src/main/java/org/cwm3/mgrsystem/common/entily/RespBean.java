@@ -1,6 +1,7 @@
 package org.cwm3.mgrsystem.common.entily;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
 
@@ -8,7 +9,7 @@ import java.io.Serializable;
 
  * @时间 2019-09-20 8:39
  */
-public class RespBean {
+public class RespBean extends HashMap<String, Object>{
     private Integer status;
     private String msg;
     private Object obj;
@@ -37,7 +38,7 @@ public class RespBean {
         return new RespBean(500, msg, obj);
     }
 
-    private RespBean() {
+    public RespBean() {
     }
 
     public RespBean(Integer status, String msg, Object obj) {

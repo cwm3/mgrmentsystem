@@ -25,6 +25,10 @@
                     :data="menus"
                     stripe
                     border
+                    row-key="menuId"
+                    border
+                    default-expand-all
+                    :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
                     v-loading="loading"
                     element-loading-text="正在加载..."
                     element-loading-spinner="el-icon-loading"
@@ -168,6 +172,7 @@
 
 
 <script>
+    import { treeDataTranslate } from '@/utils'
     export default {
         name: "OrganDept",
         data() {
@@ -331,7 +336,7 @@
                 this.getRequest(url).then(resp => {
                     this.loading = false;
                     if (resp) {
-                        this.menus = resp.obj.records;
+                        this.menus = treeDataTranslate(resp.obj.records, 'menuId')
                         this.total = resp.obj.total;
                     }
                 });
