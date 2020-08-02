@@ -46,6 +46,10 @@ public class RespBean extends HashMap<String, Object>{
         this.msg = msg;
         this.obj = obj;
     }
+    public RespBean(Integer status, String msg) {
+        this.status = status;
+        this.msg = msg;
+    }
 
     public Integer getStatus() {
         return status;

@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 @Api(value = "mail_send_log", description = "邮件发送日志")
 public class MailsendLogController {
 
-     @Resource
+     @Autowired
      IMailSendLogService mailSendLogService;
 
     @GetMapping("/pageList")

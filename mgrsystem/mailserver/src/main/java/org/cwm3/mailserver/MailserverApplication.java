@@ -2,7 +2,6 @@ package org.cwm3.mailserver;
 
 import io.swagger.annotations.ApiImplicitParams;
 import org.cwm3.mgrsystem.model.MailConstants;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.amqp.core.Queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages="org.cwm3.mgrsystem")
-@MapperScan(value = "org.cwm3.mgrsystem.mapper")
 public class MailserverApplication {
 
     public static void main(String[] args) {

@@ -1,22 +1,14 @@
-
+server:
+  port: 8087
 spring:
-  profiles.active: [dev]
-  datasource:
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mgrsystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-#     url: jdbc:oracle:thin:@10.1.31.168:1521:orcl
-#     driverClassName: oracle.jdbc.driver.OracleDriver
-#     username: root
-#     password: root
-#     min_idle: 200
-#     max_idle: 5000
-#     max_active: 2000
-#     initial_size: 1
-#     dialect: oracle
-#     validation_query: SELECT 1 from DUAL
-mybatis-plus:
-  #信息输出设置
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  application:
+    name: mailserver
+    cloud:
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

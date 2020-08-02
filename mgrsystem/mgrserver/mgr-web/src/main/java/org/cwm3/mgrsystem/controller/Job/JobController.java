@@ -70,7 +70,7 @@ public class JobController extends BaseController {
 
     @Log(value="更新定时任务",table="t_job",type = FuncLogEnum.SYS_FUNCTION)
     @PostMapping("/update")
-    public RespBean updateJob(@RequestBody Job job) {
+    public RespBean updateJob(@Valid @RequestBody Job job) {
         this.jobService.updateJob(job);
         return RespBean.ok("修改成功");
     }
