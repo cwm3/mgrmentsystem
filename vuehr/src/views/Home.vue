@@ -2,13 +2,13 @@
     <div>
         <el-container>
             <el-header class="homeHeader">
-                <div class="title">管理系统</div>
+                <div class="title">信息管理系统</div>
                 <div>
                     <el-button icon="el-icon-bell" type="text" style="margin-right: 8px;color: #000000;" size="normal" @click="goChat"></el-button>
                     <el-dropdown class="userInfo" @command="commandHandler">
-  <span class="el-dropdown-link">
-    {{user.name}}<i><img :src="user.userface" alt=""></i>
-  </span>
+<!--  <span class="el-dropdown-link">-->
+<!--    {{user.name}}<i><img :src="user.userface" alt=""></i>-->
+<!--  </span>-->
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
                             <el-dropdown-item command="setting">设置</el-dropdown-item>
@@ -54,6 +54,7 @@
                 // user: JSON.parse(window.sessionStorage.getItem("user"))
             }
         },
+
         computed: {
             routes() {
                 return this.$store.state.routes;
@@ -61,6 +62,10 @@
             user() {
                 return this.$store.state.currentHr;
             }
+        },
+        mounted() {
+            console.log(this.routes)
+            console.log(this.user)
         },
         methods: {
             goChat() {

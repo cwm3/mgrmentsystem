@@ -1,5 +1,6 @@
 package org.cwm3.mgrsystem.config;
 
+import com.alibaba.fastjson.JSONObject;
 import org.cwm3.mgrsystem.model.Menu;
 import org.cwm3.mgrsystem.model.Role;
 import org.cwm3.mgrsystem.service.IMenuService;
@@ -29,7 +30,8 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
-        List<Menu> menus = menuService.getAllMenusWithRole();
+//        List<Menu> menus = menuService.getAllMenusWithRole();
+        List<Menu> menus = JSONObject.parseArray(JSONObject.toJSONString(menuService.getAllMenusWithRole()), Menu.class);
         for (Menu menu : menus) {
             if (antPathMatcher.match(menu.getUrl(), requestUrl)) {
                 List<Role> roles = menu.getRoles();

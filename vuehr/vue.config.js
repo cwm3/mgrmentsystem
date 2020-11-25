@@ -1,12 +1,26 @@
 let proxyObj = {};
 const CompressionPlugin = require("compression-webpack-plugin");
+// proxyObj['/ws'] = {
+//     ws: true,
+//     target: "ws://localhost:8089/api"
+// };
+// proxyObj['/'] = {
+//     ws: false,
+//     target: 'http://localhost:8089/api',
+//     changeOrigin: true,
+//     pathRewrite: {
+//         '^/': ''
+//     }
+// }
+
+
 proxyObj['/ws'] = {
     ws: true,
-    target: "ws://localhost:8089/api"
+    target: "ws://8.129.130.233:8085"
 };
 proxyObj['/'] = {
     ws: false,
-    target: 'http://localhost:8089/api',
+    target: 'http://8.129.130.233:8085',
     changeOrigin: true,
     pathRewrite: {
         '^/': ''
